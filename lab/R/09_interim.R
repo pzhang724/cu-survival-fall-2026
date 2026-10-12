@@ -109,21 +109,23 @@ t_ia_1 <- ia_report %>%
 # Where did the interim land relative to the boundaries?
 p_ia_boundary <- p_boundary +
   annotate("point", x = info_frac, y = ia$z, shape = 18, size = 6, colour = "#E07B00") +
-  annotate("text", x = info_frac + 0.02, y = ia$z + 0.3, hjust = 0, colour = "#E07B00",
+  annotate("text", x = info_frac + 0.02, y = ia$z + 0.3, hjust = 0, colour = "#E07B00", size = 4.6,
            label = sprintf("Observed at the interim: Z = %.2f (HR %.2f)", ia$z, ia$hr))
 
 ## ---- ia-km ----
 p_km_ia <- survfit2(Surv(AVAL_M, 1 - CNSR) ~ TRT01P, data = pfs_ia) %>%
   ggsurvfit(linewidth = 0.9) +
   add_censor_mark(size = 2, alpha = 0.6) +
-  add_risktable(risktable_stats = "n.risk", size = 3.5,
-                theme = theme_risktable_default(axis.text.y.size = 10, plot.title.size = 11)) +
+  add_risktable(risktable_stats = "n.risk", size = 4.5,
+                theme = theme_risktable_default(axis.text.y.size = 13, plot.title.size = 14)) +
   scale_color_manual(values = arm_colours) +
   scale_x_continuous(breaks = 0:6, limits = c(0, 6.1)) +
   scale_y_continuous(labels = scales::percent) +
   labs(x = "Months since randomization", y = "Progression-free survival",
        title = sprintf("Figure IA.1 PFS at the interim analysis (DCO %s)", format(ia_dco))) +
-  theme(legend.position = "bottom", plot.title = element_text(size = 12))
+  theme(legend.position = "bottom", plot.title = element_text(size = 15),
+        axis.text = element_text(size = 13), axis.title = element_text(size = 15),
+        legend.text = element_text(size = 14))
 
 ## ---- ia-save ----
 save_rtf(t_ia_1, "t_ia_1_interim_pfs")

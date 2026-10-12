@@ -142,17 +142,19 @@ arm_colours <- c("Placebo" = "#7F7F7F", "Xanomeline Low Dose" = "#75AADB", "Xano
 p_km_pfs <- survfit2(Surv(AVAL_M, 1 - CNSR) ~ TRT01P, data = pfs) %>%
   ggsurvfit(linewidth = 0.9) +
   add_censor_mark(size = 2, alpha = 0.6) +
-  add_risktable(risktable_stats = "n.risk", size = 3.5,
-                theme = theme_risktable_default(axis.text.y.size = 10, plot.title.size = 11)) +
+  add_risktable(risktable_stats = "n.risk", size = 4.5,
+                theme = theme_risktable_default(axis.text.y.size = 13, plot.title.size = 14)) +
   scale_color_manual(values = arm_colours) +
   scale_x_continuous(breaks = 0:6, limits = c(0, 6.1)) +
   scale_y_continuous(labels = scales::percent) +
-  annotate("text", x = 6, y = 0.72, hjust = 1, size = 3.8,
-           label = sprintf("High Dose vs Placebo: HR %.2f (95%% CI %.2f, %.2f); one-sided log-rank p = %.3f",
+  annotate("text", x = 6, y = 0.72, hjust = 1, size = 4.8,
+           label = sprintf("High Dose vs Placebo: HR %.2f (95%% CI %.2f, %.2f)\none-sided log-rank p = %.3f",
                            pfs_hi$hr, pfs_hi$hr_lower, pfs_hi$hr_upper, pfs_hi$p_one_sided)) +
   labs(x = "Months since randomization", y = "Progression-free survival",
        title = "Figure 14.2.1 Kaplan-Meier plot of progression-free survival (ITT set)") +
-  theme(legend.position = "bottom", plot.title = element_text(size = 12))
+  theme(legend.position = "bottom", plot.title = element_text(size = 15),
+        axis.text = element_text(size = 13), axis.title = element_text(size = 15),
+        legend.text = element_text(size = 14))
 
 ## ---- eff-orr ----
 # Objective response rate (ORR): best overall response of CR or PR (RECIST 1.1,
