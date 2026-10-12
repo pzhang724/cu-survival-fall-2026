@@ -56,7 +56,10 @@ renv.lock               package versions (Posit Package Manager snapshot 2026-10
    re-render.
 6. **English** in slides, docs and code comments. Keep R sources ASCII
    (write non-ASCII characters as `\uXXXX` escapes).
-7. **Reproducibility.** After adding a package: `renv::snapshot()`. After any
+7. **Reproducibility.** After adding a package: `renv::snapshot()` with
+   `options(repos = c(CRAN = "https://packagemanager.posit.co/cran/2026-10-12"))`
+   (or a newer dated snapshot), then check that every record in `renv.lock` has
+   `"Repository": "CRAN"`, not a `__linux__/.../latest` URL. After any
    change to `lab/` or `slides/`: `Rscript lab/run_all.R`, then
    `quarto render slides/index.qmd`, and commit the regenerated outputs.
 8. Upstream objects are loaded with `need(object, script)`, which checks the
