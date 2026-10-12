@@ -38,11 +38,13 @@ jobs:
             libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev \
             libtiff5-dev libjpeg-dev libudunits2-dev
 
+      # No use-public-rspm here: it would point renv at the *latest* package
+      # repository. renv.lock pins a dated Posit Package Manager snapshot, which
+      # renv turns into Linux binaries, so the locked versions stay installable.
       - name: Set up R (version from renv.lock)
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: renv
-          use-public-rspm: true
 
       - name: Restore R packages from renv.lock
         uses: r-lib/actions/setup-renv@v2
