@@ -1,0 +1,86 @@
+/*-- scss:defaults --*/
+// Colours: light "Columbia blue" + navy accent
+$cu-light: #B9D9EB;
+$cu-blue: #75AADB;
+$cu-navy: #1D4F91;
+$cu-ink: #1F2933;
+$cu-orange: #E07B00;
+
+$body-bg: #FFFFFF;
+$body-color: $cu-ink;
+$link-color: $cu-navy;
+$presentation-heading-color: $cu-navy;
+$presentation-font-size-root: 30px;
+$presentation-heading-font-weight: 600;
+$presentation-h2-font-size: 1.45em;
+$code-block-font-size: 0.62em;
+$code-color: $cu-navy;
+
+/*-- scss:rules --*/
+.reveal h2 {
+  border-bottom: 4px solid $cu-light;
+  padding-bottom: 0.15em;
+  margin-bottom: 0.5em;
+}
+
+.reveal .slide-number { color: #6B7280; font-size: 0.55em; }
+.reveal .footer { color: #6B7280; font-size: 0.45em; }
+
+// section divider slides
+.reveal section.part-title h1 { color: #FFFFFF; font-size: 2.2em; }
+.reveal section.part-title p { color: $cu-light; font-size: 1.1em; }
+
+// text helpers
+.reveal .small { font-size: 0.78em; }
+.reveal .tiny  { font-size: 0.62em; }
+.reveal .muted { color: #6B7280; }
+.reveal .navy  { color: $cu-navy; font-weight: 600; }
+.reveal .orange { color: $cu-orange; font-weight: 600; }
+
+// a highlighted "take-home" box
+.reveal .takeaway {
+  border-left: 8px solid $cu-navy;
+  background: #EEF5FB;
+  padding: 0.4em 0.8em;
+  margin-top: 0.6em;
+  font-size: 0.85em;
+}
+
+// markdown tables
+.reveal table { font-size: 0.7em; }
+.reveal table th { background: #EEF5FB; color: $cu-navy; }
+.reveal table td, .reveal table th { padding: 0.25em 0.6em; }
+
+// code blocks: taller than the reveal.js default, scroll when needed
+.reveal div.sourceCode pre code { max-height: 740px; }
+.reveal pre { width: 100%; }
+// slides with long code: smaller font
+.reveal .code-small div.sourceCode pre code { font-size: 0.85em; line-height: 1.25; }
+.reveal .larger { font-size: 1.15em; }
+
+// flow diagrams built from boxes (more robust than client-side diagram tools)
+.reveal .flow {
+  display: flex; align-items: stretch; gap: 0.25em; margin: 0.5em 0;
+}
+.reveal .flow .box {
+  flex: 1; border: 2px solid $cu-navy; border-radius: 10px; background: #FFFFFF;
+  padding: 0.35em 0.3em; font-size: 0.5em; line-height: 1.25; text-align: center;
+}
+.reveal .flow .box b { display: block; font-size: 1.25em; color: $cu-navy; margin-bottom: 0.25em; }
+.reveal .flow .box.lead { background: $cu-navy; color: #FFFFFF; }
+.reveal .flow .box.lead b { color: #FFFFFF; }
+.reveal .flow .box.review { background: #EEF5FB; }
+.reveal .flow .box.dashed { border-style: dashed; }
+.reveal .flow .arrow { align-self: center; color: $cu-navy; font-size: 0.9em; font-weight: 700; }
+.reveal .legend-lead, .reveal .legend-review {
+  display: inline-block; width: 1em; height: 0.8em; border: 2px solid $cu-navy;
+  border-radius: 3px; vertical-align: middle; margin-right: 0.2em;
+}
+.reveal .legend-lead { background: $cu-navy; }
+.reveal .legend-review { background: #EEF5FB; }
+
+// tabsets
+.reveal .panel-tabset [role="tab"] { font-size: 0.7em; }
+
+// always wrap long code lines on slides
+.reveal div.sourceCode pre code { white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
