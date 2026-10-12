@@ -22,7 +22,8 @@ changing anything, and update it when a decision changes.
 ```
 slides/index.qmd        the deck; runs lab/run_all.R and pulls code chunks from lab/R/
 slides/columbia.scss    theme
-slides/index.html       rendered, self-contained deck (committed for convenience)
+slides/index.html       rendered, self-contained deck (committed as an offline copy)
+.github/workflows/publish-slides.yml   CI: render slides, deploy to GitHub Pages
 lab/run_all.R           runs the whole pipeline (about 30 seconds)
 lab/R/00_setup.R        packages, paths, DESIGN constants, helpers (need(), read_raw() ...)
 lab/R/01..10_*.R        design, raw data, SDTM, ADSL, ADRS/ADTTE, TFLs, interim, submission
@@ -99,6 +100,13 @@ Rscript lab/run_all.R                 # whole pipeline, about 30 s
 quarto render slides/index.qmd        # about 45 s; re-runs the pipeline
 ```
 
+GitHub Pages (https://pzhang724.github.io/cu-survival-fall-2026/) is built by
+`.github/workflows/publish-slides.yml`: on pull requests it only renders (a
+check that the pipeline still runs); on pushes to `main` it renders and deploys.
+It restores packages from `renv.lock` and pins Quarto 1.10.19, so keep the
+lockfile current. Pages must be set to "Source: GitHub Actions" in the
+repository settings (one-time).
+
 Environment used to build: R 4.6.1, Quarto 1.10.19. If the shell locale is
 `C`, prefix commands with `LANG=C.UTF-8`. To check layout, screenshot every
 slide (for example with Playwright) and look for clipped text or tables that
@@ -109,7 +117,8 @@ run into the footer.
 - [ ] Check the speaker line in the YAML header of `slides/index.qmd` (name taken from the repository's first commit; add title or affiliation if wanted)
 - [ ] Rehearse with the speaker notes (press `S` in the browser); trim if over 90 minutes
 - [ ] Share the repository (Posit Cloud: New Project from Git Repository)
-- [ ] Re-render after the last change and commit `slides/index.html`
+- [ ] Re-render after the last change and commit `slides/index.html` (offline backup)
+- [ ] Check that the GitHub Pages site shows the latest version
 
 ## When a student asks Claude for help
 

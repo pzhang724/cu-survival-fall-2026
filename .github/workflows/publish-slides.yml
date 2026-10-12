@@ -1,0 +1,81 @@
+# Render the slides (which re-runs the whole lab pipeline) and publish them
+# to GitHub Pages: https://pzhang724.github.io/cu-survival-fall-2026/
+#
+# - Pull requests: build only (a check that the pipeline and slides still render;
+#   the rendered site is attached to the run as the "github-pages" artifact).
+# - Push to main (or a manual run on main): build, then deploy to GitHub Pages.
+#
+# One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+
+name: Publish slides
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-slides-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    env:
+      LANG: C.UTF-8
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system libraries used by the R packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev \
+            libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev \
+            libtiff5-dev libjpeg-dev libudunits2-dev
+
+      - name: Set up R (version from renv.lock)
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: renv
+          use-public-rspm: true
+
+      - name: Restore R packages from renv.lock
+        uses: r-lib/actions/setup-renv@v2
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.10.19
+
+      - name: Render slides (runs lab/run_all.R)
+        run: quarto render slides/index.qmd
+
+      - name: Assemble the site
+        run: |
+          mkdir -p _site
+          cp slides/index.html _site/index.html
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

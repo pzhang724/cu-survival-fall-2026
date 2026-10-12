@@ -17,9 +17,11 @@ statistician works it:
 
 ## What is in the repository
 
-* **`slides/`**: the deck (`index.qmd`, Quarto revealjs). `index.html` is the
-  rendered, self-contained version: download it and open it in a browser
-  (press `S` for speaker notes, `F` for full screen).
+* **`slides/`**: the deck (`index.qmd`, Quarto revealjs).
+  **Online: https://pzhang724.github.io/cu-survival-fall-2026/** (rebuilt by
+  GitHub Actions on every push to `main`). `index.html` is the same deck as a
+  single self-contained file for offline use (press `S` for speaker notes,
+  `F` for full screen).
 * **`lab/`**: all code and data behind the slides, meant to be shared with
   students. Every number on the slides is computed by these scripts. See
   [`lab/README.md`](lab/README.md).
