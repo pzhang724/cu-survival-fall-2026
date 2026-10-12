@@ -1,0 +1,21 @@
+codelist,collected_value,term_value
+SEX,Female,F
+SEX,Male,M
+RACE,White,WHITE
+RACE,Black or African American,BLACK OR AFRICAN AMERICAN
+RACE,Asian,ASIAN
+RACE,American Indian or Alaska Native,AMERICAN INDIAN OR ALASKA NATIVE
+ETHNIC,Hispanic or Latino,HISPANIC OR LATINO
+ETHNIC,Not Hispanic or Latino,NOT HISPANIC OR LATINO
+NY,Yes,Y
+NY,No,N
+AESEV,Mild,MILD
+AESEV,Moderate,MODERATE
+AESEV,Severe,SEVERE
+AEREL,None,NONE
+AEREL,Remote,REMOTE
+AEREL,Possible,POSSIBLE
+AEREL,Probable,PROBABLE
+OUT,Recovered/Resolved,RECOVERED/RESOLVED
+OUT,Not Recovered/Not Resolved,NOT RECOVERED/NOT RESOLVED
+OUT,Fatal,FATAL

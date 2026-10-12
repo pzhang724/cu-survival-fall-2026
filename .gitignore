@@ -1,0 +1,17 @@
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rcheck/
+
+# Quarto build artefacts (slides/index.html itself is committed)
+/.quarto/
+slides/.quarto/
+slides/index_files/
+slides/*_cache/
+*_freeze/
+
+# OS
+.DS_Store
+Thumbs.db
