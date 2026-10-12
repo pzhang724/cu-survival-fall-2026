@@ -10,10 +10,10 @@ $body-bg: #FFFFFF;
 $body-color: $cu-ink;
 $link-color: $cu-navy;
 $presentation-heading-color: $cu-navy;
-$presentation-font-size-root: 30px;
+$presentation-font-size-root: 36px;
 $presentation-heading-font-weight: 600;
-$presentation-h2-font-size: 1.45em;
-$code-block-font-size: 0.62em;
+$presentation-h2-font-size: 1.3em;
+$code-block-font-size: 0.56em;
 $code-color: $cu-navy;
 
 /*-- scss:rules --*/
@@ -47,7 +47,7 @@ $code-color: $cu-navy;
 }
 
 // markdown tables
-.reveal table { font-size: 0.7em; }
+.reveal table { font-size: 0.66em; }
 .reveal table th { background: #EEF5FB; color: $cu-navy; }
 .reveal table td, .reveal table th { padding: 0.25em 0.6em; }
 
@@ -84,3 +84,16 @@ $code-color: $cu-navy;
 
 // always wrap long code lines on slides
 .reveal div.sourceCode pre code { white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; }
+
+// logos in the bottom corners of every slide (markup in logos.html).
+// The white badge keeps them readable on the navy section slides.
+.cu-logo {
+  position: fixed; bottom: 6px; z-index: 40; pointer-events: none;
+  background: #FFFFFF; border-radius: 6px; padding: 3px 6px;
+}
+.cu-logo-left  { left: 10px;  height: 62px; }
+.cu-logo-right { right: 10px; height: 44px; }
+// the slide menu stays available with the M key; its button sat in the bottom-left corner
+.reveal .slide-menu-button { display: none; }
+// slide number sits just left of the right-hand logo
+.reveal .slide-number { right: 150px !important; bottom: 16px !important; }

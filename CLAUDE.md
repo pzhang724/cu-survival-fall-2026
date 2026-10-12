@@ -21,7 +21,9 @@ changing anything, and update it when a decision changes.
 
 ```
 slides/index.qmd        the deck; runs lab/run_all.R and pulls code chunks from lab/R/
-slides/columbia.scss    theme
+slides/columbia.scss    theme (36px base font; logo, footer and slide-number placement)
+slides/logos.html       Columbia (bottom-left) and CIMS (bottom-right) logos on every slide
+slides/images/          logo files, embedded into index.html at render time
 slides/index.html       rendered, self-contained deck (committed as an offline copy)
 .github/workflows/publish-slides.yml   CI: render slides, deploy to GitHub Pages
 lab/run_all.R           runs the whole pipeline (about 30 seconds)
@@ -94,6 +96,12 @@ renv.lock               package versions (Posit Package Manager snapshot 2026-10
   them by verbatim name under "Not yet coded".
 * No mermaid diagrams: their labels were clipped in revealjs. Flow diagrams are
   HTML boxes styled in `columbia.scss` (`.flow`, `.box`).
+* **Logos and font size**: Columbia logo bottom-left, CIMS logo bottom-right on
+  every slide (white badge so they also read on the navy section slides). The
+  slide-menu button that used that corner is hidden; press `M` for the menu.
+  Base font is 36px on a 1600 x 900 canvas, tables are scaled by 1.15 in
+  `slide_gt()`. Keep content out of the bottom ~75px band (footer and logos);
+  check every slide after edits.
 
 ## Commands
 

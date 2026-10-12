@@ -70,20 +70,20 @@ p_boundary <- ggplot(bnd, aes(x = info, y = efficacy)) +
   geom_point(colour = "#1D4F91", size = 3.5) +
   annotate("point", x = 0.5, y = design$futilityBounds, colour = "#B03A2E", size = 3.5) +
   geom_hline(yintercept = qnorm(1 - DESIGN$alpha), linetype = "dotted", colour = "grey40") +
-  annotate("text", x = 0.5, y = design$criticalValues[1] + 0.3, hjust = 0, colour = "#1D4F91",
+  annotate("text", x = 0.5, y = design$criticalValues[1] + 0.3, hjust = 0, colour = "#1D4F91", size = 4.6,
            label = sprintf("IA: stop for efficacy if Z >= %.3f (one-sided p <= %.4f)",
                            design$criticalValues[1], design$stageLevels[1])) +
-  annotate("text", x = 0.52, y = 1.4, hjust = 0, colour = "grey30", label = "IA: continue") +
-  annotate("text", x = 0.52, y = design$futilityBounds, hjust = 0, colour = "#B03A2E",
+  annotate("text", x = 0.52, y = 1.4, hjust = 0, colour = "grey30", size = 4.6, label = "IA: continue") +
+  annotate("text", x = 0.52, y = design$futilityBounds, hjust = 0, colour = "#B03A2E", size = 4.6,
            label = "IA: consider stopping for futility if Z < 0 (non-binding)") +
-  annotate("text", x = 1, y = design$criticalValues[2] - 0.35, hjust = 1, colour = "#1D4F91",
+  annotate("text", x = 1, y = design$criticalValues[2] - 0.35, hjust = 1, colour = "#1D4F91", size = 4.6,
            label = sprintf("Final: reject H0 if Z >= %.3f", design$criticalValues[2])) +
   annotate("text", x = 0.62, y = qnorm(1 - DESIGN$alpha) + 0.1, hjust = 0, colour = "grey40",
-           size = 3.2, label = "fixed design: 1.960") +
+           size = 4, label = "fixed design: 1.960") +
   scale_x_continuous("Information fraction (events observed / events planned)",
                      limits = c(0.45, 1.02), breaks = c(0.5, 1)) +
   scale_y_continuous("Log-rank Z (positive favours High Dose)", limits = c(-0.5, 3.5)) +
-  theme_minimal(base_size = 13)
+  theme_minimal(base_size = 16)
 
 ## ---- design-sensitivity ----
 # How fragile is the plan? Events and patients needed as the assumed HR changes.
