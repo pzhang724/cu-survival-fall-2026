@@ -1,7 +1,7 @@
 ---
 title: "From Protocol to Submission"
 subtitle: "A practical walk through one randomized trial with a survival endpoint"
-author: "Guest lecture: Peng Zhang"
+author: "Guest lecture: Peng Zhang, PhD · CIMS Global"
 institute: "Survival Analysis · Columbia University · Fall 2026"
 date: 2026-11-13
 date-format: "MMMM D, YYYY"

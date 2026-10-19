@@ -178,7 +178,7 @@ run into the footer.
 
 ## Before the lecture
 
-- [ ] Check the speaker line in the YAML header of `slides/index.qmd` (name taken from the repository's first commit; add title or affiliation if wanted)
+- [x] Check the speaker line in the YAML header of `slides/index.qmd` (now "Peng Zhang, PhD · CIMS Global")
 - [ ] Rehearse with the speaker notes (press `S` in the browser)
 - [ ] Share the repository (Posit Cloud: New Project from Git Repository)
 - [ ] Re-render after the last change and commit `slides/index.html` (offline backup)
