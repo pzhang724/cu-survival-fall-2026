@@ -29,8 +29,8 @@ term in the course material it should be here; if it is not, please add it.
 | CT | Controlled Terminology | CDISC code lists, e.g. SEX must be "F" or "M" |
 | CTCAE | Common Terminology Criteria for Adverse Events | NCI grading scale (grade 1 mild ... grade 5 death); also used for lab values |
 | DBL | Database Lock | Data are frozen; analysis can start |
-| DCO | Data Cut-Off | Date after which data are ignored for an analysis (interim or final) |
 | DMC | Data Monitoring Committee | Independent experts who review unblinded interim results (also called IDMC or DSMB, Data Safety Monitoring Board) |
+| DSUR | Development Safety Update Report | Yearly safety report to regulators for a drug in development (ICH E2F) |
 | DM / DS / EX / LB / RS / TU / VS | Demographics / Disposition / Exposure / Laboratory / Response / Tumor Identification / Vital Signs | SDTM domains |
 | eCTD | electronic Common Technical Document | Folder structure of a regulatory submission; data go in module 5 |
 | EDC | Electronic Data Capture | System the sites type CRF data into (e.g. Medidata Rave) |
@@ -55,6 +55,7 @@ term in the course material it should be here; if it is not, please add it.
 | SAP | Statistical Analysis Plan | Detailed, pre-specified description of every analysis |
 | SDTM | Study Data Tabulation Model | CDISC standard for collected data, organised in domains |
 | SDTMIG | SDTM Implementation Guide | Rules for building SDTM datasets |
+| SRC | Safety Review Committee | Group (often internal to the sponsor) that reviews safety data at regular meetings |
 | SUPPQUAL | Supplemental Qualifiers | SDTM datasets (SUPPDM, SUPPAE ...) for non-standard variables |
 | TEAE | Treatment-Emergent Adverse Event | AE starting on/after the first dose (here: up to 30 days after the last dose) |
 | TFL | Tables, Figures and Listings | The outputs of the analysis (also TLF) |

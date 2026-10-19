@@ -2,7 +2,7 @@
 # 09_interim.R  (Interim analysis for the Data Monitoring Committee)
 #
 # Trigger: 61 PFS events (50% of 122) in High Dose + Placebo.
-# The ADaM program in 05 was re-run with the data cut-off date (DCO), giving
+# The ADaM program in 05 was re-run with the data cut-off date, giving
 # adtte_ia. Here we compute what goes into the DMC closed report:
 #   observed log-rank Z and one-sided p-value vs the efficacy boundary,
 #   the non-binding futility guideline, and conditional power (CP).
@@ -71,8 +71,8 @@ decision  <- case_when(
 )
 
 ia_report <- tibble(
-  Item = c("Data cut-off date (DCO)",
-           "Patients randomized by DCO (Placebo / Low / High)",
+  Item = c("Data cut-off date",
+           "Patients randomized by the cut-off date (Placebo / Low / High)",
            "PFS events (Placebo / High Dose)",
            "Information fraction (events / 122 planned)",
            "Hazard ratio High Dose vs Placebo (95% CI)",
@@ -122,7 +122,7 @@ p_km_ia <- survfit2(Surv(AVAL_M, 1 - CNSR) ~ TRT01P, data = pfs_ia) %>%
   scale_x_continuous(breaks = 0:6, limits = c(0, 6.1)) +
   scale_y_continuous(labels = scales::percent) +
   labs(x = "Months since randomization", y = "Progression-free survival",
-       title = sprintf("Figure IA.1 PFS at the interim analysis (DCO %s)", format(ia_dco))) +
+       title = sprintf("Figure IA.1 PFS at the interim analysis (data cut-off %s)", format(ia_dco))) +
   theme(legend.position = "bottom", plot.title = element_text(size = 15),
         axis.text = element_text(size = 13), axis.title = element_text(size = 15),
         legend.text = element_text(size = 14))

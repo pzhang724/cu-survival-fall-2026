@@ -77,7 +77,7 @@ A hypothesis is tested only if every hypothesis before it was rejected.
 ## 10. Interim analysis
 
 * **Timing**: when 61 PFS events (50% of 122) have occurred in High Dose + placebo.
-  The data cut-off (DCO) date is the date of the 61st event; all data up to the DCO
+  The data cut-off date is the date of the 61st event; all data up to the cut-off date
   are cleaned before the analysis.
 * **Boundaries**: Lan-DeMets O'Brien-Fleming-type spending evaluated at the
   *actual* information fraction (observed events / 122).

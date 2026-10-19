@@ -8,8 +8,8 @@
 # (8 patients with tumour assessments, 6 PFS events) - too few for a log-rank
 # test. rs_onco has investigator assessments for 205 patients.
 #
-# Both derivations are FUNCTIONS of a data cut-off date (DCO). The interim
-# analysis (09_interim.R) calls the very same code with an earlier DCO:
+# Both derivations are FUNCTIONS of a data cut-off date. The interim
+# analysis (09_interim.R) calls the very same code with an earlier cut-off date:
 # one program, many data cuts.
 # =============================================================================
 source(here::here("lab", "R", "00_setup.R"))
@@ -19,7 +19,7 @@ need("adsl", "04_adam_adsl.R")
 rs <- pharmaversesdtm::rs_onco
 
 ## ---- adam-datacut ----
-# Apply a data cut-off date (DCO) to ADSL: only patients randomized by the DCO,
+# Apply a data cut-off date to ADSL: only patients randomized by the cut-off,
 # and nothing that happened after it.
 cut_adsl <- function(adsl, dco = NULL) {
   if (is.null(dco)) return(adsl)
@@ -28,7 +28,7 @@ cut_adsl <- function(adsl, dco = NULL) {
     mutate(
       DTHDT    = if_else(!is.na(DTHDT) & DTHDT <= dco, DTHDT, as.Date(NA)),
       DTHFL    = if_else(!is.na(DTHDT), "Y", NA_character_),
-      LSTALVDT = pmin(LSTALVDT, dco, na.rm = TRUE)   # alive at DCO if seen later
+      LSTALVDT = pmin(LSTALVDT, dco, na.rm = TRUE)   # alive at cut-off if seen later
     )
 }
 
@@ -167,7 +167,7 @@ adtte_check <- adtte %>%
 
 ## ---- adtte-interim ----
 # Interim analysis trigger (protocol): 50% of the 122 target PFS events in the
-# primary comparison (High Dose vs Placebo). DCO = date the 61st event occurred.
+# primary comparison (High Dose vs Placebo). Cut-off = date the 61st event occurred.
 # In a live trial this date is forecast from blinded event counts.
 ia_dco <- adtte %>%
   filter(PARAMCD == "PFS", CNSR == 0, TRT01P %in% c(CONTROL, EXPERIMENTAL)) %>%

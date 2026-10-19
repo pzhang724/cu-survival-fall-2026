@@ -51,12 +51,16 @@ renv.lock               package versions (Posit Package Manager snapshot 2026-10
    or in a document; never invent new abbreviations. Keep
    `lab/docs/00_glossary.md` and the glossary slides in sync.
 4. **Time budget: 90 minutes.** Part 1 map 5 · Part 2 planning 25 · Part 3 data
-   standards 20 · Part 4 TFLs 20 · Part 5 interim 12 · Part 6 submission and
-   wrap-up 8. Adding a slide means removing or shortening another.
+   standards 20 · Part 4 TFLs 20 · Part 5 interim 12 · Part 6 deliverables,
+   submission and wrap-up 8. Adding a slide means removing or shortening
+   another. Minutes are for the speaker only: do not show them on slides
+   (speaker notes may keep timing targets).
 5. **Design numbers live in `DESIGN` (00_setup.R).** The protocol synopsis and
    SAP (`lab/docs/01`, `02`) restate them: change all three together, then
    re-render.
-6. **English** in slides, docs and code comments. Keep R sources ASCII
+6. **English** in slides, docs and code comments. Slides use simple English
+   for readers with English as a second language: short sentences, common
+   words, no idioms, and nouns instead of a vague "it". Keep R sources ASCII
    (write non-ASCII characters as `\uXXXX` escapes).
 7. **Reproducibility.** After adding a package: `renv::snapshot()` with
    `options(repos = c(CRAN = "https://packagemanager.posit.co/cran/2026-10-12"))`
@@ -79,7 +83,7 @@ renv.lock               package versions (Posit Package Manager snapshot 2026-10
   O'Brien-Fleming spending, non-binding futility Z < 0 -> **122 events**
   (interim at **61**), 166 patients for two arms, 249 for three (254 randomized).
 * **Multiplicity**: fixed sequence PFS High -> PFS Low -> ORR High.
-* **Interim data cut**: DCO = date of the 61st PFS event = 2013-08-08. The same
+* **Interim data cut**: data cut-off = date of the 61st PFS event = 2013-08-08. The same
   ADaM functions (`cut_adsl()`, `derive_adrs()`, `derive_adtte()`) build both cuts.
 * **Final analysis** uses all data: 123 events in High + Placebo; the final
   boundary is recomputed from the actual information (Z >= 1.969).
@@ -94,6 +98,9 @@ renv.lock               package versions (Posit Package Manager snapshot 2026-10
   safety (`ACTARM`, `TRT01A`); 12 patients.
 * **Concomitant medications**: most pilot records are "UNCODED"; the table shows
   them by verbatim name under "Not yet coded".
+* **Data cut-off** is always written out; do not use the abbreviation "DCO".
+* **Synthetic data**: the slides say that all data are synthetic test data
+  from pharmaverse and that no real patient data are used.
 * No mermaid diagrams: their labels were clipped in revealjs. Flow diagrams are
   HTML boxes styled in `columbia.scss` (`.flow`, `.box`).
 * **Logos and font size**: Columbia logo bottom-left, CIMS logo bottom-right on

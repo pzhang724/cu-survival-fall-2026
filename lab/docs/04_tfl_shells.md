@@ -17,7 +17,7 @@ reviewers agree on the output. `xx` marks a number to be filled.
 | Table 14.3.1 | Overview of TEAEs | Safety | ADAE, ADSL | `08_tfl_safety.R` |
 | Table 14.3.2 | TEAEs by SOC and PT | Safety | ADAE | `08_tfl_safety.R` |
 | Table 14.3.3 | Shift in CTCAE grade, liver and kidney tests | Safety | ADLB | `08_tfl_safety.R` |
-| Table IA.1 | Interim analysis of PFS (DMC closed report) | ITT at DCO | ADTTE (cut) | `09_interim.R` |
+| Table IA.1 | Interim analysis of PFS (DMC closed report) | ITT at data cut-off | ADTTE (cut) | `09_interim.R` |
 
 ## Table 14.2.1 Progression-free survival by investigator (ITT set)
 
