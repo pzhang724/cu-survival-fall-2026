@@ -50,11 +50,10 @@ renv.lock               package versions (Posit Package Manager snapshot 2026-10
 3. **Acronyms.** Spell out every acronym the first time it appears on a slide
    or in a document; never invent new abbreviations. Keep
    `lab/docs/00_glossary.md` and the glossary slides in sync.
-4. **Time budget: 90 minutes.** Part 1 map 5 · Part 2 planning 25 · Part 3 data
-   standards 20 · Part 4 TFLs 20 · Part 5 interim 12 · Part 6 deliverables,
-   submission and wrap-up 8. Adding a slide means removing or shortening
-   another. Minutes are for the speaker only: do not show them on slides
-   (speaker notes may keep timing targets).
+4. **Content first, not timing.** Do not plan slides around a time budget,
+   and do not put minutes or timing targets on slides or in speaker notes.
+   Judge a slide by its content: is it correct, clear, and useful to the
+   audience?
 5. **Design numbers live in `DESIGN` (00_setup.R).** The protocol synopsis and
    SAP (`lab/docs/01`, `02`) restate them: change all three together, then
    re-render.
@@ -133,7 +132,7 @@ run into the footer.
 ## Before the lecture
 
 - [ ] Check the speaker line in the YAML header of `slides/index.qmd` (name taken from the repository's first commit; add title or affiliation if wanted)
-- [ ] Rehearse with the speaker notes (press `S` in the browser); trim if over 90 minutes
+- [ ] Rehearse with the speaker notes (press `S` in the browser)
 - [ ] Share the repository (Posit Cloud: New Project from Git Repository)
 - [ ] Re-render after the last change and commit `slides/index.html` (offline backup)
 - [ ] Check that the GitHub Pages site shows the latest version

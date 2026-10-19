@@ -188,7 +188,7 @@ All data are synthetic test data from pharmaverse. We use no real patient data.
 Protocol, estimand, SAP, group sequential design, sample size
 
 ::: notes
-Target: finish Part 2 by minute 30. Every later step carries out a decision made here.
+Every later step carries out a decision made here.
 :::
 
 ## Protocol: the parts the statistician writes
@@ -424,7 +424,7 @@ sens_tbl |>
 CRF → raw data → SDTM → ADaM
 
 ::: notes
-Target: finish Part 3 by minute 50. Students rarely see raw data; show the formats and the QC story.
+Students rarely see raw data; show the formats and the QC story.
 :::
 
 ## Collect only what the SAP needs
@@ -668,7 +668,7 @@ adtte_check |>
 Shells, software, baseline, efficacy, safety
 
 ::: notes
-Target: finish Part 4 by minute 70. Use the Output/Code tabs; do not read every number.
+Use the Output/Code tabs; do not read every number.
 :::
 
 ## TFL shells are part of the SAP
@@ -963,7 +963,7 @@ ALT, AST and bilirubin shown; alkaline phosphatase and creatinine are in the RTF
 Boundaries, p-values, conditional power, the DMC report
 
 ::: notes
-Target: finish Part 5 by minute 82. Ask the room for a recommendation before showing the final result.
+Ask the room for a recommendation before showing the final result.
 :::
 
 ## Steps of an interim analysis
@@ -1086,10 +1086,6 @@ p_km_ia
 # Part 6 · Deliverables and submission {background-color="#1D4F91" .part-title}
 
 Deliverables during the trial, datasets, metadata, reviewer's guides
-
-::: notes
-Target: wrap up by minute 90, leave time for questions.
-:::
 
 ## Submission is not the only deliverable
 
