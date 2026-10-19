@@ -3,7 +3,7 @@
 #
 # Safety analyses use the safety set by treatment ACTUALLY received (TRT01A).
 # TEAE = treatment-emergent adverse event: starts on/after the first dose
-# (admiral flag TRTEMFL in ADAE). Lab toxicity grades follow NCI CTCAE
+# (admiral flag TRTEMFL in ADAE). Lab toxicity grades follow the US National Cancer Institute's CTCAE
 # (Common Terminology Criteria for Adverse Events), derived in ADLB by admiral.
 # Tables: {rtables} + {tern}, with a Total column.
 # =============================================================================
@@ -98,7 +98,7 @@ lb_worst <- read_source("adlb") %>%
 
 lyt_shift <- basic_table(
   title = "Table 14.3.3 Shift from baseline to worst post-baseline CTCAE grade, liver and kidney tests (safety set)",
-  main_footer = "Number of patients. CTCAE: NCI Common Terminology Criteria for Adverse Events (v4), derived by admiral in ADLB."
+  main_footer = "Number of patients. CTCAE: Common Terminology Criteria for Adverse Events (v4) of the US National Cancer Institute, derived by admiral in ADLB."
 ) %>%
   split_cols_by("TRT01A", split_fun = add_overall_level("Total", first = FALSE)) %>%
   split_cols_by("WORST") %>%

@@ -1,5 +1,15 @@
 # Statistical analysis plan (excerpt)
 
+*Acronyms in this document:* ADaM: Analysis Data Model; ADSL / ADRS / ADLB:
+Subject-Level / Response / Laboratory Analysis Dataset; SDTM: Study Data
+Tabulation Model; AE: Adverse Event; FDA: US Food and Drug Administration;
+RECIST: Response Evaluation Criteria in Solid Tumors; PFS / OS: Progression-Free
+Survival / Overall Survival; ORR: Objective Response Rate; CR / PR / SD / PD:
+Complete Response / Partial Response / Stable Disease / Progressive Disease; HR:
+Hazard Ratio; CI: Confidence Interval; KM: Kaplan-Meier; CTCAE: Common
+Terminology Criteria for Adverse Events; IRT: Interactive Response Technology;
+DMC: Data Monitoring Committee. Full list: [`00_glossary.md`](00_glossary.md).
+
 The sections a statistician writes first, and the ADaM variables that implement
 them. Section numbers are illustrative.
 
@@ -68,7 +78,7 @@ methods, with the adjudicated read of the two independent radiologists
 
 | Endpoint | Method |
 |---|---|
-| PFS | Unstratified log-rank test (chi-square with 1 df; one-sided Z for the group sequential test); HR and 95% CI from an unstratified Cox model (Efron ties); Kaplan-Meier medians with 95% CI by Brookmeyer-Crowley (log-log transformation); KM rate at 3 months |
+| PFS | Unstratified log-rank test (chi-square with 1 degree of freedom; one-sided Z for the group sequential test); HR and 95% CI from an unstratified Cox model (Efron ties); Kaplan-Meier medians with 95% CI by Brookmeyer-Crowley (log-log transformation); KM rate at 3 months |
 | OS | Same methods as PFS; few deaths expected, so a formal test at a later data cut |
 | ORR, DCR | Rate with exact Clopper-Pearson 95% CI; difference vs placebo with 95% CI (Wald); chi-square test |
 | Safety | Counts and percentages of patients; shift tables of CTCAE grade (baseline vs worst on treatment) |

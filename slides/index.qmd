@@ -92,35 +92,16 @@ trial with a survival endpoint, from protocol to submission.**
 Every number on these slides comes from the code in `r gh("lab/")`. You can run
 the code on Posit Cloud, on your own computer, or with Claude.
 
+[SAP: Statistical Analysis Plan; CRF: Case Report Form; SDTM: Study Data
+Tabulation Model; ADaM: Analysis Data Model; TFL: Tables, Figures and Listings.
+Each acronym is spelled out at first use; the full list is in the Glossary at
+the end.]{.small .muted}
+
 ::: notes
 This lecture is a role-play, not a methods lecture. We act as the trial
 statistician and use the survival methods from this course on one trial. Ask
 students to open the repository now so they can follow along.
 :::
-
-## Glossary
-
-Clinical trials use many acronyms. The slides spell out each acronym at first
-use. Full list: `r gh("lab/docs/00_glossary.md")`.
-
-:::: {.columns .small}
-::: {.column width="50%"}
-* **SAP**: Statistical Analysis Plan
-* **CRF**: Case Report Form; **EDC**: Electronic Data Capture
-* **CDISC**: Clinical Data Interchange Standards Consortium
-* **SDTM**: Study Data Tabulation Model (collected data)
-* **ADaM**: Analysis Data Model (analysis-ready data)
-* **TFL**: Tables, Figures and Listings
-:::
-::: {.column width="50%"}
-* **PFS**: Progression-Free Survival; **OS**: Overall Survival
-* **ORR**: Objective Response Rate
-* **TEAE**: Treatment-Emergent Adverse Event
-* **DMC**: Data Monitoring Committee
-* **IA**: Interim Analysis
-* **CP**: Conditional Power
-:::
-::::
 
 # Part 1 · The map of a trial {background-color="#1D4F91" .part-title}
 
@@ -161,6 +142,8 @@ affairs (submission).
 :::
 ::::
 
+[EDC: Electronic Data Capture, the system in which sites enter the CRF data]{.small .muted}
+
 ::: notes
 The interim analysis can change the course of the trial; this possibility is
 the reason for group sequential designs. Programmers write most of the code,
@@ -189,6 +172,8 @@ adsl |>
 :::
 ::::
 
+[CDISC: Clinical Data Interchange Standards Consortium; RECIST: Response Evaluation Criteria in Solid Tumors]{.small .muted}
+
 ::: {.takeaway}
 All data are synthetic test data from pharmaverse. We use no real patient data.
 :::
@@ -213,7 +198,7 @@ Every later step carries out a decision made here.
 | Secondary | **DCR**: best overall response CR, PR or SD |
 | Safety | TEAEs (MedDRA), labs (CTCAE grades) |
 
-[RECIST: Response Evaluation Criteria in Solid Tumors; CR / PR: complete / partial response; SD: stable disease; DCR: disease control rate; MedDRA: Medical Dictionary for Regulatory Activities; CTCAE: Common Terminology Criteria for Adverse Events]{.tiny .muted}
+[PFS: progression-free survival; OS: overall survival; ORR: objective response rate; DCR: disease control rate; CR / PR: complete / partial response; SD: stable disease; TEAE: treatment-emergent adverse event; MedDRA: Medical Dictionary for Regulatory Activities; CTCAE: Common Terminology Criteria for Adverse Events]{.tiny .muted}
 :::
 ::: {.column width="48%"}
 **Also written by the statistician**
@@ -223,13 +208,13 @@ Every later step carries out a decision made here.
 * Sample size and assumptions
 * Analysis populations and methods (summary)
 * Multiplicity strategy for the secondary endpoints
-* Interim analyses and DMC charter
+* Interim analyses and the Data Monitoring Committee (DMC) charter
 
 Full text: `r gh("lab/docs/01_protocol_synopsis.md")`
 :::
 ::::
 
-## The hypothesis: what does HR 0.6 mean?
+## The hypothesis: what does a hazard ratio (HR) of 0.6 mean?
 
 :::: {.columns}
 ::: {.column width="46%"}
@@ -455,7 +440,7 @@ power_tbl |>
 CRF → raw data → SDTM → ADaM
 
 ::: notes
-Students rarely see raw data; show the formats and the QC story.
+Students rarely see raw data; show the formats and the quality control story.
 :::
 
 ## Collect only what the SAP needs
@@ -471,7 +456,7 @@ Students rarely see raw data; show the formats and the QC story.
 | Concomitant medications | Concomitant medication CRF + WHODrug coding | `cm.csv` | CM |
 | Laboratory values | Central lab transfer | `lb.csv.gz` | LB |
 
-[IRT: Interactive Response Technology (randomization system); CM: concomitant medications; WHODrug: World Health Organization Drug Dictionary]{.small .muted}
+[IRT: Interactive Response Technology (randomization system); WHODrug: World Health Organization Drug Dictionary. SDTM domains: DM demographics, DS disposition, EX exposure, RS tumour response, AE adverse events, CM concomitant medications, LB laboratory.]{.small .muted}
 
 ## The annotated CRF: Adverse Event page
 
@@ -519,7 +504,7 @@ Our source data contain SDTM only. The lab rebuilds raw data from SDTM
 :::: {.columns}
 ::: {.column width="42%"}
 1. Remove derived variables: `--SEQ`, `--DY`, `USUBJID`, `AGE`, reference dates
-2. ISO 8601 dates → CRF text
+2. ISO 8601 dates (the international standard, "2014-01-03") → CRF text
 3. Controlled terminology → CRF display text
 4. Keep dictionary codes as "coding" columns
 5. Reshape findings data into the layout of CRF and vendor files
@@ -870,7 +855,7 @@ logrank_parts |>
 ```
 :::
 ::: {.column width="45%"}
-* $V$ = `r round(logrank_var, 2)`, so $\chi^2$ = `r sprintf("%.1f", lr$obs[2] - lr$exp[2])`² / `r round(logrank_var, 2)` = **`r sprintf("%.3f", pfs_hi$chisq)`** (1 df), p = `r fmt_p(pfs_hi$p_chisq)` (two-sided)
+* $V$ = `r round(logrank_var, 2)`, so $\chi^2$ = `r sprintf("%.1f", lr$obs[2] - lr$exp[2])`² / `r round(logrank_var, 2)` = **`r sprintf("%.3f", pfs_hi$chisq)`** (1 degree of freedom), p = `r fmt_p(pfs_hi$p_chisq)` (two-sided)
 * For the one-sided test: $Z = (E - O)/\sqrt{V}$ = **`r sprintf("%.3f", pfs_hi$z)`** for High Dose, one-sided p = **`r fmt_p(pfs_hi$p_one_sided)`**
 :::
 ::::
@@ -980,7 +965,8 @@ build_table(lyt_shift, df = dplyr::filter(lb_worst, PARAMCD %in% c("ALT", "AST",
 :::
 
 ::: notes
-ALT, AST and bilirubin shown; alkaline phosphatase and creatinine are in the RTF output.
+Alanine aminotransferase (ALT), aspartate aminotransferase (AST) and bilirubin
+shown; alkaline phosphatase and creatinine are in the RTF (Rich Text Format) output.
 :::
 
 ## TFL production in practice
@@ -1071,7 +1057,7 @@ p_ia_boundary
 :::
 ::::
 
-## Conditional power and the futility rule {.code-small}
+## Conditional power (CP) and the futility rule {.code-small}
 
 $$
 \mathrm{CP}(\theta) = 1 - \Phi\!\left(\frac{c_K \sqrt{I_K} - Z_k \sqrt{I_k} - \theta\,(I_K - I_k)}{\sqrt{I_K - I_k}}\right),
@@ -1114,6 +1100,8 @@ slide_rt(t_ia_1, 15)
 * Efficacy boundary: not crossed
 * CP under the current trend: `r sprintf("%.1f%%", 100 * cp_trend)`, below 10%: the **futility rule is met**
 * The DMC would recommend stopping for futility. The rule is non-binding: the sponsor makes the final decision
+
+[IA: interim analysis]{.small .muted}
 :::
 ::::
 
@@ -1246,9 +1234,9 @@ Open the repository with Claude (Claude Code, or a claude.ai project with the Gi
 files). `CLAUDE.md` tells Claude how the project is organised.
 :::
 ::: {.column width="50%"}
-**Exercises** (`r gh("lab/docs/03_crf_raw_sdtm.md")`)
+**Exercises** (`r gh("lab/README.md")`)
 
-* Map raw vital signs and labs to SDTM; QC them against pharmaverse
+* Map raw vital signs and labs to SDTM; QC them against the source SDTM
 * Add a sensitivity analysis: censor PFS after two missed scans
 * Add a stratified log-rank test (by age group) as a second sensitivity analysis
 * Move the interim analyses to 40% and 70% of the events: how do the boundaries change?
@@ -1263,7 +1251,7 @@ files). `CLAUDE.md` tells Claude how the project is organised.
 * pharmaverse: pharmaverse.org; examples at pharmaverse.github.io/examples
 * admiral: pharmaverse.github.io/admiral
 * gsDesign: keaven.github.io/gsDesign (survival designs, interim analyses)
-* rtables and tern: insightsengineering.github.io; TLG Catalog (examples of standard tables): insightsengineering.github.io/tlg-catalog
+* rtables and tern: insightsengineering.github.io; TLG (Tables, Listings and Graphs) Catalog: insightsengineering.github.io/tlg-catalog
 * CDISC SDTMIG, ADaMIG, CDASH: cdisc.org/standards
 :::
 ::: {.column width="50%"}
@@ -1293,6 +1281,8 @@ Questions?
 | ADaM / ADaMIG | Analysis Data Model / Implementation Guide |
 | ADRG / cSDRG | Analysis Data / Clinical Study Data Reviewer's Guide |
 | ADSL / ADTTE / ADRS | Subject-level / Time-to-event / Response analysis datasets |
+| AE | Adverse Event |
+| ATC | Anatomical Therapeutic Chemical classification |
 | BDS / OCCDS | Basic Data Structure / Occurrence Data Structure |
 | BICR | Blinded Independent Central Review |
 | BOR | Best Overall Response |
@@ -1301,29 +1291,24 @@ Questions?
 | CI / CI/CD | Confidence Interval / Continuous Integration and Delivery |
 | CM | Concomitant Medications |
 | CNSR | Censor flag (0 event, 1 censored) |
-| CP | Conditional Power |
-| CR / PR / SD / PD / NE | Complete / Partial response, Stable / Progressive disease, Not evaluable |
-| CRF / EDC | Case Report Form / Electronic Data Capture |
-| CSR / CSV | Clinical Study Report / Comma-Separated Values (text file) |
 :::
 ::: {.column width="50%"}
 | Acronym | Meaning |
 |---|---|
+| CP | Conditional Power |
+| CR / PR / SD / PD / NE | Complete / Partial response, Stable / Progressive disease, Not evaluable |
+| CRF / EDC | Case Report Form / Electronic Data Capture |
+| CSR / CSV | Clinical Study Report / Comma-Separated Values (text file) |
 | CT | Controlled Terminology |
 | CTCAE | Common Terminology Criteria for Adverse Events |
 | DBL | Database Lock |
 | DCR | Disease Control Rate |
+| DM / DS / EX / LB / RS / TU / VS | SDTM domains: Demographics / Disposition / Exposure / Laboratory / Response / Tumor Identification / Vital Signs |
 | DMC | Data Monitoring Committee |
 | DSUR | Development Safety Update Report |
 | eCTD | electronic Common Technical Document |
+| FDA | US Food and Drug Administration |
 | GSD | Group Sequential Design |
-| IA / FA | Interim / Final Analysis |
-| ICH | International Council for Harmonisation |
-| IRT | Interactive Response Technology |
-| ITT | Intention-To-Treat |
-| KM | Kaplan-Meier |
-| MedDRA | Medical Dictionary for Regulatory Activities |
-| NC | Not Calculated |
 :::
 ::::
 
@@ -1333,10 +1318,26 @@ Questions?
 ::: {.column width="50%"}
 | Acronym | Meaning |
 |---|---|
+| HR | Hazard Ratio |
+| IA / FA | Interim / Final Analysis |
+| ICH | International Council for Harmonisation |
+| IRT | Interactive Response Technology |
+| ISO 8601 | International date and time standard |
+| ITT | Intention-To-Treat |
+| KM | Kaplan-Meier |
+| MedDRA | Medical Dictionary for Regulatory Activities |
+| NC | Not Calculated |
+| OBF | O'Brien-Fleming |
 | ODM | CDISC Operational Data Model |
 | ORR / OS / PFS | Objective Response Rate / Overall Survival / Progression-Free Survival |
+| P21 | Pinnacle 21 (conformance checking software) |
+:::
+::: {.column width="50%"}
+| Acronym | Meaning |
+|---|---|
 | QC | Quality Control |
 | RECIST | Response Evaluation Criteria in Solid Tumors |
+| RTF | Rich Text Format |
 | SAP | Statistical Analysis Plan |
 | SDTM / SDTMIG | Study Data Tabulation Model / Implementation Guide |
 | SOC / PT | MedDRA System Organ Class / Preferred Term |
@@ -1345,15 +1346,8 @@ Questions?
 | SUPPQUAL | Supplemental Qualifiers (SUPPDM, SUPPAE, ...) |
 | TEAE | Treatment-Emergent Adverse Event |
 | TFL | Tables, Figures and Listings |
-:::
-::: {.column width="50%"}
-| Acronym | Meaning |
-|---|---|
 | WHODrug | World Health Organization Drug Dictionary |
 | XPT | SAS Transport File (version 5) |
-| ATC | Anatomical Therapeutic Chemical classification |
-| ISO 8601 | International date and time standard |
-| P21 | Pinnacle 21 (conformance checking software) |
 :::
 ::::
 

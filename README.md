@@ -11,7 +11,7 @@ statistician works it:
 | 1 | The map of a trial |
 | 2 | Planning: protocol, estimand, SAP (Statistical Analysis Plan), sample size, power, group sequential design |
 | 3 | Data standards: CRF (Case Report Form) -> raw data -> SDTM (Study Data Tabulation Model) -> ADaM (Analysis Data Model), QC (quality control) |
-| 4 | Tables, figures and listings (TFLs) with {rtables} and {tern}: disposition, demographics, medications, PFS / log-rank / Cox, sensitivity analysis, multiplicity, response rates, OS, adverse events, labs |
+| 4 | Tables, figures and listings (TFLs) with {rtables} and {tern}: disposition, demographics, medications, progression-free survival (PFS) with log-rank test and Cox model, sensitivity analysis, multiplicity, response rates, overall survival (OS), adverse events, labs |
 | 5 | Interim analyses: boundaries, p-values, conditional power and futility, the Data Monitoring Committee report |
 | 6 | Deliverables during the trial, submission and wrap-up |
 
@@ -33,15 +33,17 @@ pharmaverse test data; no real patient data are used.
 
 ## Data
 
-All data come from [pharmaverse](https://pharmaverse.org): the CDISC SDTM/ADaM
-pilot study (`pharmaversesdtm`, `pharmaverseadam`; xanomeline patch vs placebo)
-plus synthetic RECIST 1.1 tumour assessments that pharmaverse provides for the
-same patients. For teaching, the study is treated as a two-arm oncology trial
-(High Dose vs Placebo) with progression-free survival as the primary endpoint.
-`lab/source_data.R` cuts the pilot to the two arms and exports the SDTM and ADaM
-datasets as CSV to `lab/data/source/`; every lab program starts from these
-files. The raw (EDC-style) data in `lab/data/raw/` were reverse-engineered from
-the source SDTM by `lab/R/02_reverse_raw.R`.
+All data come from [pharmaverse](https://pharmaverse.org): the CDISC (Clinical
+Data Interchange Standards Consortium) SDTM/ADaM pilot study (`pharmaversesdtm`,
+`pharmaverseadam`; xanomeline patch vs placebo) plus synthetic RECIST 1.1
+(Response Evaluation Criteria in Solid Tumors) tumour assessments that
+pharmaverse provides for the same patients. For teaching, the study is treated
+as a two-arm oncology trial (High Dose vs Placebo) with progression-free
+survival as the primary endpoint. `lab/source_data.R` cuts the pilot to the two
+arms and exports the SDTM and ADaM datasets as CSV (comma-separated values)
+files to `lab/data/source/`; every lab program starts from these files. The raw
+data in `lab/data/raw/` look like an EDC (Electronic Data Capture) export;
+`lab/R/02_reverse_raw.R` reverse-engineered them from the source SDTM.
 Design assumptions were chosen for teaching and are not from the original study.
 
 ## Quick start

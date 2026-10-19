@@ -1,5 +1,16 @@
 # Protocol synopsis (teaching version of CDISCPILOT01)
 
+*Acronyms in this document:* CDISC: Clinical Data Interchange Standards
+Consortium; SDTM: Study Data Tabulation Model; ADaM: Analysis Data Model;
+RECIST: Response Evaluation Criteria in Solid Tumors; PFS: Progression-Free
+Survival; OS: Overall Survival; ORR: Objective Response Rate; DCR: Disease
+Control Rate; CR / PR / SD / PD: Complete Response / Partial Response / Stable
+Disease / Progressive Disease; TEAE: Treatment-Emergent Adverse Event; MedDRA:
+Medical Dictionary for Regulatory Activities; CTCAE: Common Terminology Criteria
+for Adverse Events; ICH: International Council for Harmonisation; ITT:
+Intention-To-Treat; HR: Hazard Ratio; DMC: Data Monitoring Committee. Full list:
+[`00_glossary.md`](00_glossary.md).
+
 > **About the data.** The patients, treatments, dates, adverse events, labs and
 > medications are the CDISC SDTM/ADaM Pilot study as distributed by
 > [pharmaverse](https://pharmaverse.org) (`pharmaversesdtm`, `pharmaverseadam`):
