@@ -1,8 +1,9 @@
 # =============================================================================
 # 02_reverse_raw.R  (Data collection: build "raw" data from SDTM)
 #
-# pharmaverse ships SDTM, not the raw data a statistician receives from the
-# EDC (electronic data capture) system and from vendors. To practise the real
+# Our source data (lab/data/source/, built from pharmaverse by
+# lab/source_data.R) contain SDTM, not the raw data a statistician receives from
+# the EDC (electronic data capture) system and from vendors. To practise the real
 # workflow (CRF -> raw -> SDTM), we reverse-engineer raw data from SDTM by
 # undoing what the SDTMIG (SDTM Implementation Guide) asks a sponsor to derive:
 #
@@ -19,14 +20,14 @@
 # =============================================================================
 source(here::here("lab", "R", "00_setup.R"))
 
-dm   <- pharmaversesdtm::dm
-ex   <- pharmaversesdtm::ex
-ae   <- pharmaversesdtm::ae
-cm   <- pharmaversesdtm::cm
-ds   <- pharmaversesdtm::ds
-lb   <- pharmaversesdtm::lb
-vs   <- pharmaversesdtm::vs
-rs   <- pharmaversesdtm::rs_onco
+dm   <- read_source("dm")
+ex   <- read_source("ex")
+ae   <- read_source("ae")
+cm   <- read_source("cm")
+ds   <- read_source("ds")
+lb   <- read_source("lb")
+vs   <- read_source("vs")
+rs   <- read_source("rs")
 
 ## ---- raw-date-helpers ----
 # ISO 8601 date (SDTM --DTC)  ->  CRF date text, e.g. "2014-01" -> "UN JAN 2014"
@@ -227,7 +228,7 @@ raw_rs <- rs %>%
 # Specs (metadata, not data): codelist map and the planned visit schedule
 # (the visit schedule mirrors the SDTM trial design dataset TV).
 write_raw(study_ct, "study_ct", dir = "spec")
-write_raw(distinct(pharmaversesdtm::sv, VISIT, VISITNUM, VISITDY) %>% arrange(VISITNUM),
+write_raw(distinct(read_source("sv"), VISIT, VISITNUM, VISITDY) %>% arrange(VISITNUM),
           "visit_schedule", dir = "spec")
 walk2(
   list(raw_dm, raw_sites, raw_irt, raw_ex, raw_ae, raw_cm, raw_ds, raw_vs, raw_rs),

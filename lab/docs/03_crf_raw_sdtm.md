@@ -52,7 +52,8 @@ The other pages follow the same pattern. Points worth noticing:
 
 ## 3. How the raw data in this lab were made
 
-pharmaverse provides SDTM only, so `lab/R/02_reverse_raw.R` **reverse-engineers**
+Our source data (`lab/data/source/`, the two-arm cut of the pharmaverse pilot
+study) contain SDTM only, so `lab/R/02_reverse_raw.R` **reverse-engineers**
 raw data by undoing what the SDTMIG asks a sponsor to derive:
 
 1. drop derived variables (`--SEQ`, `--DY`, `USUBJID`, `AGE`, reference dates);
@@ -62,13 +63,14 @@ raw data by undoing what the SDTMIG asks a sponsor to derive:
 5. reshape findings to the way forms and vendors deliver them.
 
 `lab/R/03_raw_to_sdtm.R` then maps DM, AE and CM forward again and compares the
-result with `pharmaversesdtm` using `diffdf` (the R analogue of SAS PROC COMPARE):
+result with the reference SDTM in `lab/data/source/sdtm/` using `diffdf` (the R
+analogue of SAS PROC COMPARE):
 
 | Domain | Records | Values that differ | Root cause |
 |---|---|---|---|
-| DM | 306 | 1 | `RFENDTC` for 01-710-1083: reference used the page completion date (DSDTC), we used the event date (DSSTDTC). Spec ambiguity |
-| AE | 1191 | 1 | `AESTDY` for 01-716-1063: AE starts on the first-dose date (day 1) but the reference says 366. Error in the reference data |
-| CM | 7510 | 0 | - |
+| DM | 222 | 1 | `RFENDTC` for 01-710-1083: reference used the page completion date (DSDTC), we used the event date (DSSTDTC). Spec ambiguity |
+| AE | 756 | 0 | - |
+| CM | 5239 | 0 | - |
 
 This is what real QC looks like: the differences are rarely bugs in one
 program only; they expose unclear specifications and data issues.
@@ -76,9 +78,9 @@ program only; they expose unclear specifications and data issues.
 ## 4. Exercises
 
 1. Map `raw/vs.csv` to SDTM VS (hint: `pivot_longer()`, units from the CRF,
-   `VSSTRESN` in metric units) and compare with `pharmaversesdtm::vs`.
+   `VSSTRESN` in metric units) and compare with `read_source("vs")`.
 2. Map `raw/lb.csv.gz` to SDTM LB (vendor date format, `LBNRIND` from `FLAG`,
-   baseline flag `LBBLFL`) and compare with `pharmaversesdtm::lb`.
+   baseline flag `LBBLFL`) and compare with `read_source("lb")`.
 3. Map `raw/rs.csv` to SDTM RS (investigator records only) and rebuild ADRS
    from your own RS.
 4. Change the RFENDTC rule so that DM matches the reference. Should you?

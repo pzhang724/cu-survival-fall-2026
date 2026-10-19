@@ -25,6 +25,14 @@ m5/datasets/cdiscpilot01/
 | Conformance report | Pinnacle 21 validation; every remaining issue explained in the reviewer's guides | Review explanations |
 | CSR with TFLs | ICH E3 study report; TFLs in section 14, listings in 16 | Author statistical sections |
 
+## Data formats: CSV for checking, XPT for submission
+
+The lab keeps its data as CSV files (`lab/data/source/`, `lab/data/raw/`,
+`lab/data/sdtm/`, `lab/data/adam/`). CSV is easy to open, check and compare in
+any software and in git, but it keeps no types and no labels. A submission uses
+SAS transport files (XPT version 5), described by define.xml; CSV is not a
+submission format.
+
 ## Checks before you hand over
 
 * XPT version 5 limits: dataset and variable names up to 8 characters, labels

@@ -89,11 +89,10 @@ t_14_1_2 <- build_table(lyt_demo(names(demo_labels)), df = demo)
 # Most pilot medications were never coded (CMDECOD = "UNCODED"): we show the
 # verbatim name under "Not yet coded", which is what a dry-run table looks like
 # before the coding team finishes. Coding must be complete before database lock.
-adcm_con <- pharmaverseadam::adcm %>%
-  filter(ONTRTFL == "Y") %>%
-  select(-TRT01A) %>%
-  inner_join(select(adsl_saf, USUBJID, TRT01A), by = "USUBJID") %>%   # our two arms
+adcm_con <- read_source("adcm") %>%
+  filter(SAFFL == "Y", ONTRTFL == "Y") %>%
   mutate(
+    TRT01A  = factor(TRT01A, levels = ARM_LEVELS),
     CMCLAS  = if_else(CMCLAS == "UNCODED", "Not yet coded (verbatim name shown)", str_to_sentence(CMCLAS)),
     CMDECOD = if_else(CMDECOD == "UNCODED", str_to_sentence(CMTRT), str_to_sentence(CMDECOD))
   )

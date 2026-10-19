@@ -1,8 +1,9 @@
 # =============================================================================
 # 05_adam_adrs_adtte.R  (ADaM: tumour response ADRS and time-to-event ADTTE)
 #
-# Source: pharmaversesdtm::rs_onco (RECIST 1.1 overall response by visit,
-# investigator and independent review) + our ADSL.
+# Source: RS in the source data (from pharmaversesdtm::rs_onco: synthetic
+# RECIST 1.1 overall response by visit, investigator and independent review)
+# + our ADSL.
 #
 # Why not pharmaverseadam::adtte_onco? It is built from a small RECIST example
 # (8 patients with tumour assessments, 6 PFS events) - too few for a log-rank
@@ -16,7 +17,7 @@ source(here::here("lab", "R", "00_setup.R"))
 need("target_events", "01_design.R")
 need("adsl", "04_adam_adsl.R")
 
-rs <- pharmaversesdtm::rs_onco
+rs <- read_source("rs")
 
 ## ---- adam-datacut ----
 # Apply a data cut-off date to ADSL: only patients randomized by the cut-off,
@@ -37,7 +38,7 @@ cut_adsl <- function(adsl, dco = NULL) {
 # blinded independent central review, the adjudicated read RSACPTFL = "Y")
 derive_adrs <- function(adsl, rs, dco = NULL, reader = "INVESTIGATOR") {
   rs <- convert_blanks_to_na(rs) %>%
-    semi_join(adsl, by = c("STUDYID", "USUBJID"))     # patients of our trial only
+    semi_join(adsl, by = c("STUDYID", "USUBJID"))     # patients in this ADSL (and this cut)
   if (!is.null(dco)) rs <- filter(rs, ymd(substr(RSDTC, 1, 10)) <= dco)
   rs <- if (reader == "BICR") {
     filter(rs, RSEVAL == "INDEPENDENT ASSESSOR", RSACPTFL == "Y")

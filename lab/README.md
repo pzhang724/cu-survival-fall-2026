@@ -9,14 +9,28 @@ source("lab/run_all.R")   # from the repository root, about 30 seconds
 or open the scripts one by one; each script loads what it needs from the
 scripts before it.
 
+## Source data
+
+All programs start from the study's **source data** in `data/source/`: the SDTM
+and ADaM datasets of our two-arm trial (High Dose vs Placebo), stored as CSV
+(large files gzipped) with `data/source/metadata.csv` for the label and type of
+every variable. Read a dataset with `read_source("adsl")` (defined in
+`R/00_setup.R`). The course maintainer builds these files once from the CDISC
+pilot study in {pharmaversesdtm} / {pharmaverseadam} with `source_data.R`
+(drops the pilot's Low Dose arm; checks that every file reads back unchanged).
+You do not need to run it.
+
+CSV is easy to open, check and compare, but it keeps no types or labels; a
+submission uses SAS transport files (XPT) with define.xml instead.
+
 ## Pipeline
 
 | Step | Script | What it does | Main outputs |
 |---|---|---|---|
 | Planning | `R/01_design.R` | Hypothesis, events (Schoenfeld), patients, group sequential design with analyses at 50/75/100% of events, power analysis, all with {gsDesign} | `output/figures/f_design_boundaries.png`, `f_design_power.png`, `output/tables/t_design_boundaries.rtf` |
-| Collection | `R/02_reverse_raw.R` | Builds EDC-style raw data from pharmaverse SDTM (dates as CRF text, CRF pick-list values, coding columns, wide CRF pages, lab vendor file) | `data/raw/*.csv`, `data/spec/*.csv` |
-| Standards | `R/03_raw_to_sdtm.R` | Maps raw DM, AE, CM to SDTM and compares with pharmaversesdtm using {diffdf} | `data/sdtm/*.csv` |
-| Standards | `R/04_adam_adsl.R` | Extends ADSL: analysis-set flags (from SUPPDM), baseline BMI, end of treatment and end of study with reasons; keeps the two arms of our trial (High Dose, Placebo) | `data/adam/adsl.csv` |
+| Collection | `R/02_reverse_raw.R` | Builds EDC-style raw data from the source SDTM (dates as CRF text, CRF pick-list values, coding columns, wide CRF pages, lab vendor file) | `data/raw/*.csv`, `data/spec/*.csv` |
+| Standards | `R/03_raw_to_sdtm.R` | Maps raw DM, AE, CM to SDTM and compares with the source SDTM using {diffdf} | `data/sdtm/*.csv` |
+| Standards | `R/04_adam_adsl.R` | Extends the source ADSL: analysis-set flags (from SUPPDM), baseline BMI, end of treatment and end of study with reasons | `data/adam/adsl.csv` |
 | Standards | `R/05_adam_adrs_adtte.R` | ADRS (RECIST response) and ADTTE (PFS, OS) with {admiral}/{admiralonco}, for the final data, for PFS by BICR (sensitivity) and for the two interim data cuts | `data/adam/adrs.csv`, `adtte.csv`, `adtte_ia1.csv`, `adtte_ia2.csv` |
 | Reporting | `R/06_tfl_baseline.R` | Tables 14.1.1-14.1.3: disposition, demographics, concomitant medications ({rtables} + {tern}) | `output/tables/t_14_1_*.rtf` |
 | Reporting | `R/07_tfl_efficacy.R` | Tables 14.2.1-14.2.4: PFS (Kaplan-Meier, log-rank, Cox), response rates, OS, PFS by BICR; Figures 14.2.1-14.2.2; multiplicity; investigator vs BICR reads | `output/tables/t_14_2_*.rtf`, `output/figures/f_14_2_*.png` |
@@ -42,7 +56,7 @@ slides display.
 ## Exercises
 
 1. Map `data/raw/vs.csv` and `data/raw/lb.csv.gz` to SDTM and compare with
-   `pharmaversesdtm::vs` / `pharmaversesdtm::lb` using `diffdf::diffdf()`.
+   `read_source("vs")` / `read_source("lb")` using `diffdf::diffdf()`.
 2. Add a PFS sensitivity analysis that censors patients whose progression or
    death follows two or more missed scans.
 3. Add a stratified log-rank test (strata: age group `AGEGR1`) as a second

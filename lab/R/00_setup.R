@@ -104,6 +104,31 @@ write_raw <- function(df, name, dir = "raw", gzip = FALSE) {
   invisible(df)
 }
 
+# Read one dataset of the study's source data (lab/data/source/, built by
+# lab/source_data.R): SDTM and ADaM of our two-arm trial, stored as CSV.
+# CSV keeps no types or labels, so both come back from metadata.csv.
+read_source <- function(name) {
+  meta <- readr::read_csv(lab_path("data", "source", "metadata.csv"),
+                          col_types = readr::cols(.default = "c"), na = "")
+  meta <- meta[meta$dataset == name, ]
+  path <- lab_path("data", "source", meta$standard[1], paste0(name, ".csv"))
+  if (!file.exists(path)) path <- paste0(path, ".gz")
+  df <- readr::read_csv(path, col_types = readr::cols(.default = "c"), na = "", trim_ws = FALSE)
+  for (i in seq_len(nrow(meta))) {
+    x <- df[[meta$variable[i]]]
+    x <- switch(meta$type[i],
+                numeric = as.numeric(x),
+                integer = as.integer(x),
+                logical = as.logical(x),
+                Date    = as.Date(x),
+                POSIXct = as.POSIXct(x, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
+                x)
+    if (!is.na(meta$label[i])) attr(x, "label") <- meta$label[i]
+    df[[meta$variable[i]]] <- x
+  }
+  as.data.frame(df)
+}
+
 # Read a raw CSV with every column as character, as you would on day one of
 # a study: never let the reader guess types for you.
 read_raw <- function(name, dir = "raw") {

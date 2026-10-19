@@ -1,28 +1,28 @@
 # =============================================================================
 # 04_adam_adsl.R  (ADaM: subject-level analysis dataset, ADSL)
 #
-# pharmaverseadam::adsl was produced by the {admiral} ADSL template from the
-# CDISC pilot SDTM. Our SAP needs a few more variables, so we extend it the
+# The source ADSL (lab/data/source/adam, from pharmaverseadam::adsl) was
+# produced by the {admiral} ADSL template from the CDISC pilot SDTM and is
+# already cut to our two arms. Our SAP needs a few more variables, so we extend it the
 # same way a study programmer would: one admiral derivation per SAP rule.
 #   ITTFL / EFFFL      analysis-set flags, from SUPPDM (supplemental qualifiers)
 #   HEIGHTBL, WEIGHTBL, BMIBL   baseline body measurements, from VS
 #   EOTSTT / DCTREAS   end of treatment status and reason, from DS
 #   EOSSTT / DCSREAS   end of study status and reason, from DS
-# Then we keep the two arms of OUR trial: High Dose vs Placebo.
 # =============================================================================
 source(here::here("lab", "R", "00_setup.R"))
 
-dm     <- pharmaversesdtm::dm
-suppdm <- pharmaversesdtm::suppdm
-ds     <- pharmaversesdtm::ds
-vs     <- pharmaversesdtm::vs
+dm     <- read_source("dm")
+suppdm <- read_source("suppdm")
+ds     <- read_source("ds")
+vs     <- read_source("vs")
 
 ## ---- adsl-derive ----
 # SUPPDM holds the analysis-set flags as supplemental qualifiers: join them back
 dm_supp <- metatools::combine_supp(dm, suppdm) %>%
   select(STUDYID, USUBJID, ITTFL = ITT, EFFFL = EFFICACY)
 
-adsl <- pharmaverseadam::adsl %>%
+adsl <- read_source("adsl") %>%
   # analysis sets (SAP section 4)
   derive_vars_merged(dataset_add = dm_supp, by_vars = exprs(STUDYID, USUBJID)) %>%
   mutate(ITTFL = coalesce(ITTFL, "N"), EFFFL = coalesce(EFFFL, "N")) %>%
@@ -64,19 +64,18 @@ adsl <- adsl %>%
   ) %>%
   select(-DSEOT)
 
-## ---- adsl-two-arm ----
-# Our trial has two arms: High Dose vs Placebo. The pilot study also randomized
-# a Low Dose arm; those patients are left out of the analysis datasets.
-# 12 High Dose patients stopped during the 54 mg start and never reached 81 mg.
-# They started the High Dose regimen, so they stay High Dose for safety (TRT01A).
-adsl <- adsl %>%
-  filter(TRT01P != "Xanomeline Low Dose") %>%
-  mutate(TRT01A = if_else(SAFFL == "Y" & TRT01P == EXPERIMENTAL, EXPERIMENTAL, TRT01A))
-
 ## ---- adsl-check ----
 # Sanity checks a statistician should always look at
 adsl_check <- adsl %>%
   count(TRT01P, ITTFL, SAFFL, EFFFL, name = "Subjects")
+
+# High Dose patients who stopped during the 54 mg start (never reached 81 mg)
+n_never_81 <- read_source("ex") %>%
+  semi_join(filter(adsl, TRT01P == EXPERIMENTAL), by = "USUBJID") %>%
+  group_by(USUBJID) %>%
+  summarise(max_dose = max(EXDOSE), .groups = "drop") %>%
+  filter(max_dose < 81) %>%
+  nrow()
 
 ## ---- adsl-write ----
 write_raw(adsl, "adsl", dir = "adam")

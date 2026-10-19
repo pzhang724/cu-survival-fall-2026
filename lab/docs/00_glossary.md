@@ -27,6 +27,7 @@ term in the course material it should be here; if it is not, please add it.
 | CRF | Case Report Form | The (electronic) form sites fill in for each patient |
 | cSDRG | Clinical Study Data Reviewer's Guide | PDF that explains the SDTM datasets to the reviewer |
 | CSR | Clinical Study Report | Final report of the trial (structure defined by ICH E3) |
+| CSV | Comma-Separated Values | Plain-text table format; easy to check, but keeps no types or labels (the lab's data format, not a submission format) |
 | CT | Controlled Terminology | CDISC code lists, e.g. SEX must be "F" or "M" |
 | CTCAE | Common Terminology Criteria for Adverse Events | NCI grading scale (grade 1 mild ... grade 5 death); also used for lab values |
 | DBL | Database Lock | Data are frozen; analysis can start |
@@ -45,6 +46,7 @@ term in the course material it should be here; if it is not, please add it.
 | ITT | Intention-To-Treat | Analyse patients as randomized, regardless of what they received |
 | KM | Kaplan-Meier | Non-parametric survival estimator |
 | MedDRA | Medical Dictionary for Regulatory Activities | Dictionary for coding AEs: LLT (lowest level term) -> PT (preferred term) -> HLT -> HLGT -> SOC (system organ class) |
+| NC | Not Calculated | Shown in a table when a statistic cannot be calculated, for example a hazard ratio when an arm has no events |
 | OBF | O'Brien-Fleming | Conservative early stopping boundary |
 | ODM | Operational Data Model | CDISC XML standard for exchanging collected (EDC) data |
 | OCCDS | Occurrence Data Structure | ADaM structure for events/interventions (ADAE, ADCM) |

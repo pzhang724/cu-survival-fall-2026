@@ -171,12 +171,12 @@ but the statistician decides what the code must do and approves the results.
 
 :::: {.columns}
 ::: {.column width="55%"}
-* Data from **pharmaverse** (`pharmaversesdtm`, `pharmaverseadam`):
-  the CDISC SDTM/ADaM pilot study, xanomeline patch vs placebo
-* Plus **synthetic RECIST 1.1 tumour assessments** (`rs_onco`)
+* Data from **pharmaverse**: the CDISC SDTM/ADaM pilot study (xanomeline patch
+  vs placebo), plus **synthetic RECIST 1.1 tumour assessments**
 * In this lecture, the study is a **two-arm oncology trial**:
   High Dose vs Placebo, randomized 1:1
-  (the pilot's third arm, Low Dose, is left out)
+* Our **source data** (`r gh("lab/data/source/")`): the pilot cut to our two
+  arms and exported as CSV (comma-separated values) files. Every lab program starts there.
 * `r nrow(adsl)` patients screened, `r sum(adsl$ITTFL == "Y")` randomized
 :::
 ::: {.column width="45%"}
@@ -310,7 +310,7 @@ adsl |>
 
 ::: {.takeaway}
 Every patient received the randomized treatment, so both sets have the same arms.
-`r with(pharmaverseadam::adsl, sum(TRT01P == "Xanomeline High Dose" & TRT01A == "Xanomeline Low Dose"))`
+`r n_never_81`
 High Dose patients stopped during the 54 mg start and never reached 81 mg. These
 patients started the High Dose regimen, so they stay High Dose for safety.
 :::
@@ -512,7 +512,7 @@ raw_ae |>
 
 ## How we made the raw data
 
-pharmaverse provides SDTM data only. The lab rebuilds raw data from SDTM
+Our source data contain SDTM only. The lab rebuilds raw data from SDTM
 (**reverse engineering**): the code undoes the derivations that the SDTMIG
 (SDTM Implementation Guide) asks a sponsor to do.
 
@@ -588,9 +588,9 @@ end-of-study page. Our rule uses the date of the event (death). This difference
 is a **specification ambiguity**: fix the specification, not only the code.
 :::
 ::: {.column width="50%"}
-**AE `AESTDY`, patient 01-716-1063.** The adverse event starts on the first-dose
-date, so the study day is 1. The reference data say 366. This difference is an
-**error in the reference data**.
+**AE and CM: no differences.** All `r nrow(ae_sdtm)` AE records and
+`r nrow(cm_sdtm)` CM records match the reference in every variable. Each
+difference that does appear needs a root cause before the data are used.
 :::
 ::::
 
@@ -927,7 +927,7 @@ slide_rt(t_14_2_2, 15)
 ### Figure
 ```{r}
 #| fig-width: 12
-#| fig-height: 5.3
+#| fig-height: 5.1
 p_km_os
 ```
 ### Table
@@ -936,7 +936,7 @@ slide_rt(t_14_2_3, 16)
 ```
 :::
 
-[Only `r os_deaths` deaths in a 6-month study: no median and no estimable HR. A typical plan tests OS at a later data cut, with its own alpha.]{.small .muted}
+[Only `r os_deaths` deaths: the median and the HR are not calculated (NC). OS is usually tested at a later data cut, with its own alpha.]{.small .muted}
 
 ## Table 14.3.1 Adverse events overview
 
@@ -1181,6 +1181,8 @@ cat(ectd_tree)
 ```
 
 [eCTD: electronic Common Technical Document; module 5 holds clinical study reports and data.]{.small .muted}
+
+[Our lab keeps data as **CSV**: easy to check (any software, git diff), but CSV keeps no types or labels. A submission uses **XPT** files described by define.xml.]{.small}
 :::
 ::: {.column width="48%"}
 * **XPT**: SAS transport files, version 5 (names ≤ 8 characters, labels ≤ 40)
@@ -1302,7 +1304,7 @@ Questions?
 | CP | Conditional Power |
 | CR / PR / SD / PD / NE | Complete / Partial response, Stable / Progressive disease, Not evaluable |
 | CRF / EDC | Case Report Form / Electronic Data Capture |
-| CSR | Clinical Study Report |
+| CSR / CSV | Clinical Study Report / Comma-Separated Values (text file) |
 :::
 ::: {.column width="50%"}
 | Acronym | Meaning |
@@ -1321,6 +1323,7 @@ Questions?
 | ITT | Intention-To-Treat |
 | KM | Kaplan-Meier |
 | MedDRA | Medical Dictionary for Regulatory Activities |
+| NC | Not Calculated |
 :::
 ::::
 

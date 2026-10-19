@@ -15,12 +15,9 @@ adsl_saf <- adsl %>%
   mutate(TRT01A = factor(TRT01A, levels = ARM_LEVELS))
 
 ## ---- saf-teae ----
-# ADAE and ADLB come from pharmaverseadam; the treatment variable comes from
-# our ADSL (two arms, as treated)
-adae_te <- pharmaverseadam::adae %>%
-  filter(TRTEMFL == "Y") %>%
-  select(-TRT01A) %>%
-  inner_join(select(adsl_saf, USUBJID, TRT01A), by = "USUBJID")
+adae_te <- read_source("adae") %>%
+  filter(SAFFL == "Y", TRTEMFL == "Y") %>%
+  mutate(TRT01A = factor(TRT01A, levels = ARM_LEVELS))
 
 ## ---- saf-overview ----
 # One row per patient with yes/no flags; percentages over the safety set
@@ -87,13 +84,13 @@ t_14_3_2 <- adae_te %>%
 ## ---- saf-lab-shift ----
 # Shift from baseline CTCAE grade to the worst grade on treatment
 lab_params <- c("ALT", "AST", "BILI", "ALKPH", "CREAT")
-lb_worst <- pharmaverseadam::adlb %>%
-  filter(PARAMCD %in% lab_params, ONTRTFL == "Y", ANL01FL == "Y", is.na(DTYPE), !is.na(ATOXGR)) %>%
-  select(-TRT01A) %>%
-  inner_join(select(adsl_saf, USUBJID, TRT01A), by = "USUBJID") %>%
+lb_worst <- read_source("adlb") %>%
+  filter(SAFFL == "Y", PARAMCD %in% lab_params, ONTRTFL == "Y", ANL01FL == "Y",
+         is.na(DTYPE), !is.na(ATOXGR)) %>%
   group_by(USUBJID, TRT01A, PARAMCD, PARAM, BTOXGR) %>%
   summarise(WORST = max(as.integer(ATOXGR)), .groups = "drop") %>%
   mutate(
+    TRT01A   = factor(TRT01A, levels = ARM_LEVELS),
     PARAM    = factor(PARAM, levels = unique(PARAM[order(match(PARAMCD, lab_params))])),
     Baseline = factor(paste("Baseline grade", coalesce(BTOXGR, "missing"))),
     WORST    = droplevels(factor(paste("Grade", WORST), levels = paste("Grade", 0:4)))

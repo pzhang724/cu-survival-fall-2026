@@ -35,7 +35,7 @@ compare_arms <- function(data, experimental, control = CONTROL) {
     mutate(ARM = factor(TRT01P, levels = c(control, experimental)))
   lr  <- survdiff(Surv(AVAL_M, 1 - CNSR) ~ ARM, data = d)
   z   <- (lr$exp[2] - lr$obs[2]) / sqrt(lr$var[2, 2])
-  # The HR is not estimable (NE) when an arm has no events
+  # The HR is not calculated (NC) when an arm has no events
   hr_ci <- c(NA_real_, NA_real_, NA_real_)
   if (all(lr$obs > 0)) {
     cox   <- coxph(Surv(AVAL_M, 1 - CNSR) ~ ARM, data = d, ties = "efron")
@@ -83,7 +83,7 @@ z_final <- bounds_actual$upper$bound[3]
 a_compare <- function(df, .spl_context, .ref_group = NULL, .in_ref_col = FALSE) {
   show <- !.in_ref_col && !in_col(.spl_context, "Total")
   cmp  <- if (show) compare_arms(bind_rows(.ref_group, df), EXPERIMENTAL)
-  cell <- function(x, format) rcell(if (show) x else NULL, format = format, format_na_str = "NE")
+  cell <- function(x, format) rcell(if (show) x else NULL, format = format, format_na_str = "NC")
   in_rows(
     "Hazard ratio vs Placebo (95% CI)" = cell(c(cmp$hr, cmp$hr_lower, cmp$hr_upper), "xx.xx (xx.xx - xx.xx)"),
     "Log-rank chi-square (1 df)"       = cell(cmp$chisq, "xx.xxx"),
@@ -101,7 +101,7 @@ lyt_tte <- function(title, footer = character()) {
                  show_labels = "hidden", .indent_mods = 1L) %>%
     count_values("EVENT", values = "N", table_names = "censored", .formats = n_pct,
                  .labels = c(count_fraction = "Censored")) %>%
-    surv_time("AVAL_M", is_event = "is_event", .stats = "median_ci_3d",
+    surv_time("AVAL_M", is_event = "is_event", .stats = "median_ci_3d", na_str = "NC",
               control = control_surv_time(conf_type = "log-log"),       # Brookmeyer-Crowley
               .labels = c(median_ci_3d = "Median, months (95% CI)"), show_labels = "hidden") %>%
     surv_timepoint("AVAL_M", is_event = "is_event", time_point = 3, method = "surv",
@@ -134,7 +134,7 @@ km_plot <- function(data, cmp, title, ylab) {
     scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
     annotate("text", x = Inf, y = 0.7, hjust = 1.05, size = 4.8,
              label = paste("High Dose vs Placebo",
-                           if (is.na(cmp$hr)) "HR not estimable" else
+                           if (is.na(cmp$hr)) "HR not calculated (NC)" else
                              sprintf("HR %.2f (95%% CI %.2f, %.2f)", cmp$hr, cmp$hr_lower, cmp$hr_upper),
                            sprintf("one-sided log-rank p = %.3f", cmp$p_one_sided), sep = "\n")) +
     labs(x = "Months since randomization", y = ylab, title = title) +
@@ -166,7 +166,8 @@ t_14_2_4 <- build_table(
 # Key secondary endpoint: overall survival. Few deaths in a 6-month study.
 t_14_2_3 <- build_table(
   lyt_tte("Table 14.2.3 Overall survival (ITT set)",
-          "Median and rate: Kaplan-Meier, 95% CI with log-log transformation. HR: unstratified Cox model (Efron ties)."),
+          c("Median and rate: Kaplan-Meier, 95% CI with log-log transformation. HR: unstratified Cox model (Efron ties).",
+            "NC: not calculated. With few or no deaths in an arm, the median and the HR cannot be calculated.")),
   df = os
 )
 p_km_os <- km_plot(os, os_hi, "Figure 14.2.2 Kaplan-Meier plot of overall survival (ITT set)",
@@ -224,7 +225,7 @@ rate_test <- function(var) {
   s_test_proportion_diff(filter(bor, TRT01P == EXPERIMENTAL), var,
                          filter(bor, TRT01P == CONTROL), FALSE, method = "chisq")$pval
 }
-fmt_hr <- function(hr) if (is.na(hr)) "NE" else sprintf("%.2f", hr)
+fmt_hr <- function(hr) if (is.na(hr)) "NC" else sprintf("%.2f", hr)
 rate_diff <- function(var) 100 * (mean(bor[[var]][bor$TRT01P == EXPERIMENTAL]) -
                                   mean(bor[[var]][bor$TRT01P == CONTROL]))
 hier_tbl <- tibble(
@@ -247,11 +248,11 @@ hier_tbl <- tibble(
   select(Step, Hypothesis, Result, Decision)
 
 ## ---- eff-review ----
-# Progression is a judgement. rs_onco has three reads of every scan: the
+# Progression is a judgement. RS has three reads of every scan: the
 # investigator and two independent radiologists. When the radiologists
 # disagree, an adjudicator accepts one read (RSACPTFL = "Y"): the blinded
 # independent central review (BICR) result.
-reads <- pharmaversesdtm::rs_onco %>%
+reads <- read_source("rs") %>%
   filter(RSTESTCD == "OVRLRESP") %>%
   semi_join(adsl, by = c("STUDYID", "USUBJID")) %>%
   mutate(Reader = case_when(RSEVAL == "INVESTIGATOR" ~ "Investigator",

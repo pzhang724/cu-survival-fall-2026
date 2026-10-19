@@ -28,8 +28,10 @@ slides/images/          logo files, embedded into index.html at render time
 slides/index.html       rendered, self-contained deck (committed as an offline copy)
 .github/workflows/publish-slides.yml   CI: render slides, deploy to GitHub Pages
 lab/run_all.R           runs the whole pipeline (about 30 seconds)
+lab/source_data.R       maintainer script: pharmaverse -> two-arm source data (not in run_all)
 lab/R/00_setup.R        packages, paths, DESIGN constants, helpers (need(), read_raw() ...)
 lab/R/01..10_*.R        design, raw data, SDTM, ADSL, ADRS/ADTTE, TFLs, interim, submission
+lab/data/source/        source SDTM + ADaM of our two-arm trial (CSV, large files gzipped) + metadata.csv
 lab/data/raw/           reverse-engineered raw data (EDC-style CSV; lab file gzipped)
 lab/data/spec/          study controlled-terminology map, visit schedule
 lab/data/sdtm/, adam/   derived datasets written by the pipeline (CSV; adtte_ia1/2 = interim cuts)
@@ -50,9 +52,15 @@ small summary tables on the slides, not for TFLs.
    from inline R. Never paste code or type results into the slides by hand.
    If you rename or split a chunk label, update `slides/index.qmd`.
 2. **Data.** Only `pharmaversesdtm` / `pharmaverseadam` (CDISC pilot study,
-   plus pharmaverse's synthetic RECIST data `rs_onco`). Raw data are
-   reverse-engineered from SDTM (`02_reverse_raw.R`). Do not simulate or tweak
-   efficacy data to get a nicer story; report what the data show.
+   plus pharmaverse's synthetic RECIST data `rs_onco`), and only through the
+   source data: `lab/source_data.R` cuts them to our two arms and exports CSV
+   files plus `metadata.csv` (labels, types) to `lab/data/source/`, and checks
+   that every file reads back unchanged. Lab programs and slides read the
+   source data with `read_source()` and never call `pharmaversesdtm::` or
+   `pharmaverseadam::` directly. Raw data are reverse-engineered from the source
+   SDTM (`02_reverse_raw.R`). Do not simulate or tweak efficacy data to get a
+   nicer story; report what the data show. After changing `source_data.R`, run
+   it (`Rscript lab/source_data.R`) before `run_all.R`.
 3. **Acronyms.** Spell out every acronym the first time it appears on a slide
    or in a document; never invent new abbreviations. Keep
    `lab/docs/00_glossary.md` and the glossary slides in sync.
@@ -84,9 +92,11 @@ small summary tables on the slides, not for TFLs.
   assessments). `pharmaverseadam::adtte_onco` has only 6 PFS events (it is built
   from `rs_onco_recist`, 8 patients), too few for a log-rank test.
 * **Two arms**: our trial is High Dose vs Placebo, 1:1. The pilot's Low Dose
-  arm is left out from ADSL on (`04_adam_adsl.R`); raw data and SDTM stay the
-  full pilot study, so the SDTM QC example still works. 222 screened (52 screen
-  failures), 170 randomized (86 Placebo, 84 High Dose).
+  arm is removed from every SDTM and ADaM dataset in the source data, so raw
+  data, SDTM and ADaM all describe the same two-arm trial. 222 screened
+  (52 screen failures), 170 randomized (86 Placebo, 84 High Dose).
+* **CSV**: the lab's data are CSV (easy to check and diff); the slides say that
+  a submission uses XPT with define.xml, not CSV.
 * **Endpoints**: primary PFS; key secondary OS; secondary ORR and DCR; safety.
   Sensitivity analysis: PFS by BICR (the adjudicated read, `RSACPTFL = "Y"`),
   same programs and table layout.
@@ -110,7 +120,8 @@ small summary tables on the slides, not for TFLs.
 * **Results are what they are**: interim 1 Z = 0.26 (HR 0.93), CP 27.4% under
   the design HR and 1.0% under the current trend, so the futility rule is met;
   final HR 1.02, one-sided p = 0.596, so PFS is not rejected and the chain stops.
-  OS has 2 deaths (both Placebo): the HR is not estimable ("NE").
+  OS has 2 deaths (both Placebo): the median and the HR are shown as "NC"
+  (not calculated); the OS table and Kaplan-Meier figure are still produced.
 * **TFLs**: {rtables} + {tern} (the user's preference), every table has a
   Total column; comparison rows (HR, log-rank, rate difference) appear in the
   High Dose column only. One layout (`lyt_tte()`) serves Tables 14.2.1, 14.2.3,
@@ -119,12 +130,14 @@ small summary tables on the slides, not for TFLs.
   reasons. AE overview shows TEAEs by maximum severity (mild/moderate/severe).
 * **Clean logs**: `lab/run_all.R` must run with no warnings or errors (an
   industry QC standard the lecture teaches).
-* **QC example**: forward-mapped DM / AE / CM are compared with pharmaversesdtm
-  using {diffdf}; two differences are kept on purpose (a spec ambiguity in
-  `RFENDTC`, an error in the reference `AESTDY`).
+* **QC example**: forward-mapped DM / AE / CM are compared with the source
+  SDTM using {diffdf}; one difference is kept on purpose (a spec ambiguity in
+  `RFENDTC`, patient 01-710-1083). AE and CM match fully. (The pilot's
+  `AESTDY` reference error was in a Low Dose patient and left with that arm.)
 * **Actual arm**: 12 High Dose patients never received 81 mg. In the two-arm
-  trial they started the High Dose regimen, so `TRT01A` = High Dose (SDTM
-  `ACTARM` still says Low Dose, as in the pilot).
+  trial they started the High Dose regimen, so `ACTARM`, `TRT01A` and `TRTA`
+  are High Dose in the source data, and the SDTM mapping in `03` uses
+  actual arm = planned arm.
 * **Concomitant medications**: most pilot records are "UNCODED"; the table shows
   them by verbatim name under "Not yet coded".
 * **Data cut-off** is always written out; do not use the abbreviation "DCO".
