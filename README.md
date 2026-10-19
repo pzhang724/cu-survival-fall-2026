@@ -6,14 +6,17 @@ Guest lecture for the **Survival Analysis** course, Columbia University, Fall 20
 One randomized trial with a survival endpoint, followed the way a trial
 statistician works it:
 
-| Part | Topic | Minutes |
-|---|---|---|
-| 1 | The map of a trial | 5 |
-| 2 | Planning: protocol, estimand, SAP (Statistical Analysis Plan), group sequential design, sample size | 25 |
-| 3 | Data standards: CRF (Case Report Form) -> raw data -> SDTM (Study Data Tabulation Model) -> ADaM (Analysis Data Model) | 20 |
-| 4 | Tables, figures and listings (TFLs): disposition, demographics, medications, PFS / log-rank / Cox, response rate, adverse events, labs | 20 |
-| 5 | Interim analysis: boundaries, p-values, conditional power, the Data Monitoring Committee report | 12 |
-| 6 | Submission and wrap-up | 8 |
+| Part | Topic |
+|---|---|
+| 1 | The map of a trial |
+| 2 | Planning: protocol, estimand, SAP (Statistical Analysis Plan), sample size, power, group sequential design |
+| 3 | Data standards: CRF (Case Report Form) -> raw data -> SDTM (Study Data Tabulation Model) -> ADaM (Analysis Data Model), QC (quality control) |
+| 4 | Tables, figures and listings (TFLs) with {rtables} and {tern}: disposition, demographics, medications, PFS / log-rank / Cox, sensitivity analysis, multiplicity, response rates, OS, adverse events, labs |
+| 5 | Interim analyses: boundaries, p-values, conditional power and futility, the Data Monitoring Committee report |
+| 6 | Deliverables during the trial, submission and wrap-up |
+
+The trial is a two-arm role-play (High Dose vs Placebo) built on synthetic
+pharmaverse test data; no real patient data are used.
 
 ## What is in the repository
 
@@ -33,9 +36,12 @@ statistician works it:
 All data come from [pharmaverse](https://pharmaverse.org): the CDISC SDTM/ADaM
 pilot study (`pharmaversesdtm`, `pharmaverseadam`; xanomeline patch vs placebo)
 plus synthetic RECIST 1.1 tumour assessments that pharmaverse provides for the
-same patients. For teaching, the study is treated as an oncology trial with
-progression-free survival as the primary endpoint. The raw (EDC-style) data in
-`lab/data/raw/` were reverse-engineered from SDTM by `lab/R/02_reverse_raw.R`.
+same patients. For teaching, the study is treated as a two-arm oncology trial
+(High Dose vs Placebo) with progression-free survival as the primary endpoint.
+`lab/source_data.R` cuts the pilot to the two arms and exports the SDTM and ADaM
+datasets as CSV to `lab/data/source/`; every lab program starts from these
+files. The raw (EDC-style) data in `lab/data/raw/` were reverse-engineered from
+the source SDTM by `lab/R/02_reverse_raw.R`.
 Design assumptions were chosen for teaching and are not from the original study.
 
 ## Quick start

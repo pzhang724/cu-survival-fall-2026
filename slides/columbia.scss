@@ -51,6 +51,15 @@ $code-color: $cu-navy;
 .reveal table th { background: #EEF5FB; color: $cu-navy; }
 .reveal table td, .reveal table th { padding: 0.25em 0.6em; }
 
+// rtables TFLs on slides (helper slide_rt() in index.qmd)
+.reveal .rt-slide table { width: 100%; margin: 0; font-size: 1em; border-collapse: collapse; }
+.reveal .rt-slide table th { background: #EEF5FB; color: $cu-navy; }
+.reveal .rt-slide table td, .reveal .rt-slide table th { padding: 1px 8px; border-bottom: none; }
+.reveal .rt-slide .rtables-main-title { font-weight: 700; margin: 0 0 4px 0; }
+.reveal .rt-slide .rtables-footers-block { font-size: 0.82em; color: #4B5563; }
+.reveal .rt-slide .rtables-footers-block p { margin: 2px 0; line-height: 1.25; }
+.reveal .rt-slide hr { margin: 2px 0; border: 0; border-top: 1px solid #9CA3AF; }
+
 // code blocks: taller than the reveal.js default, scroll when needed
 .reveal div.sourceCode pre code { max-height: 740px; }
 .reveal pre { width: 100%; }

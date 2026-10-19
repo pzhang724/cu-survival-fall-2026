@@ -1,0 +1,572 @@
+dataset,standard,variable,label,type
+dm,sdtm,STUDYID,Study Identifier,character
+dm,sdtm,DOMAIN,Domain Abbreviation,character
+dm,sdtm,USUBJID,Unique Subject Identifier,character
+dm,sdtm,SUBJID,Subject Identifier for the Study,character
+dm,sdtm,RFSTDTC,Subject Reference Start Date/Time,character
+dm,sdtm,RFENDTC,Subject Reference End Date/Time,character
+dm,sdtm,RFXSTDTC,Date/Time of First Study Treatment,character
+dm,sdtm,RFXENDTC,Date/Time of Last Study Treatment,character
+dm,sdtm,RFICDTC,Date/Time of Informed Consent,character
+dm,sdtm,RFPENDTC,Date/Time of End of Participation,character
+dm,sdtm,DTHDTC,Date/Time of Death,character
+dm,sdtm,DTHFL,Subject Death Flag,character
+dm,sdtm,SITEID,Study Site Identifier,character
+dm,sdtm,BRTHDTC,Date/Time of Birth,character
+dm,sdtm,AGE,Age,numeric
+dm,sdtm,AGEU,Age Units,character
+dm,sdtm,SEX,Sex,character
+dm,sdtm,RACE,Race,character
+dm,sdtm,ETHNIC,Ethnicity,character
+dm,sdtm,ARMCD,Planned Arm Code,character
+dm,sdtm,ARM,Description of Planned Arm,character
+dm,sdtm,ACTARMCD,Actual Arm Code,character
+dm,sdtm,ACTARM,Description of Actual Arm,character
+dm,sdtm,COUNTRY,Country,character
+dm,sdtm,DMDTC,Date/Time of Collection,character
+dm,sdtm,DMDY,Study Day of Collection,numeric
+dm,sdtm,ARMNRS,Reason Arm and/or Actual Arm is Null,character
+dm,sdtm,ACTARMUD,Description of Unplanned Actual Arm,character
+suppdm,sdtm,STUDYID,Study Identifier,character
+suppdm,sdtm,RDOMAIN,Related Domain Abbreviation,character
+suppdm,sdtm,USUBJID,Unique Subject Identifier,character
+suppdm,sdtm,IDVAR,Identifying Variable,character
+suppdm,sdtm,IDVARVAL,Identifying Variable Value,character
+suppdm,sdtm,QNAM,Qualifier Variable Name,character
+suppdm,sdtm,QLABEL,Qualifier Variable Label,character
+suppdm,sdtm,QVAL,Data Value,character
+suppdm,sdtm,QORIG,Origin,character
+suppdm,sdtm,QEVAL,Evaluator,character
+ex,sdtm,STUDYID,Study Identifier,character
+ex,sdtm,DOMAIN,Domain Abbreviation,character
+ex,sdtm,USUBJID,Unique Subject Identifier,character
+ex,sdtm,EXSEQ,Sequence Number,numeric
+ex,sdtm,EXTRT,Name of Actual Treatment,character
+ex,sdtm,EXDOSE,Dose per Administration,numeric
+ex,sdtm,EXDOSU,Dose Units,character
+ex,sdtm,EXDOSFRM,Dose Form,character
+ex,sdtm,EXDOSFRQ,Dosing Frequency per Interval,character
+ex,sdtm,EXROUTE,Route of Administration,character
+ex,sdtm,VISITNUM,Visit Number,numeric
+ex,sdtm,VISIT,Visit Name,character
+ex,sdtm,VISITDY,Planned Study Day of Visit,numeric
+ex,sdtm,EXSTDTC,Start Date/Time of Treatment,character
+ex,sdtm,EXENDTC,End Date/Time of Treatment,character
+ex,sdtm,EXSTDY,Study Day of Start of Treatment,numeric
+ex,sdtm,EXENDY,Study Day of End of Treatment,numeric
+ae,sdtm,STUDYID,Study Identifier,character
+ae,sdtm,DOMAIN,Domain Abbreviation,character
+ae,sdtm,USUBJID,Unique Subject Identifier,character
+ae,sdtm,AESEQ,Sequence Number,numeric
+ae,sdtm,AESPID,Sponsor-Defined Identifier,character
+ae,sdtm,AETERM,Reported Term for the Adverse Event,character
+ae,sdtm,AELLT,Lowest Level Term,character
+ae,sdtm,AELLTCD,Lowest Level Term Code,numeric
+ae,sdtm,AEDECOD,Dictionary-Derived Term,character
+ae,sdtm,AEPTCD,Preferred Term Code,numeric
+ae,sdtm,AEHLT,High Level Term,character
+ae,sdtm,AEHLTCD,High Level Term Code,numeric
+ae,sdtm,AEHLGT,High Level Group Term,character
+ae,sdtm,AEHLGTCD,High Level Group Term Code,numeric
+ae,sdtm,AEBODSYS,Body System or Organ Class,character
+ae,sdtm,AEBDSYCD,Body System or Organ Class Code,numeric
+ae,sdtm,AESOC,Primary System Organ Class,character
+ae,sdtm,AESOCCD,Primary System Organ Class Code,numeric
+ae,sdtm,AESEV,Severity/Intensity,character
+ae,sdtm,AESER,Serious Event,character
+ae,sdtm,AEACN,Action Taken with Study Treatment,character
+ae,sdtm,AEREL,Causality,character
+ae,sdtm,AEOUT,Outcome of Adverse Event,character
+ae,sdtm,AESCAN,Involves Cancer,character
+ae,sdtm,AESCONG,Congenital Anomaly or Birth Defect,character
+ae,sdtm,AESDISAB,Persist or Signif Disability/Incapacity,character
+ae,sdtm,AESDTH,Results in Death,character
+ae,sdtm,AESHOSP,Requires or Prolongs Hospitalization,character
+ae,sdtm,AESLIFE,Is Life Threatening,character
+ae,sdtm,AESOD,Occurred with Overdose,character
+ae,sdtm,AEDTC,Date/Time of Collection,character
+ae,sdtm,AESTDTC,Start Date/Time of Adverse Event,character
+ae,sdtm,AEENDTC,End Date/Time of Adverse Event,character
+ae,sdtm,AESTDY,Study Day of Start of Adverse Event,numeric
+ae,sdtm,AEENDY,Study Day of End of Adverse Event,numeric
+cm,sdtm,STUDYID,Study Identifier,character
+cm,sdtm,DOMAIN,Domain Abbreviation,character
+cm,sdtm,USUBJID,Unique Subject Identifier,character
+cm,sdtm,CMSEQ,Sequence Number,numeric
+cm,sdtm,CMSPID,Sponsor-Defined Identifier,character
+cm,sdtm,CMTRT,"Reported Name of Drug, Med, or Therapy",character
+cm,sdtm,CMDECOD,Standardized Medication Name,character
+cm,sdtm,CMINDC,Indication,character
+cm,sdtm,CMCLAS,Medication Class,character
+cm,sdtm,CMDOSE,Dose per Administration,numeric
+cm,sdtm,CMDOSU,Dose Units,character
+cm,sdtm,CMDOSFRQ,Dosing Frequency per Interval,character
+cm,sdtm,CMROUTE,Route of Administration,character
+cm,sdtm,VISITNUM,Visit Number,numeric
+cm,sdtm,VISIT,Visit Name,character
+cm,sdtm,VISITDY,Planned Study Day of Visit,numeric
+cm,sdtm,CMDTC,Date/Time of Collection,character
+cm,sdtm,CMSTDTC,Start Date/Time of Medication,character
+cm,sdtm,CMENDTC,End Date/Time of Medication,character
+cm,sdtm,CMSTDY,Study Day of Start of Medication,numeric
+cm,sdtm,CMENDY,Study Day of End of Medication,numeric
+cm,sdtm,CMENRTPT,End Relative to Reference Time Point,character
+ds,sdtm,STUDYID,Study Identifier,character
+ds,sdtm,DOMAIN,Domain Abbreviation,character
+ds,sdtm,USUBJID,Unique Subject Identifier,character
+ds,sdtm,DSSEQ,Sequence Number,integer
+ds,sdtm,DSSPID,Sponsor-Defined Identifier,character
+ds,sdtm,DSTERM,Reported Term for the Disposition Event,character
+ds,sdtm,DSDECOD,Standardized Disposition Term,character
+ds,sdtm,DSCAT,Category for Disposition Event,character
+ds,sdtm,VISITNUM,Visit Number,numeric
+ds,sdtm,VISIT,Visit Name,character
+ds,sdtm,DSDTC,Date/Time of Collection,character
+ds,sdtm,DSSTDTC,Start Date/Time of Disposition Event,character
+ds,sdtm,DSSTDY,Study Day of Start of Disposition Event,numeric
+lb,sdtm,STUDYID,Study Identifier,character
+lb,sdtm,DOMAIN,Domain Abbreviation,character
+lb,sdtm,USUBJID,Unique Subject Identifier,character
+lb,sdtm,LBSEQ,Sequence Number,numeric
+lb,sdtm,LBTESTCD,Lab Test or Examination Short Name,character
+lb,sdtm,LBTEST,Lab Test or Examination Name,character
+lb,sdtm,LBCAT,Category for Lab Test,character
+lb,sdtm,LBORRES,Result or Finding in Original Units,character
+lb,sdtm,LBORRESU,Original Units,character
+lb,sdtm,LBORNRLO,Reference Range Lower Limit in Orig Unit,character
+lb,sdtm,LBORNRHI,Reference Range Upper Limit in Orig Unit,character
+lb,sdtm,LBSTRESC,Character Result/Finding in Std Format,character
+lb,sdtm,LBSTRESN,Numeric Result/Finding in Standard Units,numeric
+lb,sdtm,LBSTRESU,Standard Units,character
+lb,sdtm,LBSTNRLO,Reference Range Lower Limit-Std Units,numeric
+lb,sdtm,LBSTNRHI,Reference Range Upper Limit-Std Units,numeric
+lb,sdtm,LBNRIND,Reference Range Indicator,character
+lb,sdtm,LBBLFL,Baseline Flag,character
+lb,sdtm,VISITNUM,Visit Number,numeric
+lb,sdtm,VISIT,Visit Name,character
+lb,sdtm,VISITDY,Planned Study Day of Visit,numeric
+lb,sdtm,LBDTC,Date/Time of Specimen Collection,character
+lb,sdtm,LBDY,Study Day of Specimen Collection,numeric
+vs,sdtm,STUDYID,Study Identifier,character
+vs,sdtm,DOMAIN,Domain Abbreviation,character
+vs,sdtm,USUBJID,Unique Subject Identifier,character
+vs,sdtm,VSSEQ,Sequence Number,numeric
+vs,sdtm,VSTESTCD,Vital Signs Test Short Name,character
+vs,sdtm,VSTEST,Vital Signs Test Name,character
+vs,sdtm,VSPOS,Vital Signs Position of Subject,character
+vs,sdtm,VSORRES,Result or Finding in Original Units,character
+vs,sdtm,VSORRESU,Original Units,character
+vs,sdtm,VSSTRESC,Character Result/Finding in Std Format,character
+vs,sdtm,VSSTRESN,Numeric Result/Finding in Standard Units,numeric
+vs,sdtm,VSSTRESU,Standard Units,character
+vs,sdtm,VSSTAT,Completion Status,character
+vs,sdtm,VSLOC,Location of Vital Signs Measurement,character
+vs,sdtm,VSBLFL,Baseline Flag,character
+vs,sdtm,VISITNUM,Visit Number,numeric
+vs,sdtm,VISIT,Visit Name,character
+vs,sdtm,VISITDY,Planned Study Day of Visit,numeric
+vs,sdtm,VSDTC,Date/Time of Measurements,character
+vs,sdtm,VSDY,Study Day of Vital Signs,numeric
+vs,sdtm,VSTPT,Planned Time Point Name,character
+vs,sdtm,VSTPTNUM,Planned Time Point Number,numeric
+vs,sdtm,VSELTM,Planned Elapsed Time from Time Point Ref,character
+vs,sdtm,VSTPTREF,Time Point Reference,character
+sv,sdtm,STUDYID,Study Identifier,character
+sv,sdtm,DOMAIN,Domain Abbreviation,character
+sv,sdtm,USUBJID,Unique Subject Identifier,character
+sv,sdtm,VISITNUM,Visit Number,numeric
+sv,sdtm,VISIT,Visit Name,character
+sv,sdtm,VISITDY,Planned Study Day of Visit,numeric
+sv,sdtm,SVSTDTC,Start Date/Time of Visit,character
+sv,sdtm,SVENDTC,End Date/Time of Visit,character
+rs,sdtm,STUDYID,Study Identifier,character
+rs,sdtm,DOMAIN,Domain Abbreviation,character
+rs,sdtm,USUBJID,Unique Subject Identifier,character
+rs,sdtm,RSSEQ,Sequence Number,integer
+rs,sdtm,RSLNKGRP,Link Group,character
+rs,sdtm,RSTESTCD,Response Assessment Short Name,character
+rs,sdtm,RSTEST,Response Assessment Name,character
+rs,sdtm,RSCAT,Category for Response Assessment,character
+rs,sdtm,RSORRES,Response Assessment Original Result,character
+rs,sdtm,RSSTRESC,Response Assessment Result in Std Format,character
+rs,sdtm,RSSTAT,Completion Status,character
+rs,sdtm,RSREASND,Reason Response Assessment Not Performed,character
+rs,sdtm,RSEVAL,Evaluator,character
+rs,sdtm,RSEVALID,Evaluator Identifier,character
+rs,sdtm,RSACPTFL,Accepted Record Flag,character
+rs,sdtm,VISITNUM,Visit Number,numeric
+rs,sdtm,VISIT,Visit Name,character
+rs,sdtm,RSDTC,Date/Time of Response Assessment,character
+rs,sdtm,RSDY,Study Day of Response Assessment,numeric
+adsl,adam,STUDYID,Study Identifier,character
+adsl,adam,USUBJID,Unique Subject Identifier,character
+adsl,adam,SUBJID,Subject Identifier for the Study,character
+adsl,adam,SITEID,Study Site Identifier,character
+adsl,adam,COUNTRY,Country,character
+adsl,adam,RFSTDTC,Subject Reference Start Date/Time,character
+adsl,adam,RFENDTC,Subject Reference End Date/Time,character
+adsl,adam,RFXSTDTC,Date/Time of First Study Treatment,character
+adsl,adam,RFXENDTC,Date/Time of Last Study Treatment,character
+adsl,adam,RFPENDTC,Date/Time of End of Participation,character
+adsl,adam,SCRFDT,Screen Failure Date,Date
+adsl,adam,FRVDT,Final Retrieval Visit Date,Date
+adsl,adam,DTHDTC,Date/Time of Death,character
+adsl,adam,DTHADY,Relative Day of Death,numeric
+adsl,adam,DTHFL,Subject Death Flag,character
+adsl,adam,LDDTHELD,Elapsed Days from Last Dose to Death,numeric
+adsl,adam,LDDTHGR1,Last Dose to Death - Days Elapsed Grp 1,character
+adsl,adam,DTH30FL,Death Within 30 Days of Last Trt Flag,character
+adsl,adam,DTHA30FL,Death After 30 Days from Last Trt Flag,character
+adsl,adam,DTHDOM,Domain for Date of Death Collection,character
+adsl,adam,DTHB30FL,Death Within 30 Days of First Trt Flag,character
+adsl,adam,REGION1,Geographic Region 1,character
+adsl,adam,DMDTC,Date/Time of Collection,character
+adsl,adam,DMDY,Study Day of Collection,numeric
+adsl,adam,AGE,Age,numeric
+adsl,adam,AGEU,Age Units,character
+adsl,adam,AGEGR1,Pooled Age Group 1,character
+adsl,adam,SEX,Sex,character
+adsl,adam,RACE,Race,character
+adsl,adam,RACEGR1,Pooled Race Group 1,character
+adsl,adam,ETHNIC,Ethnicity,character
+adsl,adam,SAFFL,Safety Population Flag,character
+adsl,adam,ARM,Description of Planned Arm,character
+adsl,adam,ARMCD,Planned Arm Code,character
+adsl,adam,ACTARM,Description of Actual Arm,character
+adsl,adam,ACTARMCD,Actual Arm Code,character
+adsl,adam,TRT01P,Planned Treatment for Period 01,character
+adsl,adam,TRT01A,Actual Treatment for Period 01,character
+adsl,adam,TRTSDT,Date of First Exposure to Treatment,Date
+adsl,adam,TRTSDTM,Datetime of First Exposure to Treatment,POSIXct
+adsl,adam,TRTSTMF,Time of First Exposure Imput. Flag,character
+adsl,adam,TRTEDT,Date of Last Exposure to Treatment,Date
+adsl,adam,TRTEDTM,Datetime of Last Exposure to Treatment,POSIXct
+adsl,adam,TRTETMF,Time of Last Exposure Imput. Flag,character
+adsl,adam,EOSSTT,End of Study Status,character
+adsl,adam,EOSDT,End of Study Date,Date
+adsl,adam,RFICDTC,Date/Time of Informed Consent,character
+adsl,adam,RANDDT,Date of Randomization,Date
+adsl,adam,LSTALVDT,Date Last Known Alive,Date
+adsl,adam,TRTDURD,Total Treatment Duration (Days),numeric
+adsl,adam,DTHDT,Date of Death,Date
+adsl,adam,DTHDTF,Date of Death Imputation Flag,character
+adsl,adam,DTHCAUS,Cause of Death,character
+adsl,adam,DTHCGR1,Cause of Death Reason 1,character
+adsl,adam,BRTHDTC,Date/Time of Birth,character
+adae,adam,STUDYID,Study Identifier,character
+adae,adam,USUBJID,Unique Subject Identifier,character
+adae,adam,SUBJID,Subject Identifier for the Study,character
+adae,adam,SITEID,Study Site Identifier,character
+adae,adam,COUNTRY,Country,character
+adae,adam,DOMAIN,Domain Abbreviation,character
+adae,adam,RFSTDTC,Subject Reference Start Date/Time,character
+adae,adam,RFENDTC,Subject Reference End Date/Time,character
+adae,adam,RFXSTDTC,Date/Time of First Study Treatment,character
+adae,adam,RFXENDTC,Date/Time of Last Study Treatment,character
+adae,adam,RFPENDTC,Date/Time of End of Participation,character
+adae,adam,SCRFDT,Screen Failure Date,Date
+adae,adam,FRVDT,Final Retrieval Visit Date,Date
+adae,adam,DTHDTC,Date/Time of Death,character
+adae,adam,DTHADY,Relative Day of Death,numeric
+adae,adam,DTHFL,Subject Death Flag,character
+adae,adam,LDDTHELD,Elapsed Days from Last Dose to Death,numeric
+adae,adam,LDDTHGR1,Last Dose to Death - Days Elapsed Grp 1,character
+adae,adam,DTH30FL,Death Within 30 Days of Last Trt Flag,character
+adae,adam,DTHA30FL,Death After 30 Days from Last Trt Flag,character
+adae,adam,DTHDOM,Domain for Date of Death Collection,character
+adae,adam,DTHB30FL,Death Within 30 Days of First Trt Flag,character
+adae,adam,REGION1,Geographic Region 1,character
+adae,adam,DMDTC,Date/Time of Collection,character
+adae,adam,DMDY,Study Day of Collection,numeric
+adae,adam,AGE,Age,numeric
+adae,adam,AGEU,Age Units,character
+adae,adam,AGEGR1,Pooled Age Group 1,character
+adae,adam,SEX,Sex,character
+adae,adam,RACE,Race,character
+adae,adam,RACEGR1,Pooled Race Group 1,character
+adae,adam,ETHNIC,Ethnicity,character
+adae,adam,SAFFL,Safety Population Flag,character
+adae,adam,ARM,Description of Planned Arm,character
+adae,adam,ARMCD,Planned Arm Code,character
+adae,adam,ACTARM,Description of Actual Arm,character
+adae,adam,ACTARMCD,Actual Arm Code,character
+adae,adam,TRT01P,Planned Treatment for Period 01,character
+adae,adam,TRT01A,Actual Treatment for Period 01,character
+adae,adam,TRTSDT,Date of First Exposure to Treatment,Date
+adae,adam,TRTSDTM,Datetime of First Exposure to Treatment,POSIXct
+adae,adam,TRTSTMF,Time of First Exposure Imput. Flag,character
+adae,adam,TRTEDT,Date of Last Exposure to Treatment,Date
+adae,adam,TRTEDTM,Datetime of Last Exposure to Treatment,POSIXct
+adae,adam,TRTETMF,Time of Last Exposure Imput. Flag,character
+adae,adam,EOSSTT,End of Study Status,character
+adae,adam,EOSDT,End of Study Date,Date
+adae,adam,RFICDTC,Date/Time of Informed Consent,character
+adae,adam,RANDDT,Date of Randomization,Date
+adae,adam,LSTALVDT,Date Last Known Alive,Date
+adae,adam,TRTDURD,Total Treatment Duration (Days),numeric
+adae,adam,DTHDT,Date of Death,Date
+adae,adam,DTHDTF,Date of Death Imputation Flag,character
+adae,adam,DTHCAUS,Cause of Death,character
+adae,adam,DTHCGR1,Cause of Death Reason 1,character
+adae,adam,AESEQ,Sequence Number,numeric
+adae,adam,AETERM,Reported Term for the Adverse Event,character
+adae,adam,AEDECOD,Dictionary-Derived Term,character
+adae,adam,AEBODSYS,Body System or Organ Class,character
+adae,adam,AEBDSYCD,Body System or Organ Class Code,numeric
+adae,adam,AELLT,Lowest Level Term,character
+adae,adam,AELLTCD,Lowest Level Term Code,numeric
+adae,adam,AEPTCD,Preferred Term Code,numeric
+adae,adam,AEHLT,High Level Term,character
+adae,adam,AEHLTCD,High Level Term Code,numeric
+adae,adam,AEHLGT,High Level Group Term,character
+adae,adam,AEHLGTCD,High Level Group Term Code,numeric
+adae,adam,AESOC,Primary System Organ Class,character
+adae,adam,AESOCCD,Primary System Organ Class Code,numeric
+adae,adam,AESTDTC,Start Date/Time of Adverse Event,character
+adae,adam,ASTDT,Analysis Start Date,Date
+adae,adam,ASTDTM,Analysis Start Date/Time,POSIXct
+adae,adam,ASTDTF,Analysis Start Date Imputation Flag,character
+adae,adam,ASTTMF,Analysis Start Time Imputation Flag,character
+adae,adam,AEENDTC,End Date/Time of Adverse Event,character
+adae,adam,AENDT,Analysis End Date,Date
+adae,adam,AENDTM,Analysis End Date/Time,POSIXct
+adae,adam,AENDTF,Analysis End Date Imputation Flag,character
+adae,adam,AENTMF,Analysis End Time Imputation Flag,character
+adae,adam,ASTDY,Analysis Start Relative Day,numeric
+adae,adam,AESTDY,Study Day of Start of Adverse Event,numeric
+adae,adam,AENDY,Analysis End Relative Day,numeric
+adae,adam,AEENDY,Study Day of End of Adverse Event,numeric
+adae,adam,ADURN,Analysis Duration (N),numeric
+adae,adam,ADURU,Analysis Duration Units,character
+adae,adam,TRTEMFL,Treatment Emergent Analysis Flag,character
+adae,adam,AOCCIFL,1st Max Sev./Int. Occurrence Flag,character
+adae,adam,AESER,Serious Event,character
+adae,adam,AESDTH,Results in Death,character
+adae,adam,AESLIFE,Is Life Threatening,character
+adae,adam,AESHOSP,Requires or Prolongs Hospitalization,character
+adae,adam,AESDISAB,Persist or Signif Disability/Incapacity,character
+adae,adam,AESCONG,Congenital Anomaly or Birth Defect,character
+adae,adam,AESEV,Severity/Intensity,character
+adae,adam,ASEV,Analysis Severity/Intensity,character
+adae,adam,ASEVN,Analysis Severity/Intensity (N),integer
+adae,adam,AEREL,Causality,character
+adae,adam,AREL,Analysis Causality,character
+adae,adam,AEACN,Action Taken with Study Treatment,character
+adae,adam,AESPID,Sponsor-Defined Identifier,character
+adae,adam,AEOUT,Outcome of Adverse Event,character
+adae,adam,AESCAN,Involves Cancer,character
+adae,adam,AESOD,Occurred with Overdose,character
+adae,adam,AEDTC,Date/Time of Collection,character
+adae,adam,LDOSEDTM,End Date/Time of Last Dose,POSIXct
+adae,adam,DOSEON,Treatment Dose,numeric
+adae,adam,DOSEU,Treatment Dose Unit,character
+adcm,adam,STUDYID,Study Identifier,character
+adcm,adam,USUBJID,Unique Subject Identifier,character
+adcm,adam,SUBJID,Subject Identifier for the Study,character
+adcm,adam,SITEID,Study Site Identifier,character
+adcm,adam,COUNTRY,Country,character
+adcm,adam,DOMAIN,Domain Abbreviation,character
+adcm,adam,RFSTDTC,Subject Reference Start Date/Time,character
+adcm,adam,RFENDTC,Subject Reference End Date/Time,character
+adcm,adam,RFXSTDTC,Date/Time of First Study Treatment,character
+adcm,adam,RFXENDTC,Date/Time of Last Study Treatment,character
+adcm,adam,RFPENDTC,Date/Time of End of Participation,character
+adcm,adam,SCRFDT,Screen Failure Date,Date
+adcm,adam,FRVDT,Final Retrieval Visit Date,Date
+adcm,adam,DTHDTC,Date/Time of Death,character
+adcm,adam,DTHADY,Relative Day of Death,numeric
+adcm,adam,DTHFL,Subject Death Flag,character
+adcm,adam,LDDTHELD,Elapsed Days from Last Dose to Death,numeric
+adcm,adam,LDDTHGR1,Last Dose to Death - Days Elapsed Grp 1,character
+adcm,adam,DTH30FL,Death Within 30 Days of Last Trt Flag,character
+adcm,adam,DTHA30FL,Death After 30 Days from Last Trt Flag,character
+adcm,adam,DTHDOM,Domain for Date of Death Collection,character
+adcm,adam,DTHB30FL,Death Within 30 Days of First Trt Flag,character
+adcm,adam,REGION1,Geographic Region 1,character
+adcm,adam,DMDTC,Date/Time of Collection,character
+adcm,adam,DMDY,Study Day of Collection,numeric
+adcm,adam,AGE,Age,numeric
+adcm,adam,AGEU,Age Units,character
+adcm,adam,AGEGR1,Pooled Age Group 1,character
+adcm,adam,SEX,Sex,character
+adcm,adam,RACE,Race,character
+adcm,adam,RACEGR1,Pooled Race Group 1,character
+adcm,adam,ETHNIC,Ethnicity,character
+adcm,adam,SAFFL,Safety Population Flag,character
+adcm,adam,ARM,Description of Planned Arm,character
+adcm,adam,ARMCD,Planned Arm Code,character
+adcm,adam,ACTARM,Description of Actual Arm,character
+adcm,adam,ACTARMCD,Actual Arm Code,character
+adcm,adam,TRTP,Planned Treatment,character
+adcm,adam,TRTA,Actual Treatment,character
+adcm,adam,TRT01P,Planned Treatment for Period 01,character
+adcm,adam,TRT01A,Actual Treatment for Period 01,character
+adcm,adam,TRTSDT,Date of First Exposure to Treatment,Date
+adcm,adam,TRTSDTM,Datetime of First Exposure to Treatment,POSIXct
+adcm,adam,TRTSTMF,Time of First Exposure Imput. Flag,character
+adcm,adam,TRTEDT,Date of Last Exposure to Treatment,Date
+adcm,adam,TRTEDTM,Datetime of Last Exposure to Treatment,POSIXct
+adcm,adam,TRTETMF,Treatment End Datetime Imput Flag,character
+adcm,adam,APHASE,Phase,character
+adcm,adam,APHASEN,Description of Phase N,numeric
+adcm,adam,EOSSTT,End of Study Status,character
+adcm,adam,EOSDT,End of Study Date,Date
+adcm,adam,RFICDTC,Date/Time of Informed Consent,character
+adcm,adam,RANDDT,Date of Randomization,Date
+adcm,adam,LSTALVDT,Date Last Known Alive,Date
+adcm,adam,TRTDURD,Total Treatment Duration (Days),numeric
+adcm,adam,DTHDT,Date of Death,Date
+adcm,adam,DTHDTF,Date of Death Imputation Flag,character
+adcm,adam,DTHCAUS,Cause of Death,character
+adcm,adam,DTHCGR1,Cause of Death Reason 1,character
+adcm,adam,CMSEQ,Sequence Number,numeric
+adcm,adam,CMDECOD,Standardized Medication Name,character
+adcm,adam,CMTRT,"Reported Name of Drug, Med, or Therapy",character
+adcm,adam,CMCLAS,Medication Class,character
+adcm,adam,CMSTDTC,Start Date/Time of Medication,character
+adcm,adam,ASTDT,Analysis Start Date,Date
+adcm,adam,ASTDTM,Analysis Start Date/Time,POSIXct
+adcm,adam,ASTDTF,Analysis Start Date Imputation Flag,character
+adcm,adam,ASTTMF,Analysis Start Time Imputation Flag,character
+adcm,adam,CMENDTC,End Date/Time of Medication,character
+adcm,adam,AENDT,Analysis End Date,Date
+adcm,adam,AENDTM,Analysis End Date/Time,POSIXct
+adcm,adam,AENDTF,Analysis End Date Imputation Flag,character
+adcm,adam,AENTMF,Analysis End Time Imputation Flag,character
+adcm,adam,ASTDY,Analysis Start Relative Day,numeric
+adcm,adam,CMSTDY,Study Day of Start of Medication,numeric
+adcm,adam,AENDY,Analysis End Relative Day,numeric
+adcm,adam,CMENDY,Study Day of End of Medication,numeric
+adcm,adam,ADURN,Analysis Duration (N),numeric
+adcm,adam,ADURU,Analysis Duration Units,character
+adcm,adam,ANL01FL,Analysis Flag 01,character
+adcm,adam,ONTRTFL,On Treatment Record Flag,character
+adcm,adam,PREFL,Pre-treatment Flag,character
+adcm,adam,FUPFL,Follow-up Flag,character
+adcm,adam,AOCCPFL,1st Occurrence of Preferred Term Flag,character
+adcm,adam,CMINDC,Indication,character
+adcm,adam,CMDOSE,Dose per Administration,numeric
+adcm,adam,CMDOSU,Dose Units,character
+adcm,adam,CMDOSFRQ,Dosing Frequency per Interval,character
+adcm,adam,CMROUTE,Route of Administration,character
+adcm,adam,CMSPID,Sponsor-Defined Identifier,character
+adcm,adam,CMENRTPT,End Relative to Reference Time Point,character
+adcm,adam,VISITNUM,Visit Number,numeric
+adcm,adam,VISIT,Visit Name,character
+adcm,adam,VISITDY,Planned Study Day of Visit,numeric
+adcm,adam,CMDTC,Date/Time of Collection,character
+adlb,adam,STUDYID,Study Identifier,character
+adlb,adam,USUBJID,Unique Subject Identifier,character
+adlb,adam,SUBJID,Subject Identifier for the Study,character
+adlb,adam,SITEID,Study Site Identifier,character
+adlb,adam,COUNTRY,Country,character
+adlb,adam,DOMAIN,Domain Abbreviation,character
+adlb,adam,RFSTDTC,Subject Reference Start Date/Time,character
+adlb,adam,RFENDTC,Subject Reference End Date/Time,character
+adlb,adam,RFXSTDTC,Date/Time of First Study Treatment,character
+adlb,adam,RFXENDTC,Date/Time of Last Study Treatment,character
+adlb,adam,RFPENDTC,Date/Time of End of Participation,character
+adlb,adam,SCRFDT,Screen Failure Date,Date
+adlb,adam,FRVDT,Final Retrieval Visit Date,Date
+adlb,adam,DTHDTC,Date/Time of Death,character
+adlb,adam,DTHADY,Relative Day of Death,numeric
+adlb,adam,DTHFL,Subject Death Flag,character
+adlb,adam,LDDTHELD,Elapsed Days from Last Dose to Death,numeric
+adlb,adam,LDDTHGR1,Last Dose to Death - Days Elapsed Grp 1,character
+adlb,adam,DTH30FL,Death Within 30 Days of Last Trt Flag,character
+adlb,adam,DTHA30FL,Death After 30 Days from Last Trt Flag,character
+adlb,adam,DTHDOM,Domain for Date of Death Collection,character
+adlb,adam,DTHB30FL,Death Within 30 Days of First Trt Flag,character
+adlb,adam,ASEQ,Analysis Sequence Number,integer
+adlb,adam,REGION1,Geographic Region 1,character
+adlb,adam,DMDTC,Date/Time of Collection,character
+adlb,adam,DMDY,Study Day of Collection,numeric
+adlb,adam,AGE,Age,numeric
+adlb,adam,AGEU,Age Units,character
+adlb,adam,AGEGR1,Pooled Age Group 1,character
+adlb,adam,SEX,Sex,character
+adlb,adam,RACE,Race,character
+adlb,adam,RACEGR1,Pooled Race Group 1,character
+adlb,adam,ETHNIC,Ethnicity,character
+adlb,adam,SAFFL,Safety Population Flag,character
+adlb,adam,ARM,Description of Planned Arm,character
+adlb,adam,ARMCD,Planned Arm Code,character
+adlb,adam,ACTARM,Description of Actual Arm,character
+adlb,adam,ACTARMCD,Actual Arm Code,character
+adlb,adam,TRTP,Planned Treatment,character
+adlb,adam,TRTA,Actual Treatment,character
+adlb,adam,TRT01P,Planned Treatment for Period 01,character
+adlb,adam,TRT01A,Actual Treatment for Period 01,character
+adlb,adam,TRTSDT,Date of First Exposure to Treatment,Date
+adlb,adam,TRTSDTM,Datetime of First Exposure to Treatment,POSIXct
+adlb,adam,TRTSTMF,Time of First Exposure Imput. Flag,character
+adlb,adam,TRTEDT,Date of Last Exposure to Treatment,Date
+adlb,adam,TRTEDTM,Datetime of Last Exposure to Treatment,POSIXct
+adlb,adam,TRTETMF,Time of Last Exposure Imput. Flag,character
+adlb,adam,EOSSTT,End of Study Status,character
+adlb,adam,EOSDT,End of Study Date,Date
+adlb,adam,RFICDTC,Date/Time of Informed Consent,character
+adlb,adam,RANDDT,Date of Randomization,Date
+adlb,adam,LSTALVDT,Date Last Known Alive,Date
+adlb,adam,TRTDURD,Total Treatment Duration (Days),numeric
+adlb,adam,DTHDT,Date of Death,Date
+adlb,adam,DTHDTF,Date of Death Imputation Flag,character
+adlb,adam,DTHCAUS,Cause of Death,character
+adlb,adam,DTHCGR1,Cause of Death Reason 1,character
+adlb,adam,ADT,Analysis Date,Date
+adlb,adam,ADY,Analysis Relative Day,numeric
+adlb,adam,AVISIT,Analysis Visit,character
+adlb,adam,AVISITN,Analysis Visit (N),numeric
+adlb,adam,PARAM,Parameter,character
+adlb,adam,PARAMCD,Parameter Code,character
+adlb,adam,PARAMN,Parameter (N),numeric
+adlb,adam,PARCAT1,Parameter Category 1,character
+adlb,adam,AVAL,Analysis Value,numeric
+adlb,adam,AVALC,Analysis Value (C),character
+adlb,adam,BASE,Baseline Value,numeric
+adlb,adam,BASEC,Baseline Value (C),character
+adlb,adam,BASETYPE,Baseline Type,character
+adlb,adam,CHG,Change from Baseline,numeric
+adlb,adam,PCHG,Percent Change from Baseline,numeric
+adlb,adam,R2BASE,Ratio to Baseline,numeric
+adlb,adam,R2ANRLO,Ratio of Analysis Val compared to ANRLO,numeric
+adlb,adam,R2ANRHI,Ratio of Analysis Val compared to ANRHI,numeric
+adlb,adam,SHIFT1,Shift from Baseline to Analysis Value,character
+adlb,adam,SHIFT2,Shift from Baseline to Overall Grade,character
+adlb,adam,DTYPE,Derivation Type,character
+adlb,adam,ATOXGR,Analysis Toxicity Grade,character
+adlb,adam,BTOXGR,Baseline Toxicity Grade,character
+adlb,adam,ANRIND,Analysis Reference Range Indicator,character
+adlb,adam,BNRIND,Baseline Reference Range Indicator,character
+adlb,adam,ANRLO,Analysis Normal Range Lower Limit,numeric
+adlb,adam,ANRHI,Analysis Normal Range Upper Limit,numeric
+adlb,adam,ATOXGRL,Analysis Toxicity Grade Low,character
+adlb,adam,ATOXGRH,Analysis Toxicity Grade High,character
+adlb,adam,BTOXGRL,Baseline Toxicity Grade Low,character
+adlb,adam,BTOXGRH,Baseline Toxicity Grade High,character
+adlb,adam,ATOXDSCL,Analysis Toxicity Description Low,character
+adlb,adam,ATOXDSCH,Analysis Toxicity Description High,character
+adlb,adam,ABLFL,Baseline Record Flag,character
+adlb,adam,ANL01FL,Analysis Flag 01,character
+adlb,adam,ONTRTFL,On Treatment Record Flag,character
+adlb,adam,LVOTFL,Last Value On Treatment Record Flag,character
+adlb,adam,LBSEQ,Sequence Number,numeric
+adlb,adam,LBTESTCD,Lab Test or Examination Short Name,character
+adlb,adam,LBTEST,Lab Test or Examination Name,character
+adlb,adam,LBCAT,Category for Lab Test,character
+adlb,adam,LBORRES,Result or Finding in Original Units,character
+adlb,adam,LBORRESU,Original Units,character
+adlb,adam,LBORNRLO,Reference Range Lower Limit in Orig Unit,character
+adlb,adam,LBORNRHI,Reference Range Upper Limit in Orig Unit,character
+adlb,adam,LBSTRESC,Character Result/Finding in Std Format,character
+adlb,adam,LBSTRESN,Numeric Result/Finding in Standard Units,numeric
+adlb,adam,LBSTRESU,Standard Units,character
+adlb,adam,LBSTNRLO,Reference Range Lower Limit-Std Units,numeric
+adlb,adam,LBSTNRHI,Reference Range Upper Limit-Std Units,numeric
+adlb,adam,LBNRIND,Reference Range Indicator,character
+adlb,adam,LBBLFL,Baseline Flag,character
+adlb,adam,VISITNUM,Visit Number,numeric
+adlb,adam,VISIT,Visit Name,character
+adlb,adam,VISITDY,Planned Study Day of Visit,numeric
+adlb,adam,LBDTC,Date/Time of Specimen Collection,character
+adlb,adam,LBDY,Study Day of Specimen Collection,numeric

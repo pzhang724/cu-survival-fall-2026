@@ -21,9 +21,10 @@ suppressPackageStartupMessages({
   library(admiralonco) # oncology add-ons: RECIST response, PFS/OS sources
   library(survival)    # Kaplan-Meier, log-rank test, Cox model
   library(ggsurvfit)   # Kaplan-Meier figures with numbers at risk
-  library(gtsummary)   # summary tables
-  library(gt)          # table rendering and RTF export
-  library(rpact)       # group sequential design, sample size, conditional power
+  library(rtables)     # table layouts: columns, rows, analyses -> a table
+  library(tern)        # analysis functions for clinical tables (built on rtables)
+  library(gt)          # simple tables for the slides
+  library(gsDesign)    # sample size, power, group sequential design, conditional power
 })
 
 ## ---- setup-paths ----
@@ -39,8 +40,9 @@ for (d in c("data/raw", "data/spec", "data/sdtm", "data/adam",
 ## ---- setup-constants ----
 STUDYID <- "CDISCPILOT01"
 
-# Treatment arms (planned = randomized). Primary comparison: High Dose vs Placebo.
-ARM_LEVELS   <- c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose")
+# Treatment arms (planned = randomized): a two-arm trial, High Dose vs Placebo.
+# (The CDISC pilot study also had a Low Dose arm; 04_adam_adsl.R leaves it out.)
+ARM_LEVELS   <- c("Placebo", "Xanomeline High Dose")
 CONTROL      <- "Placebo"
 EXPERIMENTAL <- "Xanomeline High Dose"
 
@@ -48,13 +50,14 @@ EXPERIMENTAL <- "Xanomeline High Dose"
 DESIGN <- list(
   alpha          = 0.025, # one-sided type I error
   beta           = 0.20,  # type II error (power = 80%)
-  info_rates     = c(0.5, 1), # one interim analysis at 50% of events
-  hr             = 0.60,  # target hazard ratio, High Dose vs Placebo
+  info_rates     = c(0.5, 0.75, 1), # analyses at 50%, 75% and 100% of the total events
+  hr             = 0.60,  # design hazard ratio, High Dose vs Placebo (H0: HR = 1)
   median_control = 1.7,   # months, placebo median progression-free survival
   accrual_months = 24,
   followup_months = 3,    # minimum follow-up after the last patient is randomized
   dropout_rate   = 0.25,  # cumulative dropout probability by `dropout_time`
-  dropout_time   = 3      # months
+  dropout_time   = 3,     # months
+  futility_cp    = 0.10   # non-binding futility: consider stopping if CP (current trend) < 10%
 )
 
 DAYS_PER_MONTH <- 365.25 / 12
@@ -68,14 +71,28 @@ need <- function(object, script) {
   }
 }
 
-invisible(suppressMessages(theme_gtsummary_compact(set_theme = TRUE, font_size = 12)))
-
-# Save a gtsummary / gt table as RTF, the usual hand-off format for a
-# clinical study report (CSR). Returns the table invisibly so it can be piped.
+# Save a table as RTF, the usual hand-off format for a clinical study report
+# (CSR): {rtables} tables with export_as_rtf(), gt tables with gtsave().
+# Returns the table invisibly so it can be piped.
 save_rtf <- function(tbl, name) {
-  gt_tbl <- if (inherits(tbl, "gtsummary")) as_gt(tbl) else tbl
-  gt::gtsave(gt_tbl, lab_path("output", "tables", paste0(name, ".rtf")))
+  path <- lab_path("output", "tables", paste0(name, ".rtf"))
+  if (inherits(tbl, "VTableTree")) {
+    stopifnot(requireNamespace("r2rtf", quietly = TRUE))   # used by export_as_rtf()
+    formatters::export_as_rtf(tbl, file = path, landscape = TRUE, font_size = 8)
+  } else {
+    gt::gtsave(tbl, path)
+  }
   invisible(tbl)
+}
+
+# "n (xx.x%)" with one decimal everywhere ({tern} formats)
+n_pct <- c(count_fraction = format_count_fraction_fixed_dp)
+
+# Is the current {rtables} column the Total column? Used by analysis functions
+# for rows that only make sense there (screening counts) or never do
+# (comparisons with Placebo).
+in_col <- function(.spl_context, col) {
+  .spl_context$cur_col_id[[nrow(.spl_context)]] == col
 }
 
 # Write a data frame as CSV with blanks (not "NA") for missing values,
@@ -85,6 +102,31 @@ write_raw <- function(df, name, dir = "raw", gzip = FALSE) {
   ext <- if (gzip) ".csv.gz" else ".csv"
   readr::write_csv(df, lab_path("data", dir, paste0(name, ext)), na = "")
   invisible(df)
+}
+
+# Read one dataset of the study's source data (lab/data/source/, built by
+# lab/source_data.R): SDTM and ADaM of our two-arm trial, stored as CSV.
+# CSV keeps no types or labels, so both come back from metadata.csv.
+read_source <- function(name) {
+  meta <- readr::read_csv(lab_path("data", "source", "metadata.csv"),
+                          col_types = readr::cols(.default = "c"), na = "")
+  meta <- meta[meta$dataset == name, ]
+  path <- lab_path("data", "source", meta$standard[1], paste0(name, ".csv"))
+  if (!file.exists(path)) path <- paste0(path, ".gz")
+  df <- readr::read_csv(path, col_types = readr::cols(.default = "c"), na = "", trim_ws = FALSE)
+  for (i in seq_len(nrow(meta))) {
+    x <- df[[meta$variable[i]]]
+    x <- switch(meta$type[i],
+                numeric = as.numeric(x),
+                integer = as.integer(x),
+                logical = as.logical(x),
+                Date    = as.Date(x),
+                POSIXct = as.POSIXct(x, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
+                x)
+    if (!is.na(meta$label[i])) attr(x, "label") <- meta$label[i]
+    df[[meta$variable[i]]] <- x
+  }
+  as.data.frame(df)
 }
 
 # Read a raw CSV with every column as character, as you would on day one of

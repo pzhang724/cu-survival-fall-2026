@@ -5,18 +5,10 @@ CDISCPILOT01,01-701-1023,2012-09-02,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-701-1023,2012-08-05,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2012-08-05,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,64,M
 CDISCPILOT01,01-701-1028,2014-01-14,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-19,OS,Overall Survival (days),180,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,71,M
 CDISCPILOT01,01-701-1028,2013-08-29,Disease progression,ADRS,ADT,7,0,,2013-07-19,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,71,M
-CDISCPILOT01,01-701-1033,2014-04-14,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-03-18,OS,Overall Survival (days),28,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,74,M
-CDISCPILOT01,01-701-1033,2014-03-18,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2014-03-18,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,74,M
 CDISCPILOT01,01-701-1034,2014-12-30,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-07-01,OS,Overall Survival (days),183,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,F
 CDISCPILOT01,01-701-1034,2014-08-11,Disease progression,ADRS,ADT,7,0,,2014-07-01,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,F
 CDISCPILOT01,01-701-1047,2013-04-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-12,OS,Overall Survival (days),55,DAYS,1,Placebo,Placebo,Y,Y,85,F
 CDISCPILOT01,01-701-1047,2013-02-12,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-02-12,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,85,F
-CDISCPILOT01,01-701-1097,2014-07-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-01,OS,Overall Survival (days),190,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,M
-CDISCPILOT01,01-701-1097,2014-02-11,Disease progression,ADRS,ADT,7,0,,2014-01-01,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,M
-CDISCPILOT01,01-701-1111,2012-09-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-07,OS,Overall Survival (days),11,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
-CDISCPILOT01,01-701-1111,2012-09-07,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2012-09-07,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
-CDISCPILOT01,01-701-1115,2013-01-23,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-11-30,OS,Overall Survival (days),55,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,M
-CDISCPILOT01,01-701-1115,2013-01-10,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2012-11-30,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,M
 CDISCPILOT01,01-701-1118,2014-09-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-03-12,OS,Overall Survival (days),182,DAYS,1,Placebo,Placebo,Y,Y,52,M
 CDISCPILOT01,01-701-1118,2014-04-23,Disease progression,ADRS,ADT,7,0,,2014-03-12,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,52,M
 CDISCPILOT01,01-701-1130,2014-08-16,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-02-15,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,84,M
@@ -31,16 +23,10 @@ CDISCPILOT01,01-701-1153,2014-04-01,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-701-1153,2014-03-11,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-09-23,PFS,Progression-Free Survival (days),170,DAYS,2,Placebo,Placebo,Y,Y,79,F
 CDISCPILOT01,01-701-1180,2013-03-23,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-12,OS,Overall Survival (days),40,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,56,M
 CDISCPILOT01,01-701-1180,2013-03-23,Disease progression,ADRS,ADT,4,0,,2013-02-12,PFS,Progression-Free Survival (days),40,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,56,M
-CDISCPILOT01,01-701-1181,2013-12-12,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-05,OS,Overall Survival (days),8,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,79,F
-CDISCPILOT01,01-701-1181,2013-12-05,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-12-05,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,79,F
-CDISCPILOT01,01-701-1188,2013-03-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-15,OS,Overall Survival (days),39,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,M
-CDISCPILOT01,01-701-1188,2013-03-25,Disease progression,ADRS,ADT,4,0,,2013-02-15,PFS,Progression-Free Survival (days),39,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,M
-CDISCPILOT01,01-701-1192,2013-01-20,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-07-22,OS,Overall Survival (days),183,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,80,F
-CDISCPILOT01,01-701-1192,2012-09-04,Disease progression,ADRS,ADT,7,0,,2012-07-22,PFS,Progression-Free Survival (days),45,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,80,F
+CDISCPILOT01,01-701-1181,2013-12-12,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-05,OS,Overall Survival (days),8,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,F
+CDISCPILOT01,01-701-1181,2013-12-05,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-12-05,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,F
 CDISCPILOT01,01-701-1203,2013-08-03,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-02,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,81,F
 CDISCPILOT01,01-701-1203,2013-05-09,Disease progression,ADRS,ADT,7,0,,2013-02-02,PFS,Progression-Free Survival (days),97,DAYS,2,Placebo,Placebo,Y,Y,81,F
-CDISCPILOT01,01-701-1211,2013-01-14,Death,ADSL,DTHDT,,0,,2012-11-15,OS,Overall Survival (days),61,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,76,F
-CDISCPILOT01,01-701-1211,2013-01-14,Death,ADSL,DTHDT,,0,,2012-11-15,PFS,Progression-Free Survival (days),61,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,76,F
 CDISCPILOT01,01-701-1234,2013-09-22,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-30,OS,Overall Survival (days),177,DAYS,1,Placebo,Placebo,Y,Y,69,M
 CDISCPILOT01,01-701-1234,2013-05-08,Disease progression,ADRS,ADT,7,0,,2013-03-30,PFS,Progression-Free Survival (days),40,DAYS,2,Placebo,Placebo,Y,Y,69,M
 CDISCPILOT01,01-701-1239,2014-07-11,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-11,OS,Overall Survival (days),182,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,56,M
@@ -49,20 +35,12 @@ CDISCPILOT01,01-701-1275,2014-06-14,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-701-1275,2014-03-22,Disease progression,ADRS,ADT,5,0,,2014-02-07,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,61,M
 CDISCPILOT01,01-701-1287,2014-07-26,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-25,OS,Overall Survival (days),183,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,56,F
 CDISCPILOT01,01-701-1287,2014-03-06,Disease progression,ADRS,ADT,7,0,,2014-01-25,PFS,Progression-Free Survival (days),41,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,56,F
-CDISCPILOT01,01-701-1294,2013-06-14,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-24,OS,Overall Survival (days),83,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,67,M
-CDISCPILOT01,01-701-1294,2013-05-08,Disease progression,ADRS,ADT,5,0,,2013-03-24,PFS,Progression-Free Survival (days),46,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,67,M
 CDISCPILOT01,01-701-1302,2013-11-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-29,OS,Overall Survival (days),69,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,61,M
 CDISCPILOT01,01-701-1302,2013-10-08,Disease progression,ADRS,ADT,5,0,,2013-08-29,PFS,Progression-Free Survival (days),41,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,61,M
-CDISCPILOT01,01-701-1317,2014-11-20,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-05-22,OS,Overall Survival (days),183,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,M
-CDISCPILOT01,01-701-1317,2014-08-15,Disease progression,ADRS,ADT,7,0,,2014-05-22,PFS,Progression-Free Survival (days),86,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,M
-CDISCPILOT01,01-701-1324,2013-04-02,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-10-02,OS,Overall Survival (days),183,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,M
-CDISCPILOT01,01-701-1324,2012-11-13,Disease progression,ADRS,ADT,7,0,,2012-10-02,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,M
-CDISCPILOT01,01-701-1341,2013-02-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-05,OS,Overall Survival (days),34,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,51,M
-CDISCPILOT01,01-701-1341,2013-01-05,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-01-05,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,51,M
 CDISCPILOT01,01-701-1345,2014-03-18,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-08,OS,Overall Survival (days),162,DAYS,1,Placebo,Placebo,Y,Y,63,F
 CDISCPILOT01,01-701-1345,2014-03-18,Disease progression,ADRS,ADT,7,0,,2013-10-08,PFS,Progression-Free Survival (days),162,DAYS,2,Placebo,Placebo,Y,Y,63,F
-CDISCPILOT01,01-701-1360,2013-08-14,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-31,OS,Overall Survival (days),15,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,67,M
-CDISCPILOT01,01-701-1360,2013-07-31,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-07-31,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,67,M
+CDISCPILOT01,01-701-1360,2013-08-14,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-31,OS,Overall Survival (days),15,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,67,M
+CDISCPILOT01,01-701-1360,2013-07-31,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-07-31,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,67,M
 CDISCPILOT01,01-701-1363,2013-11-27,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-30,OS,Overall Survival (days),182,DAYS,1,Placebo,Placebo,Y,Y,81,F
 CDISCPILOT01,01-701-1363,2013-08-21,Disease progression,ADRS,ADT,7,0,,2013-05-30,PFS,Progression-Free Survival (days),84,DAYS,2,Placebo,Placebo,Y,Y,81,F
 CDISCPILOT01,01-701-1383,2013-08-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-04,OS,Overall Survival (days),184,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,72,F
@@ -73,80 +51,50 @@ CDISCPILOT01,01-701-1392,2013-04-28,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-701-1392,2012-12-09,Disease progression,ADRS,ADT,7,0,,2012-10-28,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,78,M
 CDISCPILOT01,01-701-1415,2014-03-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-23,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,85,M
 CDISCPILOT01,01-701-1415,2013-11-04,Disease progression,ADRS,ADT,7,0,,2013-09-23,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,85,M
-CDISCPILOT01,01-701-1429,2013-04-30,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-19,OS,Overall Survival (days),43,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
-CDISCPILOT01,01-701-1429,2013-04-30,Disease progression,ADRS,ADT,4,0,,2013-03-19,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
 CDISCPILOT01,01-701-1440,2014-02-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-08,OS,Overall Survival (days),182,DAYS,1,Placebo,Placebo,Y,Y,70,M
 CDISCPILOT01,01-701-1440,2013-09-22,Disease progression,ADRS,ADT,7,0,,2013-08-08,PFS,Progression-Free Survival (days),46,DAYS,2,Placebo,Placebo,Y,Y,70,M
-CDISCPILOT01,01-701-1442,2014-04-26,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-26,OS,Overall Survival (days),183,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,57,F
-CDISCPILOT01,01-701-1442,2013-12-07,Disease progression,ADRS,ADT,7,0,,2013-10-26,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,57,F
 CDISCPILOT01,01-701-1444,2013-02-13,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-05,OS,Overall Survival (days),40,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,63,M
 CDISCPILOT01,01-701-1444,2013-02-13,Disease progression,ADRS,ADT,4,0,,2013-01-05,PFS,Progression-Free Survival (days),40,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,63,M
-CDISCPILOT01,01-702-1082,2013-11-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-26,OS,Overall Survival (days),115,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
-CDISCPILOT01,01-702-1082,2013-09-06,Disease progression,ADRS,ADT,5,0,,2013-07-26,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
 CDISCPILOT01,01-703-1042,2013-08-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-02,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,64,M
 CDISCPILOT01,01-703-1042,2013-04-13,Disease progression,ADRS,ADT,7,0,,2013-03-02,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,64,M
 CDISCPILOT01,01-703-1076,2013-12-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-25,OS,Overall Survival (days),61,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,69,M
 CDISCPILOT01,01-703-1076,2013-12-04,Disease progression,ADRS,ADT,5,0,,2013-10-25,PFS,Progression-Free Survival (days),41,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,69,M
-CDISCPILOT01,01-703-1086,2013-01-02,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-02,OS,Overall Survival (days),123,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,M
-CDISCPILOT01,01-703-1086,2012-10-13,Disease progression,ADRS,ADT,5,0,,2012-09-02,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,M
 CDISCPILOT01,01-703-1096,2013-03-16,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-25,OS,Overall Survival (days),51,DAYS,1,Placebo,Placebo,Y,Y,81,F
 CDISCPILOT01,01-703-1096,2013-01-25,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-01-25,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,81,F
 CDISCPILOT01,01-703-1100,2013-09-14,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-13,OS,Overall Survival (days),186,DAYS,1,Placebo,Placebo,Y,Y,84,F
 CDISCPILOT01,01-703-1100,2013-04-24,Disease progression,ADRS,ADT,7,0,,2013-03-13,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,84,F
-CDISCPILOT01,01-703-1119,2013-06-13,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-20,OS,Overall Survival (days),114,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
-CDISCPILOT01,01-703-1119,2013-04-04,Disease progression,ADRS,ADT,5,0,,2013-02-20,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
 CDISCPILOT01,01-703-1175,2013-12-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-20,OS,Overall Survival (days),12,DAYS,1,Placebo,Placebo,Y,Y,75,M
 CDISCPILOT01,01-703-1175,2013-12-20,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-12-20,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,75,M
-CDISCPILOT01,01-703-1182,2013-12-12,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-17,OS,Overall Survival (days),57,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,M
-CDISCPILOT01,01-703-1182,2013-11-28,Disease progression,ADRS,ADT,4,0,,2013-10-17,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,M
-CDISCPILOT01,01-703-1197,2013-06-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-06-16,OS,Overall Survival (days),14,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,76,F
-CDISCPILOT01,01-703-1197,2013-06-16,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-06-16,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,76,F
 CDISCPILOT01,01-703-1210,2013-09-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-16,OS,Overall Survival (days),175,DAYS,1,Placebo,Placebo,Y,Y,72,F
 CDISCPILOT01,01-703-1210,2013-04-28,Disease progression,ADRS,ADT,7,0,,2013-03-16,PFS,Progression-Free Survival (days),44,DAYS,2,Placebo,Placebo,Y,Y,72,F
 CDISCPILOT01,01-703-1258,2013-01-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-07-20,OS,Overall Survival (days),190,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,78,F
 CDISCPILOT01,01-703-1258,2012-09-04,Disease progression,ADRS,ADT,7,0,,2012-07-20,PFS,Progression-Free Survival (days),47,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,78,F
-CDISCPILOT01,01-703-1279,2013-06-03,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-13,OS,Overall Survival (days),22,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,72,F
-CDISCPILOT01,01-703-1279,2013-05-13,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-05-13,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,72,F
 CDISCPILOT01,01-703-1295,2014-05-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-11-21,OS,Overall Survival (days),180,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,88,F
 CDISCPILOT01,01-703-1295,2014-02-18,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-11-21,PFS,Progression-Free Survival (days),90,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,88,F
 CDISCPILOT01,01-703-1299,2013-03-13,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-12,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,81,F
 CDISCPILOT01,01-703-1299,2013-01-16,Disease progression,ADRS,ADT,7,0,,2012-09-12,PFS,Progression-Free Survival (days),127,DAYS,2,Placebo,Placebo,Y,Y,81,F
 CDISCPILOT01,01-703-1335,2014-05-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-03-17,OS,Overall Survival (days),69,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,67,F
 CDISCPILOT01,01-703-1335,2014-05-24,Disease progression,ADRS,ADT,4,0,,2014-03-17,PFS,Progression-Free Survival (days),69,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,67,F
-CDISCPILOT01,01-703-1379,2014-03-21,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-22,OS,Overall Survival (days),181,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
-CDISCPILOT01,01-703-1379,2013-11-08,Disease progression,ADRS,ADT,7,0,,2013-09-22,PFS,Progression-Free Survival (days),48,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
-CDISCPILOT01,01-703-1403,2012-12-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-12,OS,Overall Survival (days),8,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,67,M
-CDISCPILOT01,01-703-1403,2012-12-12,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2012-12-12,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,67,M
+CDISCPILOT01,01-703-1403,2012-12-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-12,OS,Overall Survival (days),8,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,67,M
+CDISCPILOT01,01-703-1403,2012-12-12,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2012-12-12,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,67,M
 CDISCPILOT01,01-703-1439,2014-09-11,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-03-12,OS,Overall Survival (days),184,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,76,F
 CDISCPILOT01,01-703-1439,2014-06-02,Disease progression,ADRS,ADT,7,0,,2014-03-12,PFS,Progression-Free Survival (days),83,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,76,F
 CDISCPILOT01,01-704-1008,2013-02-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-13,OS,Overall Survival (days),44,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,76,F
 CDISCPILOT01,01-704-1008,2013-02-25,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-01-13,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,76,F
-CDISCPILOT01,01-704-1009,2013-09-27,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-27,OS,Overall Survival (days),32,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,83,M
-CDISCPILOT01,01-704-1009,2013-08-27,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-08-27,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,83,M
 CDISCPILOT01,01-704-1010,2014-07-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-02-21,OS,Overall Survival (days),139,DAYS,1,Placebo,Placebo,Y,Y,80,M
 CDISCPILOT01,01-704-1010,2014-04-11,Disease progression,ADRS,ADT,7,0,,2014-02-21,PFS,Progression-Free Survival (days),50,DAYS,2,Placebo,Placebo,Y,Y,80,M
 CDISCPILOT01,01-704-1017,2013-11-22,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-06,OS,Overall Survival (days),48,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
 CDISCPILOT01,01-704-1017,2013-11-24,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-10-06,PFS,Progression-Free Survival (days),50,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
-CDISCPILOT01,01-704-1025,2013-11-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-27,OS,Overall Survival (days),64,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
-CDISCPILOT01,01-704-1025,2013-09-27,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-09-27,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
 CDISCPILOT01,01-704-1065,2013-12-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-24,OS,Overall Survival (days),62,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,75,M
 CDISCPILOT01,01-704-1065,2013-12-24,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-10-24,PFS,Progression-Free Survival (days),62,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,75,M
 CDISCPILOT01,01-704-1074,2014-03-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-22,OS,Overall Survival (days),69,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,80,F
 CDISCPILOT01,01-704-1074,2014-03-09,Disease progression,ADRS,ADT,4,0,,2014-01-22,PFS,Progression-Free Survival (days),47,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,80,F
 CDISCPILOT01,01-704-1093,2013-06-20,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-15,OS,Overall Survival (days),98,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,M
 CDISCPILOT01,01-704-1093,2013-04-25,Disease progression,ADRS,ADT,5,0,,2013-03-15,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,M
-CDISCPILOT01,01-704-1114,2013-07-08,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-23,OS,Overall Survival (days),167,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,77,M
-CDISCPILOT01,01-704-1114,2013-03-13,Disease progression,ADRS,ADT,7,0,,2013-01-23,PFS,Progression-Free Survival (days),50,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,77,M
-CDISCPILOT01,01-704-1120,2014-02-03,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-02,OS,Overall Survival (days),64,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,F
-CDISCPILOT01,01-704-1120,2014-01-13,Disease progression,ADRS,ADT,5,0,,2013-12-02,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,F
 CDISCPILOT01,01-704-1127,2014-03-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-02,OS,Overall Survival (days),181,DAYS,1,Placebo,Placebo,Y,Y,84,F
 CDISCPILOT01,01-704-1127,2014-03-17,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-10-02,PFS,Progression-Free Survival (days),167,DAYS,2,Placebo,Placebo,Y,Y,84,F
-CDISCPILOT01,01-704-1135,2014-05-16,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-31,OS,Overall Survival (days),198,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,74,F
-CDISCPILOT01,01-704-1135,2013-12-11,Disease progression,ADRS,ADT,7,0,,2013-10-31,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,74,F
 CDISCPILOT01,01-704-1164,2013-04-04,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-19,OS,Overall Survival (days),198,DAYS,1,Placebo,Placebo,Y,Y,67,F
 CDISCPILOT01,01-704-1164,2012-11-01,Disease progression,ADRS,ADT,7,0,,2012-09-19,PFS,Progression-Free Survival (days),44,DAYS,2,Placebo,Placebo,Y,Y,67,F
-CDISCPILOT01,01-704-1218,2013-05-27,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-11-19,OS,Overall Survival (days),190,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
-CDISCPILOT01,01-704-1218,2013-02-11,Disease progression,ADRS,ADT,7,0,,2012-11-19,PFS,Progression-Free Survival (days),85,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
 CDISCPILOT01,01-704-1233,2013-07-11,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-21,OS,Overall Survival (days),113,DAYS,1,Placebo,Placebo,Y,Y,87,F
 CDISCPILOT01,01-704-1233,2013-05-01,Disease progression,ADRS,ADT,5,0,,2013-03-21,PFS,Progression-Free Survival (days),42,DAYS,2,Placebo,Placebo,Y,Y,87,F
 CDISCPILOT01,01-704-1241,2013-10-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-25,OS,Overall Survival (days),68,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,86,M
@@ -155,10 +103,6 @@ CDISCPILOT01,01-704-1260,2012-11-04,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-704-1260,2012-10-11,Disease progression,ADRS,ADT,5,0,,2012-08-30,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,71,F
 CDISCPILOT01,01-704-1266,2013-12-23,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-13,OS,Overall Survival (days),72,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,82,M
 CDISCPILOT01,01-704-1266,2013-11-22,Disease progression,ADRS,ADT,4,0,,2013-10-13,PFS,Progression-Free Survival (days),41,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,82,M
-CDISCPILOT01,01-704-1323,2013-08-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-08,OS,Overall Survival (days),29,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,F
-CDISCPILOT01,01-704-1323,2013-07-08,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-07-08,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,F
-CDISCPILOT01,01-704-1325,2014-08-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-04-23,OS,Overall Survival (days),106,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,M
-CDISCPILOT01,01-704-1325,2014-07-16,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2014-04-23,PFS,Progression-Free Survival (days),85,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,M
 CDISCPILOT01,01-704-1332,2014-02-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-09,OS,Overall Survival (days),78,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,80,M
 CDISCPILOT01,01-704-1332,2014-02-16,Disease progression,ADRS,ADT,5,0,,2013-12-09,PFS,Progression-Free Survival (days),70,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,80,M
 CDISCPILOT01,01-704-1351,2014-04-18,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-12,OS,Overall Survival (days),189,DAYS,1,Placebo,Placebo,Y,Y,70,M
@@ -171,22 +115,16 @@ CDISCPILOT01,01-704-1445,2014-11-01,Death,ADSL,DTHDT,,0,,2014-05-11,OS,Overall S
 CDISCPILOT01,01-704-1445,2014-11-01,Disease progression,ADRS,ADT,7,0,,2014-05-11,PFS,Progression-Free Survival (days),175,DAYS,2,Placebo,Placebo,Y,Y,75,M
 CDISCPILOT01,01-705-1018,2013-07-05,No contact after randomization,ADSL,RANDDT,,1,Randomization,2013-07-05,OS,Overall Survival (days),1,DAYS,1,Placebo,Placebo,Y,Y,69,F
 CDISCPILOT01,01-705-1018,2013-07-05,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-07-05,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,69,F
-CDISCPILOT01,01-705-1031,2014-05-11,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-11-27,OS,Overall Survival (days),166,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,56,F
-CDISCPILOT01,01-705-1031,2014-01-12,Disease progression,ADRS,ADT,7,0,,2013-11-27,PFS,Progression-Free Survival (days),47,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,56,F
 CDISCPILOT01,01-705-1059,2013-12-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-05,OS,Overall Survival (days),123,DAYS,1,Placebo,Placebo,Y,Y,66,F
 CDISCPILOT01,01-705-1059,2013-09-19,Disease progression,ADRS,ADT,5,0,,2013-08-05,PFS,Progression-Free Survival (days),46,DAYS,2,Placebo,Placebo,Y,Y,66,F
 CDISCPILOT01,01-705-1186,2014-02-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-08,OS,Overall Survival (days),31,DAYS,1,Placebo,Placebo,Y,Y,84,F
 CDISCPILOT01,01-705-1186,2014-01-08,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2014-01-08,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,84,F
-CDISCPILOT01,01-705-1199,2013-09-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-16,OS,Overall Survival (days),14,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,87,M
-CDISCPILOT01,01-705-1199,2013-09-16,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-09-16,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,87,M
 CDISCPILOT01,01-705-1280,2014-07-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-17,OS,Overall Survival (days),190,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,56,F
 CDISCPILOT01,01-705-1280,2014-03-07,Disease progression,ADRS,ADT,7,0,,2014-01-17,PFS,Progression-Free Survival (days),50,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,56,F
 CDISCPILOT01,01-705-1281,2014-03-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-11-28,OS,Overall Survival (days),110,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,73,F
 CDISCPILOT01,01-705-1281,2014-01-07,Disease progression,ADRS,ADT,5,0,,2013-11-28,PFS,Progression-Free Survival (days),41,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,73,F
 CDISCPILOT01,01-705-1282,2013-06-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-26,OS,Overall Survival (days),181,DAYS,1,Placebo,Placebo,Y,Y,70,F
 CDISCPILOT01,01-705-1282,2013-02-07,Disease progression,ADRS,ADT,7,0,,2012-12-26,PFS,Progression-Free Survival (days),44,DAYS,2,Placebo,Placebo,Y,Y,70,F
-CDISCPILOT01,01-705-1292,2014-05-14,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-14,OS,Overall Survival (days),213,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,60,F
-CDISCPILOT01,01-705-1292,2013-12-11,Disease progression,ADRS,ADT,7,0,,2013-10-14,PFS,Progression-Free Survival (days),59,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,60,F
 CDISCPILOT01,01-705-1303,2014-04-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-16,OS,Overall Survival (days),113,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,72,M
 CDISCPILOT01,01-705-1303,2014-04-21,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-12-16,PFS,Progression-Free Survival (days),127,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,72,M
 CDISCPILOT01,01-705-1310,2014-01-23,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-11-02,OS,Overall Survival (days),83,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,74,F
@@ -195,28 +133,14 @@ CDISCPILOT01,01-705-1349,2013-09-08,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-705-1349,2013-04-17,Disease progression,ADRS,ADT,7,0,,2013-03-10,PFS,Progression-Free Survival (days),39,DAYS,2,Placebo,Placebo,Y,Y,86,F
 CDISCPILOT01,01-705-1377,2014-02-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-04,OS,Overall Survival (days),35,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,63,F
 CDISCPILOT01,01-705-1377,2014-01-04,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2014-01-04,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,63,F
-CDISCPILOT01,01-705-1382,2013-05-13,No contact after randomization,ADSL,RANDDT,,1,Randomization,2013-05-13,OS,Overall Survival (days),1,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,82,M
-CDISCPILOT01,01-705-1382,2013-05-13,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-05-13,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,82,M
-CDISCPILOT01,01-705-1393,2013-02-20,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-07,OS,Overall Survival (days),167,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
-CDISCPILOT01,01-705-1393,2013-01-16,Disease progression,ADRS,ADT,6,0,,2012-09-07,PFS,Progression-Free Survival (days),132,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
-CDISCPILOT01,01-705-1431,2013-12-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-06-23,OS,Overall Survival (days),180,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,F
-CDISCPILOT01,01-705-1431,2013-10-30,Disease progression,ADRS,ADT,7,0,,2013-06-23,PFS,Progression-Free Survival (days),130,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,F
+CDISCPILOT01,01-705-1382,2013-05-13,No contact after randomization,ADSL,RANDDT,,1,Randomization,2013-05-13,OS,Overall Survival (days),1,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,82,M
+CDISCPILOT01,01-705-1382,2013-05-13,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-05-13,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,82,M
 CDISCPILOT01,01-706-1041,2014-07-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-31,OS,Overall Survival (days),211,DAYS,1,Placebo,Placebo,Y,Y,64,F
 CDISCPILOT01,01-706-1041,2014-05-20,Disease progression,ADRS,ADT,7,0,,2013-12-31,PFS,Progression-Free Survival (days),141,DAYS,2,Placebo,Placebo,Y,Y,64,F
 CDISCPILOT01,01-706-1049,2013-06-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-14,OS,Overall Survival (days),43,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,60,F
 CDISCPILOT01,01-706-1049,2013-06-25,Disease progression,ADRS,ADT,4,0,,2013-05-14,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,60,F
-CDISCPILOT01,01-706-1384,2012-09-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-15,OS,Overall Survival (days),15,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,74,F
-CDISCPILOT01,01-706-1384,2012-09-15,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2012-09-15,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,74,F
-CDISCPILOT01,01-707-1037,2014-01-08,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-20,OS,Overall Survival (days),20,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,72,F
-CDISCPILOT01,01-707-1037,2013-12-20,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-12-20,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,72,F
 CDISCPILOT01,01-707-1206,2014-04-27,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-28,OS,Overall Survival (days),182,DAYS,1,Placebo,Placebo,Y,Y,65,M
 CDISCPILOT01,01-707-1206,2013-12-09,Disease progression,ADRS,ADT,7,0,,2013-10-28,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,65,M
-CDISCPILOT01,01-708-1019,2014-01-23,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-20,OS,Overall Survival (days),35,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,M
-CDISCPILOT01,01-708-1019,2013-12-20,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-12-20,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,M
-CDISCPILOT01,01-708-1032,2013-03-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-09,OS,Overall Survival (days),29,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,62,M
-CDISCPILOT01,01-708-1032,2013-02-09,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-02-09,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,62,M
-CDISCPILOT01,01-708-1084,2013-11-11,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-09,OS,Overall Survival (days),187,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,73,F
-CDISCPILOT01,01-708-1084,2013-06-23,Disease progression,ADRS,ADT,8,0,,2013-05-09,PFS,Progression-Free Survival (days),46,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,73,F
 CDISCPILOT01,01-708-1087,2013-04-28,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-10-22,OS,Overall Survival (days),189,DAYS,1,Placebo,Placebo,Y,Y,74,F
 CDISCPILOT01,01-708-1087,2012-12-08,Disease progression,ADRS,ADT,7,0,,2012-10-22,PFS,Progression-Free Survival (days),48,DAYS,2,Placebo,Placebo,Y,Y,74,F
 CDISCPILOT01,01-708-1158,2014-03-22,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-02-08,OS,Overall Survival (days),43,DAYS,1,Placebo,Placebo,Y,Y,81,F
@@ -225,22 +149,18 @@ CDISCPILOT01,01-708-1171,2013-06-04,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-708-1171,2013-01-14,Disease progression,ADRS,ADT,7,0,,2012-12-06,PFS,Progression-Free Survival (days),40,DAYS,2,Placebo,Placebo,Y,Y,77,F
 CDISCPILOT01,01-708-1178,2014-04-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-29,OS,Overall Survival (days),99,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,F
 CDISCPILOT01,01-708-1178,2014-02-23,Disease progression,ADRS,ADT,5,0,,2013-12-29,PFS,Progression-Free Survival (days),57,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,F
-CDISCPILOT01,01-708-1213,2013-02-22,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-09,OS,Overall Survival (days),14,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,76,F
-CDISCPILOT01,01-708-1213,2013-02-09,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-02-09,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,76,F
+CDISCPILOT01,01-708-1213,2013-02-22,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-09,OS,Overall Survival (days),14,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,76,F
+CDISCPILOT01,01-708-1213,2013-02-09,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-02-09,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,76,F
 CDISCPILOT01,01-708-1216,2012-12-13,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-10-24,OS,Overall Survival (days),51,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,78,M
 CDISCPILOT01,01-708-1216,2012-12-06,Disease progression,ADRS,ADT,4,0,,2012-10-24,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,78,M
-CDISCPILOT01,01-708-1236,2013-09-21,No contact after randomization,ADSL,RANDDT,,1,Randomization,2013-09-21,OS,Overall Survival (days),1,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,86,F
-CDISCPILOT01,01-708-1236,2013-09-21,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-09-21,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,86,F
+CDISCPILOT01,01-708-1236,2013-09-21,No contact after randomization,ADSL,RANDDT,,1,Randomization,2013-09-21,OS,Overall Survival (days),1,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,86,F
+CDISCPILOT01,01-708-1236,2013-09-21,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-09-21,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,86,F
 CDISCPILOT01,01-708-1253,2013-11-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-07,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,61,M
 CDISCPILOT01,01-708-1253,2013-08-05,Disease progression,ADRS,ADT,7,0,,2013-05-07,PFS,Progression-Free Survival (days),91,DAYS,2,Placebo,Placebo,Y,Y,61,M
-CDISCPILOT01,01-708-1272,2013-04-04,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-06,OS,Overall Survival (days),58,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,82,M
-CDISCPILOT01,01-708-1272,2013-03-20,Disease progression,ADRS,ADT,4,0,,2013-02-06,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,82,M
 CDISCPILOT01,01-708-1286,2014-03-08,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-10,OS,Overall Survival (days),180,DAYS,1,Placebo,Placebo,Y,Y,80,F
 CDISCPILOT01,01-708-1286,2013-10-20,Disease progression,ADRS,ADT,7,0,,2013-09-10,PFS,Progression-Free Survival (days),41,DAYS,2,Placebo,Placebo,Y,Y,80,F
 CDISCPILOT01,01-708-1296,2013-12-12,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-06-14,OS,Overall Survival (days),182,DAYS,1,Placebo,Placebo,Y,Y,57,M
 CDISCPILOT01,01-708-1296,2013-07-24,Disease progression,ADRS,ADT,7,0,,2013-06-14,PFS,Progression-Free Survival (days),41,DAYS,2,Placebo,Placebo,Y,Y,57,M
-CDISCPILOT01,01-708-1297,2013-05-08,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-25,OS,Overall Survival (days),104,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,61,M
-CDISCPILOT01,01-708-1297,2013-04-16,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-01-25,PFS,Progression-Free Survival (days),82,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,61,M
 CDISCPILOT01,01-708-1316,2014-03-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-23,OS,Overall Survival (days),191,DAYS,1,Placebo,Placebo,Y,Y,74,F
 CDISCPILOT01,01-708-1316,2013-10-10,Disease progression,ADRS,ADT,7,0,,2013-08-23,PFS,Progression-Free Survival (days),49,DAYS,2,Placebo,Placebo,Y,Y,74,F
 CDISCPILOT01,01-708-1336,2013-06-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-07,OS,Overall Survival (days),181,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,73,M
@@ -249,44 +169,26 @@ CDISCPILOT01,01-708-1342,2013-06-28,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-708-1342,2013-02-07,Disease progression,ADRS,ADT,7,0,,2012-12-29,PFS,Progression-Free Survival (days),41,DAYS,2,Placebo,Placebo,Y,Y,59,F
 CDISCPILOT01,01-708-1347,2013-06-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-20,OS,Overall Survival (days),67,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,61,F
 CDISCPILOT01,01-708-1347,2013-05-30,Disease progression,ADRS,ADT,5,0,,2013-04-20,PFS,Progression-Free Survival (days),41,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,61,F
-CDISCPILOT01,01-708-1348,2014-02-13,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-05,OS,Overall Survival (days),193,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,F
-CDISCPILOT01,01-708-1348,2013-09-15,Disease progression,ADRS,ADT,7,0,,2013-08-05,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,F
-CDISCPILOT01,01-708-1353,2013-09-10,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-04,OS,Overall Survival (days),69,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,87,F
-CDISCPILOT01,01-708-1353,2013-08-18,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-07-04,PFS,Progression-Free Survival (days),46,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,87,F
-CDISCPILOT01,01-708-1372,2013-04-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-12,OS,Overall Survival (days),8,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,84,M
-CDISCPILOT01,01-708-1372,2013-04-12,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-04-12,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,84,M
+CDISCPILOT01,01-708-1372,2013-04-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-12,OS,Overall Survival (days),8,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,84,M
+CDISCPILOT01,01-708-1372,2013-04-12,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-04-12,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,84,M
 CDISCPILOT01,01-708-1378,2014-01-28,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-03,OS,Overall Survival (days),148,DAYS,1,Placebo,Placebo,Y,Y,67,M
 CDISCPILOT01,01-708-1378,2013-10-19,Disease progression,ADRS,ADT,6,0,,2013-09-03,PFS,Progression-Free Survival (days),47,DAYS,2,Placebo,Placebo,Y,Y,67,M
 CDISCPILOT01,01-708-1406,2014-07-02,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-26,OS,Overall Survival (days),189,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,71,F
 CDISCPILOT01,01-708-1406,2014-02-10,Disease progression,ADRS,ADT,7,0,,2013-12-26,PFS,Progression-Free Survival (days),47,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,71,F
-CDISCPILOT01,01-708-1428,2014-01-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-11-09,OS,Overall Survival (days),84,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
-CDISCPILOT01,01-708-1428,2013-12-26,Disease progression,ADRS,ADT,4,0,,2013-11-09,PFS,Progression-Free Survival (days),48,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
 CDISCPILOT01,01-709-1001,2014-04-08,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-08,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,76,F
 CDISCPILOT01,01-709-1001,2013-12-31,Disease progression,ADRS,ADT,7,0,,2013-10-08,PFS,Progression-Free Survival (days),85,DAYS,2,Placebo,Placebo,Y,Y,76,F
-CDISCPILOT01,01-709-1007,2012-09-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-07-31,OS,Overall Survival (days),33,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,54,F
-CDISCPILOT01,01-709-1007,2012-07-31,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2012-07-31,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,54,F
-CDISCPILOT01,01-709-1020,2013-06-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-01,OS,Overall Survival (days),183,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,72,F
-CDISCPILOT01,01-709-1020,2013-01-12,Disease progression,ADRS,ADT,7,0,,2012-12-01,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,72,F
 CDISCPILOT01,01-709-1029,2013-06-26,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-25,OS,Overall Survival (days),184,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,82,M
 CDISCPILOT01,01-709-1029,2013-06-12,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2012-12-25,PFS,Progression-Free Survival (days),170,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,82,M
-CDISCPILOT01,01-709-1081,2014-05-10,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-18,OS,Overall Survival (days),113,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,86,F
-CDISCPILOT01,01-709-1081,2014-04-21,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2014-01-18,PFS,Progression-Free Survival (days),94,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,86,F
 CDISCPILOT01,01-709-1088,2014-10-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-04-12,OS,Overall Survival (days),181,DAYS,1,Placebo,Placebo,Y,Y,69,M
 CDISCPILOT01,01-709-1088,2014-06-29,Disease progression,ADRS,ADT,7,0,,2014-04-12,PFS,Progression-Free Survival (days),79,DAYS,2,Placebo,Placebo,Y,Y,69,M
 CDISCPILOT01,01-709-1099,2014-04-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-25,OS,Overall Survival (days),183,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,F
 CDISCPILOT01,01-709-1099,2013-12-11,Disease progression,ADRS,ADT,7,0,,2013-10-25,PFS,Progression-Free Survival (days),48,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,F
-CDISCPILOT01,01-709-1102,2013-03-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-15,OS,Overall Survival (days),76,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,F
-CDISCPILOT01,01-709-1102,2013-02-27,Disease progression,ADRS,ADT,5,0,,2013-01-15,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,F
 CDISCPILOT01,01-709-1168,2013-10-11,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-02,OS,Overall Survival (days),71,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,72,F
 CDISCPILOT01,01-709-1168,2013-09-13,Disease progression,ADRS,ADT,4,0,,2013-08-02,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,72,F
-CDISCPILOT01,01-709-1217,2013-06-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-04,OS,Overall Survival (days),114,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,77,M
-CDISCPILOT01,01-709-1217,2013-05-25,Disease progression,ADRS,ADT,5,0,,2013-03-04,PFS,Progression-Free Survival (days),83,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,77,M
 CDISCPILOT01,01-709-1238,2013-08-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-15,OS,Overall Survival (days),85,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,69,M
 CDISCPILOT01,01-709-1238,2013-06-26,Disease progression,ADRS,ADT,5,0,,2013-05-15,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,69,M
 CDISCPILOT01,01-709-1259,2013-06-13,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-26,OS,Overall Survival (days),139,DAYS,1,Placebo,Placebo,Y,Y,82,M
 CDISCPILOT01,01-709-1259,2013-03-08,Disease progression,ADRS,ADT,6,0,,2013-01-26,PFS,Progression-Free Survival (days),42,DAYS,2,Placebo,Placebo,Y,Y,82,M
-CDISCPILOT01,01-709-1285,2013-05-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-24,OS,Overall Survival (days),69,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,87,M
-CDISCPILOT01,01-709-1285,2013-05-31,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-03-24,PFS,Progression-Free Survival (days),69,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,87,M
 CDISCPILOT01,01-709-1301,2014-01-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-19,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,62,F
 CDISCPILOT01,01-709-1301,2013-08-30,Disease progression,ADRS,ADT,7,0,,2013-07-19,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,62,F
 CDISCPILOT01,01-709-1306,2014-06-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-02-03,OS,Overall Survival (days),143,DAYS,1,Placebo,Placebo,Y,Y,60,F
@@ -295,26 +197,18 @@ CDISCPILOT01,01-709-1309,2013-12-19,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-709-1309,2013-07-31,Disease progression,ADRS,ADT,7,0,,2013-06-19,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,65,M
 CDISCPILOT01,01-709-1312,2014-10-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-04-20,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,68,F
 CDISCPILOT01,01-709-1312,2014-06-02,Disease progression,ADRS,ADT,7,0,,2014-04-20,PFS,Progression-Free Survival (days),44,DAYS,2,Placebo,Placebo,Y,Y,68,F
-CDISCPILOT01,01-709-1326,2013-10-02,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-05,OS,Overall Survival (days),181,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,75,F
-CDISCPILOT01,01-709-1326,2013-06-26,Disease progression,ADRS,ADT,7,0,,2013-04-05,PFS,Progression-Free Survival (days),83,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,75,F
-CDISCPILOT01,01-709-1329,2013-08-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-15,OS,Overall Survival (days),15,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,70,M
-CDISCPILOT01,01-709-1329,2013-08-15,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-08-15,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,70,M
+CDISCPILOT01,01-709-1329,2013-08-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-15,OS,Overall Survival (days),15,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,70,M
+CDISCPILOT01,01-709-1329,2013-08-15,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-08-15,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,70,M
 CDISCPILOT01,01-709-1339,2013-06-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-23,OS,Overall Survival (days),184,DAYS,1,Placebo,Placebo,Y,Y,81,M
 CDISCPILOT01,01-709-1339,2013-02-03,Disease progression,ADRS,ADT,7,0,,2012-12-23,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,81,M
-CDISCPILOT01,01-709-1424,2013-03-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-03,OS,Overall Survival (days),15,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,77,M
-CDISCPILOT01,01-709-1424,2013-03-03,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-03-03,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,77,M
-CDISCPILOT01,01-710-1002,2014-01-20,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-14,OS,Overall Survival (days),7,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,88,M
-CDISCPILOT01,01-710-1002,2014-01-14,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2014-01-14,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,88,M
+CDISCPILOT01,01-709-1424,2013-03-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-03-03,OS,Overall Survival (days),15,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
+CDISCPILOT01,01-709-1424,2013-03-03,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-03-03,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
 CDISCPILOT01,01-710-1006,2013-08-10,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-10,OS,Overall Survival (days),182,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
 CDISCPILOT01,01-710-1006,2013-03-23,Disease progression,ADRS,ADT,8,0,,2013-02-10,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
 CDISCPILOT01,01-710-1021,2013-11-12,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-27,OS,Overall Survival (days),47,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,M
 CDISCPILOT01,01-710-1021,2013-09-27,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-09-27,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,M
 CDISCPILOT01,01-710-1027,2014-08-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-02-28,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,83,M
 CDISCPILOT01,01-710-1027,2014-08-19,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2014-02-28,PFS,Progression-Free Survival (days),173,DAYS,2,Placebo,Placebo,Y,Y,83,M
-CDISCPILOT01,01-710-1045,2013-08-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-06-03,OS,Overall Survival (days),76,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,83,F
-CDISCPILOT01,01-710-1045,2013-08-17,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-06-03,PFS,Progression-Free Survival (days),76,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,83,F
-CDISCPILOT01,01-710-1053,2013-02-26,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-26,OS,Overall Survival (days),63,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
-CDISCPILOT01,01-710-1053,2013-02-06,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2012-12-26,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,F
 CDISCPILOT01,01-710-1060,2013-07-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-01,OS,Overall Survival (days),186,DAYS,1,Placebo,Placebo,Y,Y,82,M
 CDISCPILOT01,01-710-1060,2013-02-12,Disease progression,ADRS,ADT,7,0,,2013-01-01,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,82,M
 CDISCPILOT01,01-710-1070,2013-02-10,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-08,OS,Overall Survival (days),156,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,85,F
@@ -329,54 +223,34 @@ CDISCPILOT01,01-710-1137,2013-11-13,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-710-1137,2013-10-11,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-10-11,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,F
 CDISCPILOT01,01-710-1142,2012-10-23,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-10-02,OS,Overall Survival (days),22,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,76,F
 CDISCPILOT01,01-710-1142,2012-10-02,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2012-10-02,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,76,F
-CDISCPILOT01,01-710-1154,2014-05-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-03-29,OS,Overall Survival (days),42,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,M
-CDISCPILOT01,01-710-1154,2014-05-09,Disease progression,ADRS,ADT,4,0,,2014-03-29,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,84,M
-CDISCPILOT01,01-710-1166,2013-03-30,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-11-30,OS,Overall Survival (days),121,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
-CDISCPILOT01,01-710-1166,2013-01-11,Disease progression,ADRS,ADT,5,0,,2012-11-30,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,81,F
 CDISCPILOT01,01-710-1183,2014-05-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-11-16,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,80,F
 CDISCPILOT01,01-710-1183,2013-12-28,Disease progression,ADRS,ADT,7,0,,2013-11-16,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,80,F
 CDISCPILOT01,01-710-1187,2013-05-12,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-11-10,OS,Overall Survival (days),184,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,78,F
 CDISCPILOT01,01-710-1187,2012-12-23,Disease progression,ADRS,ADT,7,0,,2012-11-10,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,78,F
-CDISCPILOT01,01-710-1235,2013-03-27,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-26,OS,Overall Survival (days),183,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,56,F
-CDISCPILOT01,01-710-1235,2013-03-13,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2012-09-26,PFS,Progression-Free Survival (days),169,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,56,F
 CDISCPILOT01,01-710-1249,2014-06-28,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-28,OS,Overall Survival (days),183,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,M
 CDISCPILOT01,01-710-1249,2014-06-14,Disease progression,ADRS,ADT,7,0,,2013-12-28,PFS,Progression-Free Survival (days),169,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,M
 CDISCPILOT01,01-710-1264,2013-10-12,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-06-13,OS,Overall Survival (days),122,DAYS,1,Placebo,Placebo,Y,Y,78,M
 CDISCPILOT01,01-710-1264,2013-07-25,Disease progression,ADRS,ADT,5,0,,2013-06-13,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,78,M
-CDISCPILOT01,01-710-1270,2014-03-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-02-12,OS,Overall Survival (days),18,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,83,F
-CDISCPILOT01,01-710-1270,2014-02-12,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2014-02-12,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,83,F
 CDISCPILOT01,01-710-1271,2012-11-26,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-27,OS,Overall Survival (days),61,DAYS,1,Placebo,Placebo,Y,Y,86,F
 CDISCPILOT01,01-710-1271,2012-09-27,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2012-09-27,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,86,F
 CDISCPILOT01,01-710-1278,2013-03-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-24,OS,Overall Survival (days),74,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,81,M
 CDISCPILOT01,01-710-1278,2013-02-07,Disease progression,ADRS,ADT,5,0,,2012-12-24,PFS,Progression-Free Survival (days),46,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,81,M
-CDISCPILOT01,01-710-1300,2013-02-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-15,OS,Overall Survival (days),67,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,78,F
-CDISCPILOT01,01-710-1300,2013-01-28,Disease progression,ADRS,ADT,5,0,,2012-12-15,PFS,Progression-Free Survival (days),45,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,78,F
 CDISCPILOT01,01-710-1314,2013-05-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-24,OS,Overall Survival (days),31,DAYS,1,Placebo,Placebo,Y,Y,78,F
 CDISCPILOT01,01-710-1314,2013-04-24,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-04-24,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,78,F
 CDISCPILOT01,01-710-1315,2013-07-16,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-27,OS,Overall Survival (days),140,DAYS,1,Placebo,Placebo,Y,Y,83,F
 CDISCPILOT01,01-710-1315,2013-07-02,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-02-27,PFS,Progression-Free Survival (days),126,DAYS,2,Placebo,Placebo,Y,Y,83,F
 CDISCPILOT01,01-710-1354,2013-05-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-11-11,OS,Overall Survival (days),172,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,73,M
 CDISCPILOT01,01-710-1354,2012-12-22,Disease progression,ADRS,ADT,7,0,,2012-11-11,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,73,M
-CDISCPILOT01,01-710-1358,2013-02-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-17,OS,Overall Survival (days),146,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,82,M
-CDISCPILOT01,01-710-1358,2012-10-30,Disease progression,ADRS,ADT,7,0,,2012-09-17,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,82,M
 CDISCPILOT01,01-710-1368,2014-04-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-23,OS,Overall Survival (days),184,DAYS,1,Placebo,Placebo,Y,Y,88,F
 CDISCPILOT01,01-710-1368,2013-12-04,Disease progression,ADRS,ADT,7,0,,2013-10-23,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,88,F
-CDISCPILOT01,01-710-1385,2013-02-18,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-10-29,OS,Overall Survival (days),113,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,77,M
-CDISCPILOT01,01-710-1385,2013-01-21,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2012-10-29,PFS,Progression-Free Survival (days),85,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,77,M
 CDISCPILOT01,01-710-1408,2013-07-12,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-05,OS,Overall Survival (days),189,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,80,M
 CDISCPILOT01,01-710-1408,2013-02-20,Disease progression,ADRS,ADT,7,0,,2013-01-05,PFS,Progression-Free Survival (days),47,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,80,M
 CDISCPILOT01,01-711-1012,2013-05-02,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-03,OS,Overall Survival (days),30,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,67,F
 CDISCPILOT01,01-711-1012,2013-04-03,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-04-03,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,67,F
 CDISCPILOT01,01-711-1036,2013-02-10,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-07-29,OS,Overall Survival (days),197,DAYS,1,Placebo,Placebo,Y,Y,70,M
 CDISCPILOT01,01-711-1036,2012-09-09,Disease progression,ADRS,ADT,8,0,,2012-07-29,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,70,M
-CDISCPILOT01,01-711-1143,2013-06-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-03,OS,Overall Survival (days),60,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,76,F
-CDISCPILOT01,01-711-1143,2013-09-22,Disease progression,ADRS,ADT,7,0,,2013-04-03,PFS,Progression-Free Survival (days),173,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,76,F
-CDISCPILOT01,01-711-1433,2013-02-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-27,OS,Overall Survival (days),11,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,84,F
-CDISCPILOT01,01-711-1433,2013-01-27,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-01-27,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,84,F
-CDISCPILOT01,01-713-1043,2014-03-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-15,OS,Overall Survival (days),191,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,78,F
-CDISCPILOT01,01-713-1043,2013-11-01,Disease progression,ADRS,ADT,7,0,,2013-09-15,PFS,Progression-Free Survival (days),48,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,78,F
-CDISCPILOT01,01-713-1073,2014-10-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-03-30,OS,Overall Survival (days),190,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,74,F
-CDISCPILOT01,01-713-1073,2014-06-22,Disease progression,ADRS,ADT,7,0,,2014-03-30,PFS,Progression-Free Survival (days),85,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,74,F
+CDISCPILOT01,01-711-1433,2013-02-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-27,OS,Overall Survival (days),11,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,84,F
+CDISCPILOT01,01-711-1433,2013-01-27,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-01-27,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,84,F
 CDISCPILOT01,01-713-1106,2013-05-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-10-31,OS,Overall Survival (days),188,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,74,M
 CDISCPILOT01,01-713-1106,2012-12-09,Disease progression,ADRS,ADT,6,0,,2012-10-31,PFS,Progression-Free Survival (days),40,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,74,M
 CDISCPILOT01,01-713-1141,2013-08-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-31,OS,Overall Survival (days),68,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,79,M
@@ -389,24 +263,14 @@ CDISCPILOT01,01-713-1256,2013-03-25,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-713-1256,2012-10-31,Disease progression,ADRS,ADT,7,0,,2012-09-19,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,71,M
 CDISCPILOT01,01-713-1269,2014-07-28,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-27,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,73,M
 CDISCPILOT01,01-713-1269,2014-03-10,Disease progression,ADRS,ADT,7,0,,2014-01-27,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,73,M
-CDISCPILOT01,01-713-1448,2014-05-23,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-19,OS,Overall Survival (days),125,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,F
-CDISCPILOT01,01-713-1448,2014-03-02,Disease progression,ADRS,ADT,5,0,,2014-01-19,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,71,F
 CDISCPILOT01,01-714-1035,2014-10-16,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-04-17,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,88,F
 CDISCPILOT01,01-714-1035,2014-10-02,Disease progression,ADRS,ADT,7,0,,2014-04-17,PFS,Progression-Free Survival (days),169,DAYS,2,Placebo,Placebo,Y,Y,88,F
-CDISCPILOT01,01-714-1068,2013-10-16,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-08,OS,Overall Survival (days),70,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,F
-CDISCPILOT01,01-714-1068,2013-09-19,Disease progression,ADRS,ADT,5,0,,2013-08-08,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,F
-CDISCPILOT01,01-714-1195,2013-10-23,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-26,OS,Overall Survival (days),181,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,75,M
-CDISCPILOT01,01-714-1195,2013-10-10,Disease progression,ADRS,ADT,7,0,,2013-04-26,PFS,Progression-Free Survival (days),168,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,75,M
 CDISCPILOT01,01-714-1288,2014-06-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-04,OS,Overall Survival (days),196,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
 CDISCPILOT01,01-714-1288,2014-01-19,Disease progression,ADRS,ADT,7,0,,2013-12-04,PFS,Progression-Free Survival (days),47,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
 CDISCPILOT01,01-714-1375,2013-09-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-26,OS,Overall Survival (days),194,DAYS,1,Placebo,Placebo,Y,Y,78,F
 CDISCPILOT01,01-714-1375,2013-08-23,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-02-26,PFS,Progression-Free Survival (days),179,DAYS,2,Placebo,Placebo,Y,Y,78,F
-CDISCPILOT01,01-714-1425,2013-08-22,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-15,OS,Overall Survival (days),8,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,81,M
-CDISCPILOT01,01-714-1425,2013-08-15,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-08-15,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,81,M
-CDISCPILOT01,01-715-1085,2013-08-18,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-16,OS,Overall Survival (days),184,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,77,F
-CDISCPILOT01,01-715-1085,2013-08-04,Disease progression,ADRS,ADT,7,0,,2013-02-16,PFS,Progression-Free Survival (days),170,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,77,F
-CDISCPILOT01,01-715-1107,2013-08-14,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-26,OS,Overall Survival (days),170,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,65,M
-CDISCPILOT01,01-715-1107,2013-05-13,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-02-26,PFS,Progression-Free Survival (days),77,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,65,M
+CDISCPILOT01,01-714-1425,2013-08-22,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-15,OS,Overall Survival (days),8,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,81,M
+CDISCPILOT01,01-714-1425,2013-08-15,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-08-15,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,81,M
 CDISCPILOT01,01-715-1155,2014-01-25,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-13,OS,Overall Survival (days),44,DAYS,1,Placebo,Placebo,Y,Y,59,F
 CDISCPILOT01,01-715-1155,2013-12-13,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-12-13,PFS,Progression-Free Survival (days),1,DAYS,2,Placebo,Placebo,Y,Y,59,F
 CDISCPILOT01,01-715-1207,2013-06-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-11-18,OS,Overall Survival (days),196,DAYS,1,Placebo,Placebo,Y,Y,78,F
@@ -417,46 +281,28 @@ CDISCPILOT01,01-715-1321,2014-04-22,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-715-1321,2014-04-22,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2014-02-11,PFS,Progression-Free Survival (days),71,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,75,F
 CDISCPILOT01,01-715-1397,2013-10-03,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-03,OS,Overall Survival (days),184,DAYS,1,Placebo,Placebo,Y,Y,76,F
 CDISCPILOT01,01-715-1397,2013-06-27,Disease progression,ADRS,ADT,7,0,,2013-04-03,PFS,Progression-Free Survival (days),86,DAYS,2,Placebo,Placebo,Y,Y,76,F
-CDISCPILOT01,01-715-1405,2013-07-13,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-06,OS,Overall Survival (days),8,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,69,M
-CDISCPILOT01,01-715-1405,2013-07-06,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-07-06,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,69,M
 CDISCPILOT01,01-716-1024,2013-01-20,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-07-09,OS,Overall Survival (days),196,DAYS,1,Placebo,Placebo,Y,Y,87,F
 CDISCPILOT01,01-716-1024,2012-08-24,Disease progression,ADRS,ADT,7,0,,2012-07-09,PFS,Progression-Free Survival (days),47,DAYS,2,Placebo,Placebo,Y,Y,87,F
 CDISCPILOT01,01-716-1026,2014-10-16,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-04-02,OS,Overall Survival (days),198,DAYS,1,Placebo,Placebo,Y,Y,73,F
 CDISCPILOT01,01-716-1026,2014-05-14,Disease progression,ADRS,ADT,7,0,,2014-04-02,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,73,F
-CDISCPILOT01,01-716-1030,2014-01-10,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-28,OS,Overall Survival (days),14,DAYS,1,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,83,F
-CDISCPILOT01,01-716-1030,2013-12-28,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-12-28,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline Low Dose,Y,Y,83,F
+CDISCPILOT01,01-716-1030,2014-01-10,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-28,OS,Overall Survival (days),14,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,83,F
+CDISCPILOT01,01-716-1030,2013-12-28,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-12-28,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,83,F
 CDISCPILOT01,01-716-1044,2013-11-03,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-27,OS,Overall Survival (days),191,DAYS,1,Placebo,Placebo,Y,Y,74,M
 CDISCPILOT01,01-716-1044,2013-06-13,Disease progression,ADRS,ADT,7,0,,2013-04-27,PFS,Progression-Free Survival (days),48,DAYS,2,Placebo,Placebo,Y,Y,74,M
-CDISCPILOT01,01-716-1063,2013-08-28,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-09,OS,Overall Survival (days),112,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,80,M
-CDISCPILOT01,01-716-1063,2013-07-31,Disease progression,ADRS,ADT,5,0,,2013-05-09,PFS,Progression-Free Survival (days),84,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,80,M
 CDISCPILOT01,01-716-1071,2013-08-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-06-08,OS,Overall Survival (days),55,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,78,F
 CDISCPILOT01,01-716-1071,2013-07-26,Disease progression,ADRS,ADT,4,0,,2013-06-08,PFS,Progression-Free Survival (days),49,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,78,F
-CDISCPILOT01,01-716-1094,2013-01-26,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-19,OS,Overall Survival (days),39,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,82,M
-CDISCPILOT01,01-716-1094,2013-01-26,Disease progression,ADRS,ADT,4,0,,2012-12-19,PFS,Progression-Free Survival (days),39,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,82,M
-CDISCPILOT01,01-716-1103,2014-09-20,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-03-20,OS,Overall Survival (days),185,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,M
-CDISCPILOT01,01-716-1103,2014-05-08,Disease progression,ADRS,ADT,7,0,,2014-03-20,PFS,Progression-Free Survival (days),50,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,M
 CDISCPILOT01,01-716-1108,2013-08-10,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-12,OS,Overall Survival (days),180,DAYS,1,Placebo,Placebo,Y,Y,86,F
 CDISCPILOT01,01-716-1108,2013-05-10,Disease progression,ADRS,ADT,7,0,,2013-02-12,PFS,Progression-Free Survival (days),88,DAYS,2,Placebo,Placebo,Y,Y,86,F
-CDISCPILOT01,01-716-1151,2013-06-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-01,OS,Overall Survival (days),127,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,83,F
-CDISCPILOT01,01-716-1151,2013-05-03,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-02-01,PFS,Progression-Free Survival (days),92,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,83,F
-CDISCPILOT01,01-716-1157,2014-04-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-10-02,OS,Overall Survival (days),186,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,85,M
-CDISCPILOT01,01-716-1157,2013-11-12,Disease progression,ADRS,ADT,7,0,,2013-10-02,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,85,M
 CDISCPILOT01,01-716-1160,2013-10-11,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-05,OS,Overall Survival (days),190,DAYS,1,Placebo,Placebo,Y,Y,83,F
 CDISCPILOT01,01-716-1160,2013-05-23,Disease progression,ADRS,ADT,8,0,,2013-04-05,PFS,Progression-Free Survival (days),49,DAYS,2,Placebo,Placebo,Y,Y,83,F
-CDISCPILOT01,01-716-1167,2013-04-13,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-10-08,OS,Overall Survival (days),188,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,M
-CDISCPILOT01,01-716-1167,2012-11-19,Disease progression,ADRS,ADT,7,0,,2012-10-08,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,68,M
 CDISCPILOT01,01-716-1177,2015-03-05,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-09-02,OS,Overall Survival (days),185,DAYS,1,Placebo,Placebo,Y,Y,72,M
 CDISCPILOT01,01-716-1177,2014-10-20,Disease progression,ADRS,ADT,7,0,,2014-09-02,PFS,Progression-Free Survival (days),49,DAYS,2,Placebo,Placebo,Y,Y,72,M
 CDISCPILOT01,01-716-1189,2013-03-03,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-10-09,OS,Overall Survival (days),146,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,81,M
 CDISCPILOT01,01-716-1189,2013-02-18,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2012-10-09,PFS,Progression-Free Survival (days),133,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,81,M
 CDISCPILOT01,01-716-1229,2013-04-02,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-20,OS,Overall Survival (days),42,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,73,F
 CDISCPILOT01,01-716-1229,2013-04-02,Last adequate tumor assessment,ADRS,ADT,2,1,Last adequate tumor assessment,2013-02-20,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,73,F
-CDISCPILOT01,01-716-1298,2013-07-06,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-04-08,OS,Overall Survival (days),90,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,76,F
-CDISCPILOT01,01-716-1298,2013-05-23,Disease progression,ADRS,ADT,5,0,,2013-04-08,PFS,Progression-Free Survival (days),46,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,76,F
 CDISCPILOT01,01-716-1308,2013-10-07,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-08-28,OS,Overall Survival (days),41,DAYS,1,Placebo,Placebo,Y,Y,76,F
 CDISCPILOT01,01-716-1308,2013-10-07,Disease progression,ADRS,ADT,4,0,,2013-08-28,PFS,Progression-Free Survival (days),41,DAYS,2,Placebo,Placebo,Y,Y,76,F
-CDISCPILOT01,01-716-1311,2014-09-30,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-05-14,OS,Overall Survival (days),140,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,78,M
-CDISCPILOT01,01-716-1311,2014-06-26,Disease progression,ADRS,ADT,5,0,,2014-05-14,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,78,M
 CDISCPILOT01,01-716-1364,2014-01-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-04,OS,Overall Survival (days),190,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,84,F
 CDISCPILOT01,01-716-1364,2013-08-18,Disease progression,ADRS,ADT,7,0,,2013-07-04,PFS,Progression-Free Survival (days),46,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,84,F
 CDISCPILOT01,01-716-1373,2013-02-28,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-12-14,OS,Overall Survival (days),77,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,74,M
@@ -467,8 +313,6 @@ CDISCPILOT01,01-716-1441,2014-07-22,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-716-1441,2014-06-02,Disease progression,ADRS,ADT,7,0,,2014-01-22,PFS,Progression-Free Survival (days),132,DAYS,2,Placebo,Placebo,Y,Y,85,M
 CDISCPILOT01,01-716-1447,2014-06-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-12-16,OS,Overall Survival (days),184,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,72,F
 CDISCPILOT01,01-716-1447,2014-01-27,Disease progression,ADRS,ADT,7,0,,2013-12-16,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,72,F
-CDISCPILOT01,01-717-1004,2014-07-16,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-14,OS,Overall Survival (days),184,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,80,F
-CDISCPILOT01,01-717-1004,2014-02-25,Disease progression,ADRS,ADT,7,0,,2014-01-14,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,80,F
 CDISCPILOT01,01-717-1109,2014-07-28,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2014-01-27,OS,Overall Survival (days),183,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,84,M
 CDISCPILOT01,01-717-1109,2014-04-18,Disease progression,ADRS,ADT,7,0,,2014-01-27,PFS,Progression-Free Survival (days),82,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,84,M
 CDISCPILOT01,01-717-1174,2013-07-24,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-22,OS,Overall Survival (days),184,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,73,M
@@ -479,26 +323,14 @@ CDISCPILOT01,01-717-1344,2014-03-14,Last known alive,ADSL,LSTALVDT,,1,Last known
 CDISCPILOT01,01-717-1344,2014-02-19,Disease progression,ADRS,ADT,4,0,,2014-01-11,PFS,Progression-Free Survival (days),40,DAYS,2,Placebo,Placebo,Y,Y,64,F
 CDISCPILOT01,01-717-1357,2013-10-20,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-01,OS,Overall Survival (days),173,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
 CDISCPILOT01,01-717-1357,2013-06-13,Disease progression,ADRS,ADT,7,0,,2013-05-01,PFS,Progression-Free Survival (days),44,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,77,M
-CDISCPILOT01,01-717-1446,2014-03-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-01,OS,Overall Survival (days),198,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,75,F
-CDISCPILOT01,01-717-1446,2013-10-16,Disease progression,ADRS,ADT,7,0,,2013-09-01,PFS,Progression-Free Survival (days),46,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,75,F
-CDISCPILOT01,01-718-1066,2013-07-30,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-07,OS,Overall Survival (days),24,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,F
-CDISCPILOT01,01-718-1066,2013-07-07,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-07-07,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,79,F
-CDISCPILOT01,01-718-1079,2012-10-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2012-09-19,OS,Overall Survival (days),43,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,67,F
-CDISCPILOT01,01-718-1079,2012-11-06,Disease progression,ADRS,ADT,4,0,,2012-09-19,PFS,Progression-Free Survival (days),49,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,67,F
 CDISCPILOT01,01-718-1101,2013-08-02,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-17,OS,Overall Survival (days),167,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,82,M
 CDISCPILOT01,01-718-1101,2013-05-12,Disease progression,ADRS,ADT,8,0,,2013-02-17,PFS,Progression-Free Survival (days),85,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,82,M
 CDISCPILOT01,01-718-1139,2013-11-17,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-05-19,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,77,M
 CDISCPILOT01,01-718-1139,2013-11-03,Disease progression,ADRS,ADT,7,0,,2013-05-19,PFS,Progression-Free Survival (days),169,DAYS,2,Placebo,Placebo,Y,Y,77,M
 CDISCPILOT01,01-718-1150,2013-07-31,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-01-19,OS,Overall Survival (days),194,DAYS,1,Placebo,Placebo,Y,Y,73,F
 CDISCPILOT01,01-718-1150,2013-03-01,Disease progression,ADRS,ADT,7,0,,2013-01-19,PFS,Progression-Free Survival (days),42,DAYS,2,Placebo,Placebo,Y,Y,73,F
-CDISCPILOT01,01-718-1170,2013-11-03,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-16,OS,Overall Survival (days),49,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,80,F
-CDISCPILOT01,01-718-1170,2013-09-16,No post-baseline tumor assessment,ADSL,RANDDT,,1,Randomization,2013-09-16,PFS,Progression-Free Survival (days),1,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,80,F
 CDISCPILOT01,01-718-1172,2013-11-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-21,OS,Overall Survival (days),70,DAYS,1,Placebo,Placebo,Y,Y,74,M
 CDISCPILOT01,01-718-1172,2013-11-02,Disease progression,ADRS,ADT,5,0,,2013-09-21,PFS,Progression-Free Survival (days),43,DAYS,2,Placebo,Placebo,Y,Y,74,M
-CDISCPILOT01,01-718-1250,2014-02-19,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-09-21,OS,Overall Survival (days),152,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,82,F
-CDISCPILOT01,01-718-1250,2013-11-02,Disease progression,ADRS,ADT,6,0,,2013-09-21,PFS,Progression-Free Survival (days),43,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,82,F
-CDISCPILOT01,01-718-1254,2014-01-09,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-07-10,OS,Overall Survival (days),184,DAYS,1,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,78,M
-CDISCPILOT01,01-718-1254,2013-08-20,Disease progression,ADRS,ADT,7,0,,2013-07-10,PFS,Progression-Free Survival (days),42,DAYS,2,Xanomeline Low Dose,Xanomeline Low Dose,Y,Y,78,M
 CDISCPILOT01,01-718-1328,2013-05-01,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-01,OS,Overall Survival (days),90,DAYS,1,Xanomeline High Dose,Xanomeline High Dose,Y,Y,86,M
 CDISCPILOT01,01-718-1328,2013-03-20,Disease progression,ADRS,ADT,5,0,,2013-02-01,PFS,Progression-Free Survival (days),48,DAYS,2,Xanomeline High Dose,Xanomeline High Dose,Y,Y,86,M
 CDISCPILOT01,01-718-1355,2013-08-29,Last known alive,ADSL,LSTALVDT,,1,Last known alive date,2013-02-28,OS,Overall Survival (days),183,DAYS,1,Placebo,Placebo,Y,Y,79,M

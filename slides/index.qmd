@@ -21,6 +21,7 @@ format:
     transition: none
     preview-links: false
     include-after-body: logos.html
+    html-table-processing: none
 execute:
   echo: false
   warning: false
@@ -42,10 +43,9 @@ for (f in list.files(here::here("lab", "R"), pattern = "\\.R$", full.names = TRU
   knitr::read_chunk(f)
 }
 
-# gt / gtsummary tables sized for a slide
+# gt tables (design and summary tables) sized for a slide
 slide_gt <- function(x, size = 18) {
   size <- round(size * 1.15)   # all tables 15% larger than their nominal size
-  if (inherits(x, "gtsummary")) x <- gtsummary::as_gt(x)
   x |>
     gt::tab_options(
       table.font.size = gt::px(size), data_row.padding = gt::px(1),
@@ -61,6 +61,18 @@ tab <- function(df, size = 18) {
 }
 fmt_p <- function(p) sprintf("%.3f", p)
 
+# rtables TFLs -> HTML sized for a slide (styles: .rt-slide in columbia.scss)
+slide_rt <- function(x, size = 18) {
+  htmltools::div(class = "rt-slide", style = sprintf("font-size: %dpx;", round(size * 1.15)),
+                 rtables::as_html(x))
+}
+
+# Links to files in the repository always point to the main branch
+repo_url <- "https://github.com/pzhang724/cu-survival-fall-2026"
+gh <- function(path) {
+  sprintf("[`%s`](%s/%s/main/%s)", path, repo_url, if (grepl("/$", path)) "tree" else "blob", path)
+}
+
 # examples of vendor formats shown on the raw-data slide
 irt_date_example <- read_raw("irt")$RANDOMIZATION_DATE[1]
 lb_example <- read_raw("lb")[1, ]
@@ -68,42 +80,28 @@ lb_example <- read_raw("lb")[1, ]
 
 ## Today
 
-:::: {.columns}
-::: {.column width="55%"}
-**One trial, end to end, the way a trial statistician works it.**
+**Today's view: a role-play. We are the trial statistician of one randomized
+trial with a survival endpoint, from protocol to submission.**
 
-* Plan it: protocol, estimand, SAP, group sequential design, sample size
-* Collect it: CRF, raw data, SDTM, ADaM
-* Report it: TFL shells, tables and figures, the R packages behind them
-* Monitor it: interim analysis, p-values, conditional power
-* Submit it: datasets, metadata, reviewer's guides
+* Plan the trial: protocol, estimand, SAP, sample size, group sequential design
+* Collect the data: CRF, raw data, SDTM, ADaM
+* Report the results: TFL shells, tables and figures, the R packages behind them
+* Monitor the trial: interim analyses, p-values, conditional power
+* Submit the package: datasets, metadata, reviewer's guides
 
-Every number on these slides is computed live from the code in **`lab/`**,
-which you can run on Posit Cloud or with Claude.
-:::
-
-::: {.column width="45%"}
-| Part | Topic | Min |
-|---|---|---|
-| 1 | The map of a trial | 5 |
-| 2 | Planning | 25 |
-| 3 | Data standards | 20 |
-| 4 | Tables, figures, listings | 20 |
-| 5 | Interim analysis | 12 |
-| 6 | Submission and wrap-up | 8 |
-:::
-::::
+Every number on these slides comes from the code in `r gh("lab/")`. You can run
+the code on Posit Cloud, on your own computer, or with Claude.
 
 ::: notes
-Set expectations: this is not a methods lecture; it is how the methods you
-learned are used when a real trial is run. Point students to the repository now
-so they can follow along.
+This lecture is a role-play, not a methods lecture. We act as the trial
+statistician and use the survival methods from this course on one trial. Ask
+students to open the repository now so they can follow along.
 :::
 
-## Acronyms: we will spell them out
+## Glossary
 
-Clinical trials run on acronyms. Each one is spelled out the first time it
-appears, and the full list is in `lab/docs/00_glossary.md`.
+Clinical trials use many acronyms. The slides spell out each acronym at first
+use. Full list: `r gh("lab/docs/00_glossary.md")`.
 
 :::: {.columns .small}
 ::: {.column width="50%"}
@@ -119,30 +117,30 @@ appears, and the full list is in `lab/docs/00_glossary.md`.
 * **ORR**: Objective Response Rate
 * **TEAE**: Treatment-Emergent Adverse Event
 * **DMC**: Data Monitoring Committee
-* **IA**: Interim Analysis; **DCO**: Data Cut-Off
+* **IA**: Interim Analysis
 * **CP**: Conditional Power
 :::
 ::::
 
 # Part 1 · The map of a trial {background-color="#1D4F91" .part-title}
 
-5 minutes
+Who does what, and our example trial
 
-## Where the statistician sits
+## The statistician's role in a trial
 
 ```{=html}
 <div class="flow">
   <div class="box lead"><b>Protocol</b>objectives, endpoints, sample size</div><div class="arrow">&rarr;</div>
-  <div class="box lead"><b>SAP + shells</b>every analysis pre-specified</div><div class="arrow">&rarr;</div>
+  <div class="box lead"><b>SAP + shells</b>all analyses planned in advance</div><div class="arrow">&rarr;</div>
   <div class="box review"><b>CRF / EDC</b>collect what the SAP needs</div><div class="arrow">&rarr;</div>
   <div class="box review"><b>Raw data</b>EDC export + vendor files</div><div class="arrow">&rarr;</div>
-  <div class="box review"><b>SDTM</b>standard tabulation</div>
+  <div class="box review"><b>SDTM</b>standard format for collected data</div>
 </div>
 <div class="flow">
-  <div class="box review"><b>ADaM</b>analysis-ready datasets (statistician writes the specs)</div><div class="arrow">&rarr;</div>
+  <div class="box review"><b>ADaM</b>datasets ready for analysis (the statistician writes the specifications)</div><div class="arrow">&rarr;</div>
   <div class="box review"><b>TFLs</b>tables, figures, listings</div><div class="arrow">&rarr;</div>
-  <div class="box lead"><b>Clinical study report</b>interpretation</div><div class="arrow">&rarr;</div>
-  <div class="box review"><b>Submission</b>eCTD module 5</div>
+  <div class="box lead"><b>Clinical study report</b>results and interpretation</div><div class="arrow">&rarr;</div>
+  <div class="box review"><b>Submission</b>datasets and reports for the regulator</div>
 </div>
 <div class="flow">
   <div class="box dashed"><b>Interim analysis</b>same ADaM + TFL programs on a data cut &rarr; Data Monitoring Committee &rarr; continue / stop</div>
@@ -153,34 +151,33 @@ appears, and the full list is in `lab/docs/00_glossary.md`.
 
 :::: {.columns .small}
 ::: {.column width="50%"}
-**Statistician owns**: design, sample size, SAP, shells, ADaM specifications,
-interim plan, interpretation.
+**The statistician is responsible for**: design, sample size, SAP, shells,
+ADaM specifications, interim plan, interpretation.
 :::
 ::: {.column width="50%"}
-**Works with**: clinicians (endpoints), data management (CRF, cleaning),
-statistical programmers (SDTM, ADaM, TFL code), regulatory (submission).
+**The statistician works with**: clinicians (endpoints), data managers (CRF,
+data cleaning), statistical programmers (SDTM, ADaM and TFL code), regulatory
+affairs (submission).
 :::
 ::::
 
 ::: notes
-The arrow back from the interim analysis is the reason group sequential
-designs exist. Programmers write most of the code, but the statistician signs
-off on what the code must do.
+The interim analysis can change the course of the trial; this possibility is
+the reason for group sequential designs. Programmers write most of the code,
+but the statistician decides what the code must do and approves the results.
 :::
 
-## Our running example: CDISCPILOT01
+## Our example trial: CDISCPILOT01
 
 :::: {.columns}
 ::: {.column width="55%"}
-* Data from **pharmaverse** (`pharmaversesdtm`, `pharmaverseadam`):
-  the CDISC SDTM/ADaM pilot study, xanomeline patch vs placebo
-* Real CDISC structure: `r nrow(adsl)` patients screened,
-  `r sum(adsl$ITTFL == "Y")` randomized 1:1:1
-* plus **synthetic RECIST 1.1 tumour assessments** (`rs_onco`)
-* For this course we treat it as an oncology trial:
-  * **Primary**: PFS, High Dose vs Placebo
-  * **Secondary**: PFS Low Dose vs Placebo, ORR, OS
-  * **Safety**: adverse events, laboratory tests
+* Data from **pharmaverse**: the CDISC SDTM/ADaM pilot study (xanomeline patch
+  vs placebo), plus **synthetic RECIST 1.1 tumour assessments**
+* In this lecture, the study is a **two-arm oncology trial**:
+  High Dose vs Placebo, randomized 1:1
+* Our **source data** (`r gh("lab/data/source/")`): the pilot cut to our two
+  arms and exported as CSV (comma-separated values) files. Every lab program starts there.
+* `r nrow(adsl)` patients screened, `r sum(adsl$ITTFL == "Y")` randomized
 :::
 ::: {.column width="45%"}
 ```{r}
@@ -193,95 +190,100 @@ adsl |>
 ::::
 
 ::: {.takeaway}
-Design numbers are for teaching; the data are reported as they are.
+All data are synthetic test data from pharmaverse. We use no real patient data.
 :::
 
 # Part 2 · Planning {background-color="#1D4F91" .part-title}
 
-Protocol, estimand, SAP, group sequential design, sample size (25 minutes)
+Protocol, estimand, SAP, sample size, group sequential design
 
 ::: notes
-Target: finish Part 2 by minute 30. Emphasise that every later step implements a decision made here.
+Every later step carries out a decision made here.
 :::
 
-## Protocol: the statistician's sections
+## Protocol: the parts the statistician writes
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="52%"}
 | | Endpoint |
 |---|---|
 | Primary | **PFS**: randomization to first progression (RECIST 1.1, investigator) or death |
-| Key secondary | PFS, Low Dose vs Placebo |
+| Key secondary | **OS**: randomization to death from any cause |
 | Secondary | **ORR**: best overall response CR or PR |
-| Secondary | **OS**: randomization to death |
+| Secondary | **DCR**: best overall response CR, PR or SD |
 | Safety | TEAEs (MedDRA), labs (CTCAE grades) |
 
-[RECIST: Response Evaluation Criteria in Solid Tumors; CR/PR: complete/partial response; MedDRA: Medical Dictionary for Regulatory Activities; CTCAE: Common Terminology Criteria for Adverse Events]{.tiny .muted}
+[RECIST: Response Evaluation Criteria in Solid Tumors; CR / PR: complete / partial response; SD: stable disease; DCR: disease control rate; MedDRA: Medical Dictionary for Regulatory Activities; CTCAE: Common Terminology Criteria for Adverse Events]{.tiny .muted}
 :::
-::: {.column width="50%"}
+::: {.column width="48%"}
 **Also written by the statistician**
 
-* Hypotheses and alpha: H0: HR = 1 vs H1: HR < 1, one-sided 2.5%
-* Design: 1:1:1, event-driven, one interim analysis
-* Sample size and its assumptions
+* Hypotheses and alpha (next slide)
+* Design: 1:1, event-driven, two interim analyses
+* Sample size and assumptions
 * Analysis populations and methods (summary)
-* Multiplicity strategy
-* Interim analysis and DMC charter
+* Multiplicity strategy for the secondary endpoints
+* Interim analyses and DMC charter
 
-Full text: `lab/docs/01_protocol_synopsis.md`
+Full text: `r gh("lab/docs/01_protocol_synopsis.md")`
+:::
+::::
+
+## The hypothesis: what does HR 0.6 mean?
+
+:::: {.columns}
+::: {.column width="46%"}
+$$
+H_0: \mathrm{HR} = 1 \quad \text{vs} \quad H_1: \mathrm{HR} < 1
+$$
+
+* One-sided alpha 2.5%, power 80%
+* Design HR `r DESIGN$hr`: the drug lowers the hazard of progression or death by 40%
+* Exponential survival: median = log(2) / hazard, so HR = median (Placebo) / median (High Dose)
+* Placebo median `r DESIGN$median_control` months → High Dose median **`r sprintf("%.1f", median_exp)` months**
+:::
+::: {.column width="54%"}
+```{r}
+#| fig-width: 8
+#| fig-height: 5.4
+p_hypothesis
+```
 :::
 ::::
 
 ## The estimand (ICH E9(R1))
 
-An estimand says **what** we estimate *before* we decide **how**. ICH: International Council for Harmonisation.
+An estimand defines **what** we estimate, before we decide **how** to estimate. ICH: International Council for Harmonisation.
 
 | Attribute | PFS, High Dose vs Placebo |
 |---|---|
 | Population | All randomized patients (intention-to-treat, ITT) |
-| Treatment | High Dose vs placebo, on top of best supportive care |
+| Treatment | High Dose vs placebo, added to best supportive care |
 | Variable | Time to progression (RECIST 1.1) or death |
-| Intercurrent events | Stops treatment early: *treatment policy* (keep scanning) · Death: part of the endpoint (*composite*) · New anticancer therapy: *hypothetical* (censor before it) |
+| Intercurrent events | Stops treatment early: *treatment policy* (keep scanning) · Death: part of the endpoint (*composite*) · New anticancer therapy: *hypothetical* (censor before the new therapy) |
 | Summary measure | Hazard ratio (Cox model), tested by log-rank |
 
 ::: {.takeaway}
-Censoring rules are not programming details: they are how the estimand handles
-intercurrent events. Write them in the SAP, then code them exactly.
+Censoring rules are not programming details: the rules define how the estimand
+handles intercurrent events. Write the rules in the SAP, then program the rules
+exactly as written.
 :::
 
 ## SAP: decide everything before unblinding
 
 :::: {.columns .small}
 ::: {.column width="50%"}
-**Definitions**
-
-* Analysis sets and the ADSL flag for each
-* Study day, baseline, visit windows
-* Treatment-emergent AE window
-* Partial date imputation (ADaM only, never SDTM)
-* Endpoint derivations and **censoring rules**
-
-**Methods**
-
-* Test, model, stratification factors
-* CI methods (exact? log-log?), handling of ties
-* Sensitivity and subgroup analyses
+1. **Analysis populations**: ITT set (all randomized, as randomized); safety set (all who received study drug, as treated)
+2. **Analysis visit windows**: study day; a window around each scheduled visit; which record counts when two fall in one window
+3. **Baseline characteristics**: baseline = last value before the first dose; how each variable is collected and summarized; partial dates imputed in ADaM only, never in SDTM
+4. **Efficacy**: endpoint derivations and **censoring rules**; test and model; multiplicity; interim analyses (timing, boundaries, futility)
 :::
 ::: {.column width="50%"}
-**Error control**
+5. **Sensitivity analyses**: for example PFS by independent central review
+6. **Safety**: treatment-emergent window, MedDRA coding, CTCAE grades, exposure
+7. **Computation conventions**: confidence interval (CI) methods (log-log for the median, Clopper-Pearson for rates), ties (Efron), rounding, software versions. R and SAS defaults differ, so the SAP names each method.
 
-* Multiplicity strategy across endpoints and doses
-* Interim analyses: timing, boundaries, futility
-
-**Outputs**
-
-* TFL shells: every table, figure and listing, with titles, populations and footnotes
-
-**Process**
-
-* Final before database lock (DBL) and before anyone sees unblinded data
-
-Excerpt: `lab/docs/02_sap.md`
+TFL shells come with the SAP. Final version before database lock (DBL) and before anyone sees unblinded data. Excerpt: `r gh("lab/docs/02_sap.md")`
 :::
 ::::
 
@@ -292,7 +294,7 @@ Excerpt: `lab/docs/02_sap.md`
 | Set | Definition | Flag |
 |---|---|---|
 | ITT | All randomized, **as randomized** | `ITTFL`, `TRT01P` |
-| Safety | All dosed, **as treated** | `SAFFL`, `TRT01A` |
+| Safety | All who received study drug, **as treated** | `SAFFL`, `TRT01A` |
 
 [ADSL: subject-level analysis dataset, one row per patient]{.small .muted}
 :::
@@ -307,9 +309,10 @@ adsl |>
 ::::
 
 ::: {.takeaway}
-`r sum(adsl$TRT01P == "Xanomeline High Dose" & adsl$TRT01A == "Xanomeline Low Dose")`
-patients randomized to High Dose stopped during the 54 mg start and never got
-81 mg: High Dose for efficacy, Low Dose for safety.
+Every patient received the randomized treatment, so both sets have the same arms.
+`r n_never_81`
+High Dose patients stopped during the 54 mg start and never reached 81 mg. These
+patients started the High Dose regimen, so they stay High Dose for safety.
 :::
 
 ## PFS censoring rules (SAP section 6.1)
@@ -320,24 +323,62 @@ patients randomized to High Dose stopped during the 54 mg start and never got
 | Death before progression | Date of death | **Event** |
 | No progression, no death | Last adequate tumour assessment | Censored |
 | No post-baseline assessment, no death | Randomization | Censored |
-| New anticancer therapy before progression | Last adequate assessment before it | Censored |
+| New anticancer therapy before progression | Last adequate assessment before the new therapy | Censored |
 | Event after two or more missed scans | Last adequate assessment before the gap | Censored (sensitivity) |
 
-[Adapted from FDA guidance *Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics* (2018). We will turn this table into code in Part 3.]{.small .muted}
+[Adapted from US Food and Drug Administration (FDA) guidance *Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics* (2018). Part 3 turns this table into code.]{.small .muted}
+
+## Step 1. How many events? (fixed design)
+
+Schoenfeld's formula (1:1 randomization, log-rank test):
+
+$$
+d = \frac{4\,(z_{1-\alpha} + z_{1-\beta})^2}{(\log \mathrm{HR})^2}
+= \frac{4\,(1.960 + 0.842)^2}{(\log 0.6)^2} \approx `r round(events_fixed, 1)`
+$$
+
+:::: {.columns}
+::: {.column width="55%"}
+```{r design-schoenfeld, opts.label = "code"}
+```
+:::
+::: {.column width="45%"}
+* A fixed design (no interim analysis) needs **`r ceiling(events_fixed)` events**
+* Power comes from the number of **events**, not from the number of patients
+* Information for the log-rank test ≈ events / 4
+:::
+::::
+
+## Step 2. From events to patients
+
+:::: {.columns}
+::: {.column width="52%"}
+```{r design-fixed-n, opts.label = "code"}
+```
+:::
+::: {.column width="48%"}
+**Patients = events / P(a patient has an event)**
+
+* Assumptions: placebo median PFS `r DESIGN$median_control` months (placebo arms of refractory colorectal cancer trials such as CORRECT and RECOURSE), HR `r DESIGN$hr`, 24-month enrollment, 3-month minimum follow-up, 25% dropout by month 3
+* P(event by month `r DESIGN$accrual_months + DESIGN$followup_months`) = `r sprintf("%.2f", p_event)`
+* `r round(fixed$d, 1)` / `r sprintf("%.2f", p_event)` = `r round(fixed$n, 1)` → **`r n_fixed` patients**
+* More patients or longer follow-up: the same events come sooner
+:::
+::::
 
 ## Why a group sequential design?
 
 :::: {.columns}
 ::: {.column width="45%"}
 * Look at the data **before** the planned end: stop early for efficacy, or for futility
-* Each look is a chance for a false positive: spread the one-sided 2.5% over looks
-* **Alpha spending function** (Lan-DeMets, O'Brien-Fleming type), with information fraction $t$ = events observed / events planned:
+* Each look adds a chance of a false positive result: split the one-sided 2.5% alpha across the looks
+* **Alpha spending function** (Lan-DeMets, O'Brien-Fleming type); $t$ = events observed / events planned:
 
 $$
 \alpha(t) = 2\left[1 - \Phi\!\left(\frac{z_{1-\alpha/2}}{\sqrt{t}}\right)\right]
 $$
 
-* Spends almost nothing early and keeps the final boundary close to 1.96
+* Very little alpha is spent early, so the final boundary stays close to 1.96
 :::
 ::: {.column width="55%"}
 ```{r}
@@ -348,107 +389,86 @@ p_boundary
 :::
 ::::
 
-## The design in {rpact}
+## Step 3. Group sequential design in {gsDesign} {.code-small}
 
 :::: {.columns}
-::: {.column width="48%"}
+::: {.column width="44%"}
 ```{r design-gsd, opts.label = "code"}
 ```
 :::
-::: {.column width="52%"}
+::: {.column width="56%"}
 ```{r}
 boundary_tbl |>
-  dplyr::select(-`Months from first randomization`, -`Futility boundary (Z)`) |>
+  dplyr::select(Analysis, `Events (planned)`, `Expected month`, `Efficacy boundary (Z)`,
+                `Nominal one-sided p`, `HR at boundary`) |>
   tab(16)
 ```
 
-* Interim efficacy needs p < `r signif(design$stageLevels[1], 2)`: about a 50% better hazard
-* The final test is barely penalised: `r round(design$criticalValues[2], 3)` vs 1.960
-* Futility is **non-binding**: ignoring it does not inflate alpha
+* `r round(events_fixed, 1)` events × inflation factor `r sprintf("%.3f", inflation)` = `r round(max(gs$n.I), 1)` → **`r target_events` events**; **`r 2 * n_per_arm` patients** (`r n_per_arm` per arm)
+* Interim analyses at **`r ia_events[1]`** and **`r ia_events[2]`** events
+* Futility is **non-binding** and based on conditional power (Part 5), so the design has efficacy boundaries only
 :::
 ::::
 
-## Sample size for survival: power comes from events
-
-Schoenfeld's formula (1:1 allocation, log-rank test):
-
-$$
-d = \frac{4\,(z_{1-\alpha} + z_{1-\beta})^2}{(\log \mathrm{HR})^2}
-= \frac{4\,(1.960 + 0.842)^2}{(\log 0.6)^2} \approx `r round(events_fixed, 1)`
-$$
+## The analyses are triggered by events, not dates
 
 :::: {.columns}
-::: {.column width="50%"}
-```{r design-schoenfeld, opts.label = "code"}
+::: {.column width="56%"}
+```{r}
+#| fig-width: 8.5
+#| fig-height: 5.6
+p_events
 ```
 :::
-::: {.column width="50%"}
-* Fixed design: `r round(events_fixed, 1)` events
-* × inflation factor `r round(inflation, 4)` for the interim
-* = `r round(events_gsd, 1)` → **`r target_events` events**; interim at **`r ia_events`**
-
-::: {.takeaway}
-The number of patients only decides **how long** it takes to observe the events.
-:::
+::: {.column width="44%"}
+* Count the **total** PFS events: both arms pooled, **blinded**
+* Interim 1 at `r ia_events[1]` events, interim 2 at `r ia_events[2]`, final at `r target_events`
+* The calendar month is only a forecast; update the forecast as events come in
+* Data cut-off date = date of the event that reaches the target
 :::
 ::::
 
-## From events to patients
+## Power analysis
 
 :::: {.columns}
 ::: {.column width="52%"}
-```{r design-samplesize, opts.label = "code"}
+```{r}
+#| fig-width: 8
+#| fig-height: 5.6
+p_power
 ```
 :::
 ::: {.column width="48%"}
-Assumptions: placebo median PFS `r DESIGN$median_control` months (placebo arms of
-refractory colorectal cancer trials such as CORRECT and RECOURSE), HR 0.60, 24-month
-accrual, 3-month minimum follow-up, 25% dropout by month 3.
-
-* **`r round(ss$maxNumberOfSubjects, 1)` → `r 2 * n_per_arm` patients** (`r n_per_arm` per arm) for the primary comparison
-* With the Low Dose arm: **`r 3 * n_per_arm`** planned; the study randomized `r sum(adsl$ITTFL == "Y")`
-* Expected timing: interim at month `r round(ss$analysisTime[1, 1], 1)`, final at month `r round(ss$analysisTime[2, 1], 1)`
-:::
-::::
-
-## How fragile is the plan?
-
-:::: {.columns}
-::: {.column width="45%"}
 ```{r}
-sens_tbl |>
-  gt::gt() |>
-  gt::tab_style(gt::cell_fill(color = "#EEF5FB"), gt::cells_body(rows = `Assumed HR` == 0.6)) |>
-  slide_gt(20)
+power_tbl |>
+  tab(16)
 ```
-:::
-::: {.column width="55%"}
-* Events needed grow like $1 / (\log \mathrm{HR})^2$: HR 0.70 needs twice the events of HR 0.60
-* The HR is the most important and least certain assumption: justify it from earlier trials
-* Proportional hazards is an assumption too; delayed effects (common with immunotherapy) cost power
-* Event-driven trials: monitor **pooled, blinded** event counts and re-forecast the analysis dates
+
+* With `r target_events` events, power falls fast if the true HR is larger than `r DESIGN$hr`
+* The HR is the most important and least certain assumption: justify the HR with data from earlier trials
+* Proportional hazards is also an assumption; a delayed treatment effect (common with immunotherapy) reduces power
 :::
 ::::
 
 # Part 3 · Data standards {background-color="#1D4F91" .part-title}
 
-CRF → raw data → SDTM → ADaM (20 minutes)
+CRF → raw data → SDTM → ADaM
 
 ::: notes
-Target: finish Part 3 by minute 50. Students rarely see raw data; show the formats and the QC story.
+Students rarely see raw data; show the formats and the QC story.
 :::
 
-## Collect what the SAP needs, nothing else
+## Collect only what the SAP needs
 
-| SAP needs | Comes from | Raw file in `lab/data/raw/` | SDTM |
+| SAP needs | Source | Raw file in `lab/data/raw/` | SDTM |
 |---|---|---|---|
 | Randomized arm and date | IRT vendor transfer | `irt.csv` | DM.ARM, DS |
 | Age, sex, race | Demographics CRF | `dm.csv` | DM |
 | First / last dose, dose received | Exposure CRF | `ex.csv` | EX, DM |
 | Progression | Tumour response CRF | `rs.csv` | RS |
 | Death, end of study | End of Study CRF | `ds.csv` | DS |
-| Adverse events | AE CRF + MedDRA coding | `ae.csv` | AE |
-| Concomitant medications | CM CRF + WHODrug coding | `cm.csv` | CM |
+| Adverse events | Adverse event CRF + MedDRA coding | `ae.csv` | AE |
+| Concomitant medications | Concomitant medication CRF + WHODrug coding | `cm.csv` | CM |
 | Laboratory values | Central lab transfer | `lb.csv.gz` | LB |
 
 [IRT: Interactive Response Technology (randomization system); CM: concomitant medications; WHODrug: World Health Organization Drug Dictionary]{.small .muted}
@@ -465,9 +485,9 @@ Target: finish Part 3 by minute 50. Students rarely see raw data; show the forma
 | (coding team) | `AETERM_PT`, `AETERM_SOC` | APPLICATION SITE ERYTHEMA | `AEDECOD`, `AEBODSYS` |
 | (derived) | | | `AESEQ`, `AESTDY` |
 
-[CDASH: Clinical Data Acquisition Standards Harmonization: CRF field names designed to map to SDTM. PT: preferred term; SOC: system organ class.]{.small .muted}
+[CDASH: Clinical Data Acquisition Standards Harmonization, a standard for CRF field names that map to SDTM. PT: preferred term; SOC: system organ class.]{.small .muted}
 
-## Raw data look like this
+## Example of raw data
 
 ```{r}
 raw_ae <- read_raw("ae")
@@ -490,18 +510,19 @@ raw_ae |>
 :::
 ::::
 
-## Where did these raw data come from?
+## How we made the raw data
 
-pharmaverse ships SDTM only, so the lab **reverse-engineers** raw data by undoing
-what the SDTMIG (SDTM Implementation Guide) asks a sponsor to derive:
+Our source data contain SDTM only. The lab rebuilds raw data from SDTM
+(**reverse engineering**): the code undoes the derivations that the SDTMIG
+(SDTM Implementation Guide) asks a sponsor to do.
 
 :::: {.columns}
 ::: {.column width="42%"}
-1. Drop derived variables: `--SEQ`, `--DY`, `USUBJID`, `AGE`, reference dates
+1. Remove derived variables: `--SEQ`, `--DY`, `USUBJID`, `AGE`, reference dates
 2. ISO 8601 dates → CRF text
 3. Controlled terminology → CRF display text
 4. Keep dictionary codes as "coding" columns
-5. Reshape findings the way forms and vendors deliver them
+5. Reshape findings data into the layout of CRF and vendor files
 :::
 ::: {.column width="58%"}
 ```{r raw-date-helpers, opts.label = "code"}
@@ -509,7 +530,7 @@ what the SDTMIG (SDTM Implementation Guide) asks a sponsor to derive:
 :::
 ::::
 
-## SDTM in one slide
+## SDTM: a short overview
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -522,7 +543,7 @@ what the SDTMIG (SDTM Implementation Guide) asks a sponsor to derive:
 * Trial design: TA, TV, TS ...
 :::
 ::: {.column width="50%"}
-**Conventions you will meet every day**
+**Common conventions**
 
 * `USUBJID`: unique across all studies of the sponsor
 * Dates in ISO 8601 (`--DTC`), partial dates stay partial
@@ -553,7 +574,7 @@ what the SDTMIG (SDTM Implementation Guide) asks a sponsor to derive:
 ```{r sdtm-ae, opts.label = "code"}
 ```
 
-## QC: compare with an independent version
+## Quality control (QC): compare with an independent version
 
 ```{r}
 qc_summary |>
@@ -562,29 +583,44 @@ qc_summary |>
 
 :::: {.columns .small}
 ::: {.column width="50%"}
-**DM `RFENDTC`, patient 01-710-1083.** The reference uses the date the end-of-study
-page was completed; our rule uses the date of the event (death). A **spec ambiguity**:
-fix the specification, not just the code.
+**DM `RFENDTC`, patient 01-710-1083.** The reference data use the date of the
+end-of-study page. Our rule uses the date of the event (death). This difference
+is a **specification ambiguity**: fix the specification, not only the code.
 :::
 ::: {.column width="50%"}
-**AE `AESTDY`, patient 01-716-1063.** The AE starts on the first-dose date, so the
-study day is 1; the reference says 366. An **error in the reference data**.
+**AE and CM: no differences.** All `r nrow(ae_sdtm)` AE records and
+`r nrow(cm_sdtm)` CM records match the reference in every variable. Each
+difference that does appear needs a root cause before the data are used.
 :::
 ::::
 
 ::: {.takeaway}
-Independent double programming (two programmers, one spec, compare with
-{diffdf} or SAS PROC COMPARE) is how regulated outputs are checked.
+Regulated outputs are checked by independent double programming: two
+programmers, one specification, then a comparison with {diffdf} or SAS PROC COMPARE.
 :::
 
-## ADaM: analysis-ready, traceable
+## QC in industry practice
+
+* **Clean logs**: the production and the QC programs run with no errors and no warnings
+* **Dataset QC compares everything**, not only the values: variables, types,
+  lengths, labels, formats and every value ({diffdf}, SAS PROC COMPARE)
+* **Output QC**: every number in every TFL is compared with the QC version
+* **Batch run**: one script reruns all production and QC programs and collects
+  the logs and the compare results (here: `r gh("lab/run_all.R")`)
+* **Compliance**: CDISC conformance checks (for example Pinnacle 21) on SDTM and ADaM
+
+::: {.takeaway}
+QC is planned work with its own programs and records, not a last look before delivery.
+:::
+
+## ADaM: ready for analysis and traceable
 
 :::: {.columns}
 ::: {.column width="50%"}
-**Principles (ADaMIG)**
+**Principles (ADaM Implementation Guide, ADaMIG)**
 
-* Analysis-ready: one procedure call away from the result
-* Traceable: every value leads back to SDTM
+* Ready for analysis: one procedure call gives the result
+* Traceable: every value can be traced back to SDTM
 * Documented by metadata (define.xml)
 
 **Structures**
@@ -597,7 +633,7 @@ Independent double programming (two programmers, one spec, compare with
 | SDTM sources | ADaM dataset | Structure |
 |---|---|---|
 | DM, DS, VS, SUPPDM | **ADSL** | one row per patient |
-| RS + ADSL | **ADRS** | BDS (response by visit, BOR, PD) |
+| RS + ADSL | **ADRS** | BDS (response by visit, best overall response, progression) |
 | ADSL + ADRS | **ADTTE** | BDS (PFS, OS) |
 | AE + ADSL | **ADAE** | OCCDS |
 | CM + ADSL | **ADCM** | OCCDS |
@@ -607,7 +643,24 @@ Independent double programming (two programmers, one spec, compare with
 :::
 ::::
 
-## ADSL: add what our SAP needs {.code-small}
+## Why {admiral}?
+
+:::: {.columns}
+::: {.column width="55%"}
+* Built **across the industry**: many pharmaceutical companies develop and use {admiral} together (pharmaverse)
+* Built like engineering software: unit tests, code review, continuous integration and delivery (CI/CD), regular releases
+* Used for several years in many companies, including in submissions
+:::
+::: {.column width="45%"}
+**More mature than the SDTM tools. Why?**
+
+* ADaM input is **always SDTM**: one standard
+* SDTM input varies: EDC exports, CDISC ODM (Operational Data Model), CDASH forms, many vendor formats
+* So raw → SDTM tools (for example {sdtm.oak}) are younger and more study-specific
+:::
+::::
+
+## ADSL: add the variables our SAP needs {.code-small}
 
 :::: {.columns}
 ::: {.column width="62%"}
@@ -633,7 +686,7 @@ adtte |>
 ```
 
 * `AVAL` = `ADT` − `STARTDT` + 1 (days); `CNSR` = 0 event, 1 censored
-* `SRCDOM` / `SRCVAR` / `SRCSEQ`: **traceability** to the record that decided the date
+* `SRCDOM` / `SRCVAR` / `SRCSEQ`: **traceability**, the source record of the date
 
 ## SAP censoring rules → {admiral} code {.code-small}
 
@@ -670,62 +723,62 @@ adtte_check |>
 :::
 ::::
 
-[Why not `pharmaverseadam::adtte_onco`? It comes from a small RECIST example with 6 PFS events; `rs_onco` has investigator assessments for 205 patients.]{.small .muted}
+[Why not `pharmaverseadam::adtte_onco`? That dataset comes from a small RECIST example with only 6 PFS events. `rs_onco` has investigator assessments for 205 patients.]{.small .muted}
 
 # Part 4 · Tables, figures, listings {background-color="#1D4F91" .part-title}
 
-Shells, computing, baseline, efficacy, safety (20 minutes)
+Shells, software, baseline, efficacy, safety
 
 ::: notes
-Target: finish Part 4 by minute 70. Use the Output/Code tabs; do not read every number.
+Use the Output/Code tabs; do not read every number.
 :::
 
-## TFL shells come with the SAP
+## TFL shells are part of the SAP
 
 :::: {.columns}
 ::: {.column width="55%"}
 **Table 14.2.1** Progression-free survival (ITT set)
 
-| | Placebo (N=xx) | Low (N=xx) | High (N=xx) |
+| | Placebo (N=xx) | High Dose (N=xx) | Total (N=xx) |
 |---|---|---|---|
-| Events, n (%) | xx (xx.x) | xx (xx.x) | xx (xx.x) |
-| Censored, n (%) | xx (xx.x) | xx (xx.x) | xx (xx.x) |
-| Median, months (95% CI) [a] | x.x (x.x, x.x) | ... | ... |
-| HR vs placebo (95% CI) [b] | Reference | x.xx (...) | x.xx (...) |
-| One-sided p (log-rank) | | x.xxx | x.xxx |
+| Events, n (%) | xx (xx.x%) | xx (xx.x%) | xx (xx.x%) |
+| Censored, n (%) | xx (xx.x%) | xx (xx.x%) | xx (xx.x%) |
+| Median, months (95% CI) [a] | x.x (x.x - x.x) | x.x (x.x - x.x) | x.x (x.x - x.x) |
+| HR vs Placebo (95% CI) [b] | | x.xx (x.xx - x.xx) | |
+| One-sided p (log-rank) | | x.xxxx | |
 
 [[a] Kaplan-Meier, Brookmeyer-Crowley CI (log-log). [b] Cox model.]{.tiny}
 :::
 ::: {.column width="45%"}
-* Written **before** data exist; agreed by statistician, clinician, programmers
-* Fix: numbering (ICH E3: 14.1 baseline, 14.2 efficacy, 14.3 safety), titles, population, rows, statistics, decimals, footnotes
-* Programmers code to the shell; QC checks against the shell
-* All shells: `lab/docs/04_tfl_shells.md`
+* Written **before** any data exist and agreed by the statistician, clinicians and programmers
+* Shells fix the numbering (ICH E3: 14.1 baseline, 14.2 efficacy, 14.3 safety), titles, population, rows, columns (with a **Total** column), statistics, decimals and footnotes
+* Programmers write code to match the shell; QC compares the output with the shell
+* All shells: `r gh("lab/docs/04_tfl_shells.md")`
 :::
 ::::
 
-## The computing stack
+## Software for each step
 
-| Step | R packages used here | Alternatives you will meet |
+| Step | R packages used here | Other common tools |
 |---|---|---|
-| Design, sample size | **rpact** | gsDesign, East (commercial), SAS PROC SEQDESIGN |
+| Design, sample size | **gsDesign** | rpact, East (commercial), SAS PROC SEQDESIGN |
 | Raw → SDTM | dplyr (by hand) | **sdtm.oak** (pharmaverse), SAS |
 | SDTM → ADaM | **admiral**, admiralonco, metatools | SAS macros |
 | Survival analysis | **survival**, ggsurvfit | SAS PROC LIFETEST / PHREG |
-| Tables | **gtsummary** (+ cards), gt | rtables + tern, Tplyr, r2rtf |
+| Tables | **rtables** + **tern** | gtsummary, Tplyr, SAS PROC REPORT |
 | Interim data cut | admiral functions with a cut-off date | **datacutr** (pharmaverse) |
 | Submission files | **xportr** | metacore, SAS |
 | QC | **diffdf** | SAS PROC COMPARE |
 | Reproducibility | **renv**, git | containers |
 
-[pharmaverse (pharmaverse.org): open-source R packages for clinical reporting, built by pharmaceutical companies together.]{.small .muted}
+[pharmaverse (pharmaverse.org): open-source R packages for clinical reporting, built by pharmaceutical companies together. rtables and tern come from the same community (insightsengineering.github.io).]{.small .muted}
 
 ## Table 14.1.1 Disposition
 
 ::: {.panel-tabset}
 ### Output
 ```{r}
-slide_gt(t_14_1_1, 20)
+slide_rt(t_14_1_1, 15)
 ```
 ### Code
 ```{r tfl-disposition, opts.label = "code"}
@@ -737,9 +790,8 @@ slide_gt(t_14_1_1, 20)
 ::: {.panel-tabset}
 ### Output
 ```{r}
-t_14_1_2 |>
-  gtsummary::modify_table_body(~ dplyr::filter(.x, !variable %in% c("HEIGHTBL", "WEIGHTBL", "AGEGR1", "ETHNIC"))) |>
-  slide_gt(16)
+build_table(lyt_demo(c("AGE", "SEX", "RACE", "BMIBL")), df = demo) |>
+  slide_rt(15)
 ```
 ### Code
 ```{r tfl-demographics, opts.label = "code"}
@@ -755,14 +807,14 @@ Age group, ethnicity, height and weight are in the full table (lab/output/tables
 ::: {.panel-tabset}
 ### Output
 ```{r}
-slide_gt(t_14_1_3, 20)
+slide_rt(t_14_1_3, 18)
 ```
 ### Code
 ```{r tfl-conmed, opts.label = "code"}
 ```
 :::
 
-[Most pilot medications were never coded with WHODrug ("UNCODED"); a dry-run table shows them by verbatim name. Coding must be complete before database lock.]{.small .muted}
+[Most medications in the pilot study were never coded with WHODrug ("UNCODED"). This dry-run table shows the verbatim names. Coding must be complete before database lock.]{.small .muted}
 
 ## Primary endpoint: Kaplan-Meier
 
@@ -772,44 +824,40 @@ slide_gt(t_14_1_3, 20)
 p_km_pfs
 ```
 
-## Table 14.2.1 PFS
+## Table 14.2.1 PFS {.code-small}
 
 ::: {.panel-tabset}
 ### Output
 ```{r}
-slide_gt(t_14_2_1, 20)
+slide_rt(t_14_2_1, 16)
 ```
 ### Code
-```{r eff-compare, opts.label = "code"}
+```{r eff-tte-layout, opts.label = "code"}
 ```
 :::
 
-## Why the curves look like stairs
+## The endpoint depends on who reads the scan, and when
 
 :::: {.columns}
-::: {.column width="50%"}
-* Progression is only **seen at scheduled scans** (weeks 6, 12, 18, 24)
-* The true progression time is somewhere between two scans: **interval-censored**
-* Many tied event times at each scan
-* If one arm is scanned later or less often, PFS is biased: same schedule in every arm
-* Sensitivity analysis: interval-censored methods (e.g. `icenReg`), or a midpoint imputation
+::: {.column width="52%"}
+* Progression is a judgement. Here every scan has three reads: the investigator and two independent radiologists
+* The two radiologists disagree on `r reader_disagree$differ` of `r reader_disagree$visits` visits (`r sprintf("%.0f%%", 100 * reader_disagree$differ / reader_disagree$visits)`); an **adjudicator** accepts one read: the blinded independent central review (BICR) result
+* Reads, queries and data cleaning take time, so a patient's PFS status at a given calendar date can still change
+* So the event count at a data cut-off, and even the cut-off date, can move
 :::
-::: {.column width="50%"}
+::: {.column width="48%"}
 ```{r}
-pfs |>
-  dplyr::filter(CNSR == 0) |>
-  dplyr::mutate(Week = round(AVAL / 7)) |>
-  dplyr::count(`Study week of progression` = cut(Week, c(0, 4, 8, 10, 14, 20, 30),
-                                                labels = c("0-4", "5-8", "9-10", "11-14", "15-20", "21-30"))) |>
-  tab(20)
+review_tbl |>
+  tab(18)
 ```
+[First progression per patient: investigator vs BICR (`r sum(review_tbl$Patients)` patients with tumour assessments).]{.small .muted}
 :::
 ::::
 
-## The log-rank test, by hand
+## The log-rank test, step by step
 
 $$
-Z = \frac{\sum_j \left(O_{1j} - E_{1j}\right)}{\sqrt{\sum_j V_{1j}}},\qquad
+\chi^2 = \frac{\left(\sum_j (O_{1j} - E_{1j})\right)^2}{\sum_j V_{1j}},\qquad
 E_{1j} = d_j \frac{n_{1j}}{n_j},\qquad
 V_{1j} = d_j \frac{n_{1j}\, n_{0j}\,(n_j - d_j)}{n_j^2\,(n_j - 1)}
 $$
@@ -821,110 +869,110 @@ logrank_parts |>
   tab(20)
 ```
 :::
+::: {.column width="45%"}
+* $V$ = `r round(logrank_var, 2)`, so $\chi^2$ = `r sprintf("%.1f", lr$obs[2] - lr$exp[2])`² / `r round(logrank_var, 2)` = **`r sprintf("%.3f", pfs_hi$chisq)`** (1 df), p = `r fmt_p(pfs_hi$p_chisq)` (two-sided)
+* For the one-sided test: $Z = (E - O)/\sqrt{V}$ = **`r sprintf("%.3f", pfs_hi$z)`** for High Dose, one-sided p = **`r fmt_p(pfs_hi$p_one_sided)`**
+:::
 ::::
 
-Variance $V$ = `r round(logrank_var, 2)`, so
-$Z = (E - O)/\sqrt{V}$ for High Dose = `r sprintf("%.1f", lr$exp[2] - lr$obs[2])` / `r sprintf("%.2f", sqrt(logrank_var))`
-= **`r sprintf("%.3f", pfs_hi$z)`**, one-sided p = **`r fmt_p(pfs_hi$p_one_sided)`**.
-
-## Same data, different software defaults
+## Sensitivity analysis: PFS by BICR {.code-small}
 
 ::: {.panel-tabset}
 ### Output
 ```{r}
-defaults_tbl |>
-  tab(20)
+slide_rt(t_14_2_4, 16)
 ```
-
-::: {.takeaway}
-Ties and CI methods change the numbers. The SAP must name the method
-(e.g. "Efron ties; Brookmeyer-Crowley CI with log-log transformation"), and
-double programming in R and SAS will not match unless both follow it.
-:::
 ### Code
-```{r eff-software-defaults, opts.label = "code"}
+```{r eff-sensitivity, opts.label = "code"}
 ```
 :::
+
+[Same ADaM programs, same table layout, different reads. HR `r sprintf("%.2f", pfs_bicr_hi$hr)` by BICR vs `r sprintf("%.2f", pfs_hi$hr)` by investigator: the conclusion does not change.]{.small .muted}
 
 ## What can we claim? Multiplicity
 
-```{r}
-hier_tbl |>
-  tab(20)
+```{=html}
+<div class="flow">
+  <div class="box lead"><b>1. PFS</b>primary: the gatekeeper</div><div class="arrow">&rarr;</div>
+  <div class="box review"><b>2. OS</b>key secondary</div><div class="arrow">&rarr;</div>
+  <div class="box review"><b>3. ORR</b>secondary</div><div class="arrow">&rarr;</div>
+  <div class="box review"><b>4. DCR</b>secondary</div>
+</div>
 ```
 
-* The final boundary is recomputed with the **actual** information:
-  `r ia_events_obs` events at the interim, `r pfs_hi$events` at the final → Z ≥ `r sprintf("%.3f", z_final)`
-* Primary hypothesis not rejected (HR `r sprintf("%.2f", pfs_hi$hr)`): the chain stops, everything after it is **descriptive**
-* Nominal p-values for later endpoints may be shown, but they support no claim
+* The order is fixed in the SAP before unblinding. Pass a step (reject H0 at one-sided 2.5%) → test the next step; fail a step → **stop**
 
-## Table 14.2.2 Response rate
+```{r}
+hier_tbl |>
+  tab(18)
+```
+
+* PFS boundary at the final, from the **actual** information (`r paste(ia_events_obs, collapse = " and ")` events at the interims, `r pfs_hi$events` at the final): Z ≥ `r sprintf("%.3f", z_final)`. PFS is not rejected, so all later results are **descriptive**
+
+## Table 14.2.2 Response rates
 
 ::: {.panel-tabset}
 ### Output
 ```{r}
-slide_gt(t_14_2_2, 19)
+slide_rt(t_14_2_2, 15)
 ```
 ### Code
 ```{r eff-orr, opts.label = "code"}
 ```
 :::
 
-## Overall survival: immature
+## Key secondary endpoint: overall survival
 
-:::: {.columns}
-::: {.column width="45%"}
+::: {.panel-tabset}
+### Figure
 ```{r}
-os_by_arm |>
-  dplyr::rename(Arm = TRT01P) |>
-  tab(20)
+#| fig-width: 12
+#| fig-height: 5.1
+p_km_os
+```
+### Table
+```{r}
+slide_rt(t_14_2_3, 16)
 ```
 :::
-::: {.column width="55%"}
-* Only `r sum(os_by_arm$Deaths)` deaths: no median, no meaningful HR
-* Typical plan: test OS at a later data cut, with its own alpha
-* Report what is there; do not over-interpret a handful of events
-:::
-::::
+
+[Only `r os_deaths` deaths: the median and the HR are not calculated (NC). OS is usually tested at a later data cut, with its own alpha.]{.small .muted}
 
 ## Table 14.3.1 Adverse events overview
 
 ::: {.panel-tabset}
 ### Output
 ```{r}
-slide_gt(t_14_3_1, 22)
+slide_rt(t_14_3_1, 19)
 ```
 ### Code
 ```{r saf-overview, opts.label = "code"}
 ```
 :::
 
-[Safety set by treatment received. TEAE: starts on/after the first dose and up to 30 days after the last dose (`TRTEMFL` in ADAE).]{.small .muted}
+[Safety set, by treatment received. TEAE: treatment-emergent adverse event (`TRTEMFL` in ADAE).]{.small .muted}
 
 ## Table 14.3.2 TEAEs by system organ class and preferred term
 
 ::: {.panel-tabset}
 ### Output
 ```{r}
-slide_gt(t_14_3_2, 20)
+slide_rt(t_14_3_2, 19)
 ```
 ### Code
 ```{r saf-soc-pt, opts.label = "code"}
 ```
 :::
 
-[Xanomeline was given as a skin patch: application-site reactions dominate.]{.small .muted}
+[Xanomeline was given as a skin patch, so application-site reactions are the most common events.]{.small .muted}
 
 ## Table 14.3.3 Laboratory shift (CTCAE grade)
 
 ::: {.panel-tabset}
 ### Output
 ```{r}
-shift_tbl |>
-  dplyr::filter(PARAM %in% levels(PARAM)[1:3]) |>
-  dplyr::mutate(Baseline = sub("Baseline grade", "Baseline", Baseline)) |>
-  make_shift_gt() |>
-  slide_gt(15)
+build_table(lyt_shift, df = dplyr::filter(lb_worst, PARAMCD %in% c("ALT", "AST", "BILI"))) |>
+  slide_rt(14)
 ```
 ### Code
 ```{r saf-lab-shift, opts.label = "code"}
@@ -939,58 +987,57 @@ ALT, AST and bilirubin shown; alkaline phosphatase and creatinine are in the RTF
 
 :::: {.columns .small}
 ::: {.column width="50%"}
-**Before data**
+**Long before database lock**
 
-* Shells signed off with the SAP
-* ADaM specifications (one row per variable, with derivation)
-* Programs written and run on **blinded** or dummy-treatment data ("dry runs")
+* Shells approved together with the SAP; ADaM specifications (one row per variable, with derivation)
+* **Dry runs** on blinded or dummy-treatment data
+* The trial goes on, so the outputs are **re-run periodically** (DMC, safety reports, ad-hoc requests), not only at the final analysis
 
-**Checks**
+**Quality checks**
 
-* Independent double programming of every key output
-* N in column headers = analysis set size
-* Footnotes state population, method, and data cut
+* Independent double programming; clean logs
+* Data compliance checks (Pinnacle 21) for CDISC conformance and data quality
 :::
 ::: {.column width="50%"}
 **Reproducibility**
 
-* Version control (git) for programs and specifications
-* Locked package versions (`renv.lock`)
-* One command reruns everything (`lab/run_all.R`)
+* Version control (for example git): depends on each company's practice
+* For R submissions, locked package versions with **renv** are the usual practice (see the R Consortium submissions working group)
+* One command reruns everything (`r gh("lab/run_all.R")`)
 
-**Statistician's review**
+**Reviews**
 
-* Does each number answer the SAP question?
-* Are the denominators right?
-* Do numbers agree across tables (events in 14.2.1 vs ADTTE vs IA report)?
+* **Statistical review**: consistent with the SAP? Consistent across tables, figures and documents (events in 14.2.1 = ADTTE = DMC report)? Right denominators?
+* **Clinical review**: do the results make clinical sense?
+* **Cosmetic review**: titles, footnotes, decimals, layout
 :::
 ::::
 
 # Part 5 · Interim analysis {background-color="#1D4F91" .part-title}
 
-Boundaries, p-values, conditional power, the DMC report (12 minutes)
+Boundaries, p-values, conditional power, the DMC report
 
 ::: notes
-Target: finish Part 5 by minute 82. Ask the room for a recommendation before showing the final result.
+Ask the room for a recommendation before showing the final result.
 :::
 
-## Running an interim analysis
+## Steps of an interim analysis
 
 ```{=html}
 <div class="flow">
-  <div class="box review"><b>Track events</b>blinded, pooled across arms</div><div class="arrow">&rarr;</div>
-  <div class="box review"><b>Set the DCO</b>date of the 61st event</div><div class="arrow">&rarr;</div>
-  <div class="box review"><b>Clean data</b>up to the DCO</div><div class="arrow">&rarr;</div>
-  <div class="box lead"><b>Re-run</b>the SAME ADaM and TFL programs with the cut</div><div class="arrow">&rarr;</div>
+  <div class="box review"><b>Track events</b>total events, both arms, blinded</div><div class="arrow">&rarr;</div>
+  <div class="box review"><b>Cut-off date</b>date of the event that reaches the target</div><div class="arrow">&rarr;</div>
+  <div class="box review"><b>Clean data</b>up to the cut-off date</div><div class="arrow">&rarr;</div>
+  <div class="box lead"><b>Re-run</b>the same ADaM and TFL programs on the cut data</div><div class="arrow">&rarr;</div>
   <div class="box lead"><b>Independent statistician</b>unblinded closed report</div><div class="arrow">&rarr;</div>
   <div class="box lead"><b>DMC</b>closed session, recommendation</div><div class="arrow">&rarr;</div>
-  <div class="box review"><b>Sponsor</b>hears only: continue / modify / stop</div>
+  <div class="box review"><b>Sponsor</b>receives only the recommendation: continue / modify / stop</div>
 </div>
 ```
-* The sponsor's study team stays **blinded**: the unblinded work happens behind a firewall
-* Open session (pooled data, conduct) vs closed session (by-arm efficacy and safety)
+* The sponsor's study team stays **blinded**: a separate, independent team does the unblinded work
+* Open session: pooled data and trial conduct. Closed session: efficacy and safety by arm.
 
-## The data cut in code: one program, many cuts
+## The data cut in code: one program for every cut
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -1001,30 +1048,30 @@ Target: finish Part 5 by minute 82. Ask the room for a recommendation before sho
 ```{r adtte-interim, opts.label = "code"}
 ```
 
-DCO = **`r format(ia_dco)`**, `r ia$events` events in High Dose + Placebo.
+* Interim 1: cut-off **`r format(ia_dco[1])`**, `r looks$events[1]` events
+* Interim 2: cut-off **`r format(ia_dco[2])`**, `r looks$events[2]` events
 :::
 ::::
 
-## Interim result against the boundary
+## Interim 1: result and boundary
 
 :::: {.columns}
 ::: {.column width="58%"}
 ```{r}
 #| fig-width: 8.5
-#| fig-height: 5.2
+#| fig-height: 5.4
 p_ia_boundary
 ```
 :::
 ::: {.column width="42%"}
-* Information fraction `r ia$events` / `r target_events` = `r sprintf("%.1f%%", 100 * info_frac)`: Lan-DeMets spending evaluates the boundary **at the actual fraction**
+* Information fraction `r ia$events` / `r target_events` = `r sprintf("%.1f%%", 100 * ia$events / target_events)`: Lan-DeMets spending computes the boundary **at the actual fraction**
 * HR `r sprintf("%.2f (95%% CI %.2f, %.2f)", ia$hr, ia$hr_lower, ia$hr_upper)`
 * Z = `r sprintf("%.3f", ia$z)`, one-sided p = `r fmt_p(ia$p_one_sided)`
-* Efficacy needs Z ≥ `r sprintf("%.3f", z_eff_ia)` (p ≤ `r sprintf("%.4f", p_eff_ia)`): **not crossed**
-* Futility guideline Z < 0: **not met**
+* Efficacy needs Z ≥ `r sprintf("%.3f", z_eff[1])` (p ≤ `r sprintf("%.4f", pnorm(-z_eff[1]))`): **not crossed**
 :::
 ::::
 
-## Conditional power {.code-small}
+## Conditional power and the futility rule {.code-small}
 
 $$
 \mathrm{CP}(\theta) = 1 - \Phi\!\left(\frac{c_K \sqrt{I_K} - Z_k \sqrt{I_k} - \theta\,(I_K - I_k)}{\sqrt{I_K - I_k}}\right),
@@ -1043,11 +1090,12 @@ cp_tbl |>
   tab(20)
 ```
 
-{rpact} `getAnalysisResults()` gives `r sprintf("%.1f%%", 100 * cp_rpact_design)` under the design HR: same answer.
+{gsDesign} `gsCP()` gives `r sprintf("%.1f%%", 100 * cp_gs_design)` under the design HR, the same result.
 
 ::: {.takeaway}
-CP depends on the effect you assume. Under the design HR it is the most
-optimistic number in the report; always show the current trend too.
+Futility rule (SAP, non-binding): consider stopping if CP under the current
+trend is below 10%. CP under the design HR is the most optimistic number:
+always show the current trend too.
 :::
 :::
 ::::
@@ -1055,32 +1103,42 @@ optimistic number in the report; always show the current trend too.
 ## Table IA.1 The DMC closed report (primary endpoint)
 
 :::: {.columns}
-::: {.column width="55%"}
+::: {.column width="60%"}
 ```{r}
-slide_gt(t_ia_1, 18)
+slide_rt(t_ia_1, 15)
 ```
 :::
-::: {.column width="45%"}
+::: {.column width="40%"}
 **What would you recommend?**
 
-* Pre-specified rule (Z < 0) says continue
-* CP under the current trend is `r sprintf("%.1f%%", 100 * cp_tbl[["Conditional power"]][2])`
-* The final analysis gave HR `r sprintf("%.2f", pfs_hi$hr)`, p = `r fmt_p(pfs_hi$p_one_sided)`: the trial did not succeed
-
-A futility rule on conditional power (for example CP < 10% under the current
-trend) would have stopped earlier. Choosing the rule is a design decision,
-made with its operating characteristics in mind.
+* Efficacy boundary: not crossed
+* CP under the current trend: `r sprintf("%.1f%%", 100 * cp_trend)`, below 10%: the **futility rule is met**
+* The DMC would recommend stopping for futility. The rule is non-binding: the sponsor makes the final decision
 :::
 ::::
 
-## What else goes into the DMC report
+## Every look, the same rules
+
+```{r}
+looks_tbl |>
+  tab(16)
+```
+
+* Futility is non-binding: continuing does not increase alpha. For teaching, we also ran interim 2 and the final analysis on all data: the conclusion does not change
+* **Sample size re-estimation (SSR)**: when CP is promising but lower than planned, some designs increase the target events at an interim. SSR must be pre-specified and must protect alpha (for example the Cui-Hung-Wang weighted test)
+
+## Other content of the DMC report
 
 :::: {.columns .small}
 ::: {.column width="50%"}
 * Enrollment, disposition, protocol deviations, by arm
 * Exposure and dose modifications
-* AEs, serious AEs, deaths, labs: **safety is reviewed at every meeting**, efficacy only at planned interims
+* Adverse events, serious adverse events, deaths, labs
 * Efficacy: Table IA.1, Kaplan-Meier by arm (Figure IA.1), conditional power
+
+**The DMC does not meet only at interim analyses.** Between interim
+analyses, the DMC holds regular **safety reviews** (for example every 6
+months): safety data only, by arm, no efficacy.
 :::
 ::: {.column width="50%"}
 ```{r}
@@ -1091,12 +1149,25 @@ p_km_ia
 :::
 ::::
 
-# Part 6 · Submission {background-color="#1D4F91" .part-title}
+# Part 6 · Deliverables and submission {background-color="#1D4F91" .part-title}
 
-Datasets, metadata, reviewer's guides (8 minutes)
+Deliverables during the trial, datasets, metadata, reviewer's guides
 
-::: notes
-Target: wrap up by minute 90, leave time for questions.
+## Submission is not the only deliverable
+
+| Deliverable | When | Receiver | The statistician's work |
+|---|---|---|---|
+| Interim analysis | At the planned number of events | DMC | Boundaries, conditional power, closed report (Part 5) |
+| Safety reviews | Every few months, at each DMC or SRC meeting | DMC; Safety Review Committee (SRC) | Safety tables by arm, listings of deaths and serious adverse events |
+| DSUR | Every year, for each drug in development | Regulators | Exposure and cumulative safety summaries |
+| Ad-hoc requests | Any time, often with a short deadline | Regulators, DMC, medical team, publications | New tables, figures or analyses outside the SAP |
+| CSR and submission | After database lock | Regulators | Final TFLs, datasets, metadata, reviewer's guides |
+
+[DSUR: Development Safety Update Report (ICH E2F). CSR: Clinical Study Report.]{.small .muted}
+
+::: {.takeaway}
+One set of ADaM datasets and TFL programs serves all these deliverables: build
+the programs once, then run the programs on each new data cut.
 :::
 
 ## What the FDA receives
@@ -1108,16 +1179,19 @@ Target: wrap up by minute 90, leave time for questions.
 #| comment: ""
 cat(ectd_tree)
 ```
+
+[eCTD: electronic Common Technical Document; module 5 holds clinical study reports and data.]{.small .muted}
+
+[Our lab keeps data as **CSV**: easy to check (any software, git diff), but CSV keeps no types or labels. A submission uses **XPT** files described by define.xml.]{.small}
 :::
 ::: {.column width="48%"}
 * **XPT**: SAS transport files, version 5 (names ≤ 8 characters, labels ≤ 40)
 * **define.xml**: metadata for every dataset, variable, code list and derivation
 * **aCRF**: annotated CRF
-* **cSDRG / ADRG**: reviewer's guides for SDTM / ADaM
+* **cSDRG / ADRG**: Clinical Study Data Reviewer's Guide (SDTM) / Analysis Data Reviewer's Guide (ADaM)
 * Programs for the primary and key secondary results
 * Conformance checks (Pinnacle 21) with explanations
 
-[eCTD: electronic Common Technical Document; module 5 holds clinical study reports and data.]{.small .muted}
 :::
 ::::
 
@@ -1139,21 +1213,21 @@ xpt_check |>
 
 ## R in regulatory submissions
 
-* FDA does not require any specific software (Statistical Software Clarifying Statement, 2015); it requires that you document and can reproduce what you did
-* R Consortium submission pilots sent FDA R-based TFLs, a Shiny app and ADaM datasets built in R (github.com/RConsortium/submissions-wg)
+* The FDA does not require any specific software (Statistical Software Clarifying Statement, 2015). The FDA requires work that is documented and reproducible.
+* The R Consortium submission pilots sent the FDA TFLs, a Shiny app and ADaM datasets, all built in R (github.com/RConsortium/submissions-wg)
 * What reviewers need from an R submission:
-  * package versions (`renv.lock`, `sessionInfo()`) and how to install them
-  * programs that run on the submitted datasets and reproduce the CSR numbers
-  * a reviewer's guide (ADRG) that explains all of this
-* Many companies now run R and SAS side by side; double programming across languages is common
+  * package versions (`renv.lock`, `sessionInfo()`) and installation steps
+  * programs that run on the submitted datasets and reproduce the numbers in the CSR
+  * an ADRG that explains these items
+* Many companies now use both R and SAS; double programming in two languages is common
 
-## Five things to take home {.larger}
+## Five key messages {.larger}
 
-1. **Write the SAP like code.** Every rule must be unambiguous; QC finds the gaps (`RFENDTC`).
-2. **Power comes from events.** Design, forecast and monitor events, not patients.
+1. **Write the SAP like code.** Every rule must have only one meaning; QC finds the gaps (`RFENDTC`).
+2. **Power comes from events.** Design, predict and monitor events, not patients.
 3. **Traceability.** CRF field → raw → SDTM → ADaM → the number in the table.
-4. **Interims reuse the final programs on a data cut**, and boundaries follow the actual information.
-5. **Conditional power depends on the assumed effect.** Report it under the design and the current trend.
+4. **Interim analyses are triggered by events and reuse the final programs on a data cut**; the boundaries use the actual information.
+5. **Futility by conditional power.** CP depends on the assumed effect: report CP under the design effect and under the current trend.
 
 ## Try it yourself
 
@@ -1161,10 +1235,10 @@ xpt_check |>
 ::: {.column width="50%"}
 **Posit Cloud / RStudio**
 
-1. New Project → *from Git repository* → this repo
+1. New Project → *from Git repository* → this repository
 2. `renv::restore()` (installs the locked package versions)
-3. `source("lab/run_all.R")` (about one minute)
-4. Open any script in `lab/R/`
+3. `source("lab/run_all.R")` (runs the whole pipeline)
+4. Open any script in `r gh("lab/R/")`
 
 **With Claude**
 
@@ -1172,12 +1246,12 @@ Open the repository with Claude (Claude Code, or a claude.ai project with the Gi
 files). `CLAUDE.md` tells Claude how the project is organised.
 :::
 ::: {.column width="50%"}
-**Exercises** (`lab/docs/03_crf_raw_sdtm.md`)
+**Exercises** (`r gh("lab/docs/03_crf_raw_sdtm.md")`)
 
 * Map raw vital signs and labs to SDTM; QC them against pharmaverse
 * Add a sensitivity analysis: censor PFS after two missed scans
-* Use the independent-review (BICR) assessments for PFS
-* Replace the Z < 0 futility rule with CP < 10%: when would the trial have stopped?
+* Add a stratified log-rank test (by age group) as a second sensitivity analysis
+* Move the interim analyses to 40% and 70% of the events: how do the boundaries change?
 * Rerun the design for HR 0.70; what changes?
 :::
 ::::
@@ -1188,8 +1262,8 @@ files). `CLAUDE.md` tells Claude how the project is organised.
 ::: {.column width="50%"}
 * pharmaverse: pharmaverse.org; examples at pharmaverse.github.io/examples
 * admiral: pharmaverse.github.io/admiral
-* rpact: rpact.org (vignettes on survival designs and interim analyses)
-* gtsummary: danieldsjoberg.com/gtsummary
+* gsDesign: keaven.github.io/gsDesign (survival designs, interim analyses)
+* rtables and tern: insightsengineering.github.io; TLG Catalog (examples of standard tables): insightsengineering.github.io/tlg-catalog
 * CDISC SDTMIG, ADaMIG, CDASH: cdisc.org/standards
 :::
 ::: {.column width="50%"}
@@ -1205,7 +1279,7 @@ files). `CLAUDE.md` tells Claude how the project is organised.
 
 Questions?
 
-[Slides and lab: this repository · `slides/index.qmd` · `lab/`]{.muted}
+[Slides and lab: `r gh("slides/index.qmd")` · `r gh("lab/")`]{.muted}
 
 # Appendix {background-color="#1D4F91" .part-title}
 
@@ -1224,20 +1298,23 @@ Questions?
 | BOR | Best Overall Response |
 | CDASH | Clinical Data Acquisition Standards Harmonization |
 | CDISC | Clinical Data Interchange Standards Consortium |
+| CI / CI/CD | Confidence Interval / Continuous Integration and Delivery |
 | CM | Concomitant Medications |
 | CNSR | Censor flag (0 event, 1 censored) |
 | CP | Conditional Power |
 | CR / PR / SD / PD / NE | Complete / Partial response, Stable / Progressive disease, Not evaluable |
 | CRF / EDC | Case Report Form / Electronic Data Capture |
-| CSR | Clinical Study Report |
+| CSR / CSV | Clinical Study Report / Comma-Separated Values (text file) |
 :::
 ::: {.column width="50%"}
 | Acronym | Meaning |
 |---|---|
 | CT | Controlled Terminology |
 | CTCAE | Common Terminology Criteria for Adverse Events |
-| DBL / DCO | Database Lock / Data Cut-Off |
+| DBL | Database Lock |
+| DCR | Disease Control Rate |
 | DMC | Data Monitoring Committee |
+| DSUR | Development Safety Update Report |
 | eCTD | electronic Common Technical Document |
 | GSD | Group Sequential Design |
 | IA / FA | Interim / Final Analysis |
@@ -1246,9 +1323,7 @@ Questions?
 | ITT | Intention-To-Treat |
 | KM | Kaplan-Meier |
 | MedDRA | Medical Dictionary for Regulatory Activities |
-| ORR / OS / PFS | Objective Response Rate / Overall Survival / Progression-Free Survival |
-| QC | Quality Control |
-| RECIST | Response Evaluation Criteria in Solid Tumors |
+| NC | Not Calculated |
 :::
 ::::
 
@@ -1258,9 +1333,15 @@ Questions?
 ::: {.column width="50%"}
 | Acronym | Meaning |
 |---|---|
+| ODM | CDISC Operational Data Model |
+| ORR / OS / PFS | Objective Response Rate / Overall Survival / Progression-Free Survival |
+| QC | Quality Control |
+| RECIST | Response Evaluation Criteria in Solid Tumors |
 | SAP | Statistical Analysis Plan |
 | SDTM / SDTMIG | Study Data Tabulation Model / Implementation Guide |
 | SOC / PT | MedDRA System Organ Class / Preferred Term |
+| SRC | Safety Review Committee |
+| SSR | Sample Size Re-estimation |
 | SUPPQUAL | Supplemental Qualifiers (SUPPDM, SUPPAE, ...) |
 | TEAE | Treatment-Emergent Adverse Event |
 | TFL | Tables, Figures and Listings |
@@ -1276,4 +1357,4 @@ Questions?
 :::
 ::::
 
-Full glossary with explanations: `lab/docs/00_glossary.md`.
+Full glossary with explanations: `r gh("lab/docs/00_glossary.md")`.

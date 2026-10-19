@@ -2,7 +2,8 @@
 # 03_raw_to_sdtm.R  (Data standards: raw -> SDTM, then QC)
 #
 # Map the raw EDC/vendor data from 02_reverse_raw.R to SDTM following the
-# SDTMIG, then check our result against pharmaversesdtm with {diffdf}
+# SDTMIG, then check our result against the reference SDTM in the source data
+# (lab/data/source/sdtm) with {diffdf}
 # (the R analogue of SAS PROC COMPARE). Domains mapped here: DM, AE, CM.
 # VS, LB and RS are left as exercises (see lab/README.md).
 #
@@ -61,11 +62,11 @@ study_day <- function(dtc, rfstdtc) {
 ## ---- sdtm-dm ----
 # Reference dates come from exposure (first/last dose) and disposition (end of study).
 ex_dates <- raw_ex %>%
-  mutate(st = crf_to_iso(EXSTDAT), en = crf_to_iso(EXENDAT), dose = as.numeric(EXDOSE)) %>%
+  mutate(st = crf_to_iso(EXSTDAT), en = crf_to_iso(EXENDAT)) %>%
   group_by(SUBJECT) %>%
   summarise(RFXSTDTC = min(st),
             RFXENDTC = if (all(is.na(en))) NA_character_ else max(en, na.rm = TRUE),
-            max_dose = max(dose), .groups = "drop")
+            .groups = "drop")
 
 eos <- raw_ds %>%
   filter(FORM == "End of Study") %>%
@@ -96,10 +97,11 @@ dm_sdtm <- raw_dm %>%
     ARMCD    = coalesce(TREATMENT_CODE, "Scrnfail"),
     ARM      = coalesce(TREATMENT_ARM, "Screen Failure"),
     ARMNRS   = if_else(is.na(TREATMENT_CODE), "SCREEN FAILURE", NA_character_),
-    # actual arm = what was received: High Dose patients who never got 81 mg
-    # (stopped during the titration period) actually received the Low Dose
-    ACTARMCD = if_else(ARMCD == "Xan_Hi" & max_dose < 81, "Xan_Lo", ARMCD),
-    ACTARM   = if_else(ARMCD == "Xan_Hi" & max_dose < 81, "Xanomeline Low Dose", ARM),
+    # actual arm = the regimen received. In our two-arm trial every treated
+    # patient received the randomized regimen (some High Dose patients stopped
+    # during the 54 mg start, but they started the High Dose regimen).
+    ACTARMCD = ARMCD,
+    ACTARM   = ARM,
     DMDY     = study_day(DMDTC, RFSTDTC)
   )
 
@@ -167,21 +169,24 @@ cm_sdtm <- raw_cm %>%
   select(STUDYID, DOMAIN, USUBJID, CMSEQ, everything(), -RECORDPOS)
 
 ## ---- sdtm-qc ----
-# Independent QC: compare our SDTM with the reference SDTM (pharmaversesdtm).
+# Independent QC: compare our SDTM with the reference SDTM (source data).
 # Variables we deliberately do not derive here are listed and excluded.
 qc_compare <- function(ours, ref, keys, not_derived = character()) {
   vars <- setdiff(names(ref), not_derived)
-  ref  <- ref[, vars]
-  ours <- ours[, vars]
+  ref  <- as.data.frame(ref[, vars])
+  ours <- as.data.frame(ours[, vars])
   ref[]  <- lapply(ref, function(x) { attributes(x) <- NULL; x })   # drop labels
   ours[] <- lapply(ours, function(x) { attributes(x) <- NULL; x })
   diffdf::diffdf(base = ref, compare = ours, keys = keys, suppress_warnings = TRUE)
 }
 
-qc_dm <- qc_compare(dm_sdtm, pharmaversesdtm::dm, keys = "USUBJID",
+ref_dm <- read_source("dm")
+ref_ae <- read_source("ae")
+ref_cm <- read_source("cm")
+qc_dm <- qc_compare(dm_sdtm, ref_dm, keys = "USUBJID",
                     not_derived = c("RFICDTC", "RFPENDTC", "ACTARMUD"))
-qc_ae <- qc_compare(ae_sdtm, pharmaversesdtm::ae, keys = c("USUBJID", "AESEQ"))
-qc_cm <- qc_compare(cm_sdtm, pharmaversesdtm::cm, keys = c("USUBJID", "CMSEQ"))
+qc_ae <- qc_compare(ae_sdtm, ref_ae, keys = c("USUBJID", "AESEQ"))
+qc_cm <- qc_compare(cm_sdtm, ref_cm, keys = c("USUBJID", "CMSEQ"))
 
 # Number of differing values (diffdf stores one "VarDiff_<variable>" table per variable)
 n_diff <- function(d) sum(map_int(d[grepl("^VarDiff_", names(d))], nrow))
@@ -189,18 +194,17 @@ n_diff <- function(d) sum(map_int(d[grepl("^VarDiff_", names(d))], nrow))
 qc_summary <- tibble(
   Domain = c("DM", "AE", "CM"),
   Records = c(nrow(dm_sdtm), nrow(ae_sdtm), nrow(cm_sdtm)),
-  `Variables compared` = c(ncol(pharmaversesdtm::dm) - 3, ncol(pharmaversesdtm::ae), ncol(pharmaversesdtm::cm)),
+  `Variables compared` = c(ncol(ref_dm) - 3, ncol(ref_ae), ncol(ref_cm)),
   `Values that differ` = map_int(list(qc_dm, qc_ae, qc_cm), n_diff)
 )
-# Root cause of the 2 differences (keep them: this is what real QC looks like)
+# Root cause of the difference (keep it: this is what real QC looks like)
 #  * DM.RFENDTC, 01-710-1083: the reference used the date the end-of-study page
 #    was completed (DSDTC = 2013-08-03); we used the disposition event date
 #    (DSSTDTC = 2013-08-02, the death date). A spec ambiguity -> clarify the spec.
-#  * AE.AESTDY, 01-716-1063 AESEQ 1: AE starts on the first dose date, so study
-#    day is 1; the reference says 366. An error in the reference data.
+# AE and CM match the reference in every record and variable.
 
 ## ---- sdtm-write ----
-dm_sdtm <- dm_sdtm %>% select(all_of(intersect(names(pharmaversesdtm::dm), names(dm_sdtm))))
+dm_sdtm <- dm_sdtm %>% select(all_of(intersect(names(ref_dm), names(dm_sdtm))))
 write_raw(dm_sdtm, "dm", dir = "sdtm")
 write_raw(ae_sdtm, "ae", dir = "sdtm")
 write_raw(cm_sdtm, "cm", dir = "sdtm")
