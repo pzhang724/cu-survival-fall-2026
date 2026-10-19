@@ -1,35 +1,41 @@
 # =============================================================================
-# 09_interim.R  (Interim analysis for the Data Monitoring Committee)
+# 09_interim.R  (Interim analyses for the Data Monitoring Committee)
 #
-# Trigger: 61 PFS events (50% of 122) in High Dose + Placebo.
-# The ADaM program in 05 was re-run with the data cut-off date, giving
-# adtte_ia. Here we compute what goes into the DMC closed report:
-#   observed log-rank Z and one-sided p-value vs the efficacy boundary,
-#   the non-binding futility guideline, and conditional power (CP).
-# In a real trial this is run by an independent statistician behind a
+# Triggers: 50% and 75% of the planned PFS events, counted over both arms.
+# The ADaM programs in 05 were re-run with each data cut-off date, giving
+# adtte_ia[[1]] and adtte_ia[[2]]. Here we compute what goes into the DMC
+# closed report: log-rank Z and p-value vs the efficacy boundary at the
+# ACTUAL information, conditional power (CP), and the non-binding futility
+# rule (consider stopping if CP under the current trend < 10%).
+# In a real trial this is done by an independent statistician behind a
 # firewall; the sponsor study team stays blinded.
 # =============================================================================
 source(here::here("lab", "R", "00_setup.R"))
 need("compare_arms", "07_tfl_efficacy.R")
 
 ## ---- ia-data ----
-pfs_ia <- adtte_ia %>%
-  filter(PARAMCD == "PFS") %>%
-  mutate(TRT01P = factor(TRT01P, levels = ARM_LEVELS), AVAL_M = AVAL / DAYS_PER_MONTH)
-
-ia <- compare_arms(pfs_ia, EXPERIMENTAL)        # same function as the final analysis
-info_frac <- ia$events / target_events
+pfs_ia <- map(adtte_ia, function(d) {
+  d %>%
+    filter(PARAMCD == "PFS") %>%
+    mutate(TRT01P   = factor(TRT01P, levels = ARM_LEVELS),
+           AVAL_M   = AVAL / DAYS_PER_MONTH,
+           is_event = CNSR == 0,
+           EVENT    = if_else(is_event, "Y", "N"),
+           EVENT_TYPE = factor(if_else(is_event, EVNTDESC, NA_character_),
+                               levels = c("Disease progression", "Death")))
+})
+looks <- map_dfr(pfs_ia, compare_arms, experimental = EXPERIMENTAL)   # same function as the final
 
 ## ---- ia-boundaries ----
-# Lan-DeMets spending: the boundary follows the ACTUAL information fraction
-design_ia <- getDesignGroupSequential(
-  kMax = 2, alpha = DESIGN$alpha, beta = DESIGN$beta, sided = 1,
-  typeOfDesign = "asOF", informationRates = c(info_frac, 1),
-  futilityBounds = 0, bindingFutility = FALSE
-)
-z_eff_ia <- design_ia$criticalValues[1]   # efficacy boundary at this interim
-p_eff_ia <- design_ia$stageLevels[1]      # same boundary on the one-sided p-value scale
-z_fin    <- design_ia$criticalValues[2]   # planned final boundary
+# Lan-DeMets spending: each boundary uses the ACTUAL events at that look;
+# later looks are still at their planned events.
+bounds_at <- function(events) {
+  gsDesign(k = 3, test.type = 1, alpha = DESIGN$alpha, sfu = sfLDOF,
+           n.I = events, maxn.IPlan = target_events)
+}
+gs_ia1 <- bounds_at(c(looks$events[1], ia_events[2], target_events))
+gs_ia2 <- bounds_at(c(looks$events, target_events))
+z_eff  <- c(gs_ia1$upper$bound[1], gs_ia2$upper$bound[2])   # efficacy boundary at IA1, IA2
 
 ## ---- ia-conditional-power ----
 # CP = P(reject H0 at the final | data so far, true effect theta)
@@ -42,90 +48,75 @@ cond_power <- function(z_k, d_k, d_max, theta, z_final) {
               sqrt(i_max - i_k))
 }
 
-theta_trend <- ia$z / sqrt(ia$events / 4)          # effect estimated from the interim Z
+ia <- looks[1, ]                                     # interim analysis 1
+theta_trend <- ia$z / sqrt(ia$events / 4)            # effect estimated from the interim Z
 cp_tbl <- tibble(
   Assumption = c(sprintf("Design: HR = %.2f", DESIGN$hr),
                  sprintf("Current trend: HR = %.2f", exp(-theta_trend)),
                  "No effect: HR = 1"),
   theta = c(-log(DESIGN$hr), theta_trend, 0)
 ) %>%
-  mutate(`Conditional power` = cond_power(ia$z, ia$events, target_events, theta, z_fin))
+  mutate(`Conditional power` = cond_power(ia$z, ia$events, target_events, theta,
+                                          gs_ia1$upper$bound[3]))
+cp_trend <- cp_tbl$`Conditional power`[2]
 
-## ---- ia-rpact ----
-# Cross-check with rpact. rpact's log-rank statistic carries the sign of
-# log(HR): for "HR < 1 is better" pass -Z and set directionUpper = FALSE.
-ia_results <- getAnalysisResults(
-  design_ia,
-  dataInput = getDataset(cumulativeEvents = ia$events, cumulativeLogRanks = -ia$z),
-  directionUpper = FALSE, nPlanned = target_events - ia$events, thetaH1 = DESIGN$hr
+## ---- ia-gscp ----
+# Cross-check with {gsDesign}: gsCP() also counts the chance to stop at IA2
+cp_gs_design <- sum(gsCP(gs_ia1, i = 1, zi = ia$z, theta = -log(DESIGN$hr) / 2)$upper$prob)
+
+## ---- ia-decisions ----
+# Same rules at every look: efficacy if Z >= boundary; futility (non-binding)
+# if CP under the current trend < 10%; otherwise continue.
+look_cp <- map2_dbl(looks$z, looks$events, function(z, d) {
+  cond_power(z, d, target_events, z / sqrt(d / 4), gs_ia2$upper$bound[3])
+})
+decide <- function(z, bound, cp) {
+  case_when(z >= bound ~ "Efficacy boundary crossed: stop",
+            cp < DESIGN$futility_cp ~ "Futility rule met (CP < 10%): consider stopping",
+            TRUE ~ "Continue")
+}
+looks_tbl <- tibble(
+  Analysis = c("Interim 1", "Interim 2", "Final"),
+  `Cut-off date` = c(format(ia_dco), "all data"),
+  Events = c(looks$events, pfs_hi$events),
+  `Information fraction` = sprintf("%.0f%%", 100 * Events / target_events),
+  `Efficacy boundary (Z)` = sprintf("%.3f", c(z_eff, z_final)),
+  `Observed Z (HR)` = sprintf("%.2f (%.2f)", c(looks$z, pfs_hi$z), c(looks$hr, pfs_hi$hr)),
+  `CP, current trend` = c(sprintf("%.1f%%", 100 * look_cp), ""),
+  Decision = c(decide(looks$z, z_eff, look_cp),
+               if (pfs_hi$z >= z_final) "Reject H0" else "Do not reject H0")
 )
-cp_rpact_design <- ia_results$conditionalPower[2]
 
 ## ---- ia-report ----
-n_rand_ia <- pfs_ia %>% count(TRT01P)
-ev_ia     <- pfs_ia %>% filter(CNSR == 0) %>% count(TRT01P)
-decision  <- case_when(
-  ia$z >= z_eff_ia ~ "Efficacy boundary crossed",
-  ia$z < 0         ~ "Futility guideline met (Z < 0); non-binding",
-  TRUE             ~ "Continue the trial as planned"
+# Table IA.1: the SAME layout as Table 14.2.1, run on the interim data cut
+ia_footer <- c(
+  sprintf("Data cut-off %s: %d of %d planned events (%.0f%%).", format(ia_dco[1]), ia$events,
+          target_events, 100 * ia$events / target_events),
+  sprintf("Efficacy boundary at this look: Z >= %.3f (one-sided p <= %.4f): %s.", z_eff[1],
+          pnorm(-z_eff[1]), if (ia$z >= z_eff[1]) "crossed" else "not crossed"),
+  sprintf("Conditional power: %.1f%% under the design HR %.2f, %.1f%% under the current trend (HR %.2f).",
+          100 * cp_tbl$`Conditional power`[1], DESIGN$hr, 100 * cp_trend, exp(-theta_trend)),
+  sprintf("Futility rule (non-binding, CP under the current trend < 10%%): %s.",
+          if (cp_trend < DESIGN$futility_cp) "met" else "not met")
 )
-
-ia_report <- tibble(
-  Item = c("Data cut-off date",
-           "Patients randomized by the cut-off date (Placebo / Low / High)",
-           "PFS events (Placebo / High Dose)",
-           "Information fraction (events / 122 planned)",
-           "Hazard ratio High Dose vs Placebo (95% CI)",
-           "Log-rank Z (positive favours High Dose)",
-           "One-sided p-value",
-           "Efficacy boundary at this interim",
-           "Futility guideline (non-binding)",
-           "Conditional power: design HR 0.60",
-           sprintf("Conditional power: current trend (HR %.2f)", exp(-theta_trend)),
-           "Outcome"),
-  Value = c(format(ia_dco),
-            paste(n_rand_ia$n, collapse = " / "),
-            sprintf("%d / %d (total %d)", ev_ia$n[ev_ia$TRT01P == CONTROL],
-                    ev_ia$n[ev_ia$TRT01P == EXPERIMENTAL], ia$events),
-            sprintf("%d / %d = %.1f%%", ia$events, target_events, 100 * info_frac),
-            sprintf("%.2f (%.2f, %.2f)", ia$hr, ia$hr_lower, ia$hr_upper),
-            sprintf("%.3f", ia$z),
-            sprintf("%.3f", ia$p_one_sided),
-            sprintf("Z >= %.3f (one-sided p <= %.4f): %s", z_eff_ia, p_eff_ia,
-                    if (ia$z >= z_eff_ia) "crossed" else "not crossed"),
-            sprintf("Z < 0: %s", if (ia$z < 0) "met" else "not met"),
-            sprintf("%.1f%%", 100 * cp_tbl$`Conditional power`[1]),
-            sprintf("%.1f%%", 100 * cp_tbl$`Conditional power`[2]),
-            decision)
+t_ia_1 <- build_table(
+  lyt_tte("Table IA.1 Interim analysis 1 of progression-free survival (DMC closed report)", ia_footer),
+  df = pfs_ia[[1]]
 )
-
-t_ia_1 <- ia_report %>%
-  gt() %>%
-  tab_header(title = md("**Table IA.1** Interim analysis of PFS: High Dose vs Placebo (DMC closed report)")) %>%
-  tab_footnote(paste("Lan-DeMets O'Brien-Fleming-type alpha spending, one-sided alpha 2.5%;",
-                     "conditional power uses the final boundary and 122 planned events."))
 
 ## ---- ia-boundary-plot ----
-# Where did the interim land relative to the boundaries?
+# Where did each look land relative to the boundaries?
+obs <- tibble(info = c(looks$events, pfs_hi$events) / target_events, z = c(looks$z, pfs_hi$z),
+              label = c("IA1", "IA2", "Final"))
 p_ia_boundary <- p_boundary +
-  annotate("point", x = info_frac, y = ia$z, shape = 18, size = 6, colour = "#E07B00") +
-  annotate("text", x = info_frac + 0.02, y = ia$z + 0.3, hjust = 0, colour = "#E07B00", size = 4.6,
-           label = sprintf("Observed at the interim: Z = %.2f (HR %.2f)", ia$z, ia$hr))
+  geom_point(data = obs, aes(x = info, y = z), shape = 18, size = 6, colour = "#E07B00") +
+  geom_text(data = obs, aes(x = info, y = z, label = sprintf("%s: Z = %.2f", label, z)),
+            nudge_y = -0.35, colour = "#E07B00", size = 4.6)
 
 ## ---- ia-km ----
-p_km_ia <- survfit2(Surv(AVAL_M, 1 - CNSR) ~ TRT01P, data = pfs_ia) %>%
-  ggsurvfit(linewidth = 0.9) +
-  add_censor_mark(size = 2, alpha = 0.6) +
-  add_risktable(risktable_stats = "n.risk", size = 4.5,
-                theme = theme_risktable_default(axis.text.y.size = 13, plot.title.size = 14)) +
-  scale_color_manual(values = arm_colours) +
-  scale_x_continuous(breaks = 0:6, limits = c(0, 6.1)) +
-  scale_y_continuous(labels = scales::percent) +
-  labs(x = "Months since randomization", y = "Progression-free survival",
-       title = sprintf("Figure IA.1 PFS at the interim analysis (data cut-off %s)", format(ia_dco))) +
-  theme(legend.position = "bottom", plot.title = element_text(size = 15),
-        axis.text = element_text(size = 13), axis.title = element_text(size = 15),
-        legend.text = element_text(size = 14))
+p_km_ia <- km_plot(pfs_ia[[1]], ia,
+                   sprintf("Figure IA.1 PFS at interim 1 (cut-off %s)", format(ia_dco[1])),
+                   "Progression-free survival")
 
 ## ---- ia-save ----
 save_rtf(t_ia_1, "t_ia_1_interim_pfs")

@@ -19,6 +19,7 @@ term in the course material it should be here; if it is not, please add it.
 | CDASH | Clinical Data Acquisition Standards Harmonization | CDISC standard for CRF fields, so they map cleanly to SDTM |
 | CDISC | Clinical Data Interchange Standards Consortium | Organisation that publishes SDTM, ADaM, CDASH, define.xml |
 | CI | Confidence Interval | |
+| CI/CD | Continuous Integration / Continuous Delivery | Software practice: every change is tested and released automatically (used by {admiral}) |
 | CM | Concomitant Medications | Other medicines the patient takes during the trial |
 | CNSR | Censor | ADTTE variable: 0 = event, 1 = censored |
 | CP | Conditional Power | Probability of a significant final result given the interim data and an assumed effect |
@@ -29,6 +30,7 @@ term in the course material it should be here; if it is not, please add it.
 | CT | Controlled Terminology | CDISC code lists, e.g. SEX must be "F" or "M" |
 | CTCAE | Common Terminology Criteria for Adverse Events | NCI grading scale (grade 1 mild ... grade 5 death); also used for lab values |
 | DBL | Database Lock | Data are frozen; analysis can start |
+| DCR | Disease Control Rate | Proportion of patients with BOR = CR, PR or SD (or non-CR/non-PD) |
 | DMC | Data Monitoring Committee | Independent experts who review unblinded interim results (also called IDMC or DSMB, Data Safety Monitoring Board) |
 | DSUR | Development Safety Update Report | Yearly safety report to regulators for a drug in development (ICH E2F) |
 | DM / DS / EX / LB / RS / TU / VS | Demographics / Disposition / Exposure / Laboratory / Response / Tumor Identification / Vital Signs | SDTM domains |
@@ -44,6 +46,7 @@ term in the course material it should be here; if it is not, please add it.
 | KM | Kaplan-Meier | Non-parametric survival estimator |
 | MedDRA | Medical Dictionary for Regulatory Activities | Dictionary for coding AEs: LLT (lowest level term) -> PT (preferred term) -> HLT -> HLGT -> SOC (system organ class) |
 | OBF | O'Brien-Fleming | Conservative early stopping boundary |
+| ODM | Operational Data Model | CDISC XML standard for exchanging collected (EDC) data |
 | OCCDS | Occurrence Data Structure | ADaM structure for events/interventions (ADAE, ADCM) |
 | ORR | Objective Response Rate | Proportion of patients with BOR = CR or PR |
 | OS | Overall Survival | Time from randomization to death from any cause |
@@ -56,6 +59,7 @@ term in the course material it should be here; if it is not, please add it.
 | SDTM | Study Data Tabulation Model | CDISC standard for collected data, organised in domains |
 | SDTMIG | SDTM Implementation Guide | Rules for building SDTM datasets |
 | SRC | Safety Review Committee | Group (often internal to the sponsor) that reviews safety data at regular meetings |
+| SSR | Sample Size Re-estimation | Pre-specified change of the target events or patients at an interim analysis, with methods that protect alpha |
 | SUPPQUAL | Supplemental Qualifiers | SDTM datasets (SUPPDM, SUPPAE ...) for non-standard variables |
 | TEAE | Treatment-Emergent Adverse Event | AE starting on/after the first dose (here: up to 30 days after the last dose) |
 | TFL | Tables, Figures and Listings | The outputs of the analysis (also TLF) |

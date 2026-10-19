@@ -9,7 +9,7 @@
 # test. rs_onco has investigator assessments for 205 patients.
 #
 # Both derivations are FUNCTIONS of a data cut-off date. The interim
-# analysis (09_interim.R) calls the very same code with an earlier cut-off date:
+# analyses (09_interim.R) call the very same code with earlier cut-off dates:
 # one program, many data cuts.
 # =============================================================================
 source(here::here("lab", "R", "00_setup.R"))
@@ -33,16 +33,25 @@ cut_adsl <- function(adsl, dco = NULL) {
 }
 
 ## ---- adrs-derive ----
-derive_adrs <- function(adsl, rs, dco = NULL) {
-  rs <- convert_blanks_to_na(rs)
+# reader = "INVESTIGATOR" (primary analysis) or "BICR" (sensitivity analysis:
+# blinded independent central review, the adjudicated read RSACPTFL = "Y")
+derive_adrs <- function(adsl, rs, dco = NULL, reader = "INVESTIGATOR") {
+  rs <- convert_blanks_to_na(rs) %>%
+    semi_join(adsl, by = c("STUDYID", "USUBJID"))     # patients of our trial only
   if (!is.null(dco)) rs <- filter(rs, ymd(substr(RSDTC, 1, 10)) <= dco)
+  rs <- if (reader == "BICR") {
+    filter(rs, RSEVAL == "INDEPENDENT ASSESSOR", RSACPTFL == "Y")
+  } else {
+    filter(rs, RSEVAL == "INVESTIGATOR")
+  }
+  by_who <- if (reader == "BICR") "by BICR" else "by Investigator"
 
-  # Overall response by visit, investigator assessment (SAP: primary analysis)
+  # Overall response by visit
   ovr <- rs %>%
-    filter(RSEVAL == "INVESTIGATOR", RSTESTCD == "OVRLRESP") %>%
+    filter(RSTESTCD == "OVRLRESP") %>%
     derive_vars_merged(dataset_add = adsl, new_vars = exprs(RANDDT), by_vars = exprs(STUDYID, USUBJID)) %>%
     derive_vars_dt(dtc = RSDTC, new_vars_prefix = "A") %>%
-    mutate(PARAMCD = "OVR", PARAM = "Overall Response by Investigator",
+    mutate(PARAMCD = "OVR", PARAM = paste("Overall Response", by_who),
            AVISIT = VISIT, AVALC = RSSTRESC, AVAL = aval_resp(AVALC)) %>%
     # analysis records: valid response on/after randomization, up to first PD
     restrict_derivation(
@@ -67,7 +76,7 @@ derive_adrs <- function(adsl, rs, dco = NULL) {
       dataset_ref = adsl, dataset_add = ovr_anl, by_vars = exprs(STUDYID, USUBJID),
       filter_add = AVALC == "PD", order = exprs(ADT, RSSEQ), mode = "first",
       exist_flag = AVALC, false_value = "N",
-      set_values_to = exprs(PARAMCD = "PD", PARAM = "Disease Progression by Investigator",
+      set_values_to = exprs(PARAMCD = "PD", PARAM = !!paste("Disease Progression", by_who),
                             AVAL = yn_to_numeric(AVALC), ANL01FL = "Y")
     ) %>%
     # BOR: best overall response (RECIST 1.1, confirmation not required)
@@ -76,14 +85,14 @@ derive_adrs <- function(adsl, rs, dco = NULL) {
       tmp_event_nr_var = event_nr, mode = "first",
       source_datasets = list(ovr = ovr_anl, adsl = adsl),
       events = list(bor_cr, bor_pr, bor_sd, bor_non_crpd, bor_pd, bor_ne, bor_missing),
-      set_values_to = exprs(PARAMCD = "BOR", PARAM = "Best Overall Response by Investigator",
+      set_values_to = exprs(PARAMCD = "BOR", PARAM = !!paste("Best Overall Response", by_who),
                             AVAL = aval_resp(AVALC), ANL01FL = "Y")
     ) %>%
     # LSTA: last adequate tumour assessment (used for PFS censoring)
     derive_extreme_records(
       dataset_ref = adsl, dataset_add = ovr_anl, by_vars = exprs(STUDYID, USUBJID),
       filter_add = AVALC != "NE", order = exprs(ADT, RSSEQ), mode = "last",
-      set_values_to = exprs(PARAMCD = "LSTA", PARAM = "Last Adequate Tumor Assessment by Investigator",
+      set_values_to = exprs(PARAMCD = "LSTA", PARAM = !!paste("Last Adequate Tumor Assessment", by_who),
                             ANL01FL = "Y")
     ) %>%
     derive_var_obs_number(by_vars = exprs(STUDYID, USUBJID),
@@ -165,21 +174,32 @@ adtte <- derive_adtte(adsl, adrs)
 adtte_check <- adtte %>%
   count(PARAMCD, TRT01P, CNSR, EVNTDESC, name = "Patients")
 
-## ---- adtte-interim ----
-# Interim analysis trigger (protocol): 50% of the 122 target PFS events in the
-# primary comparison (High Dose vs Placebo). Cut-off = date the 61st event occurred.
-# In a live trial this date is forecast from blinded event counts.
-ia_dco <- adtte %>%
-  filter(PARAMCD == "PFS", CNSR == 0, TRT01P %in% c(CONTROL, EXPERIMENTAL)) %>%
-  arrange(ADT) %>%
-  slice(ia_events) %>%
-  pull(ADT)
+## ---- adtte-bicr ----
+# Sensitivity analysis: the same derivations with the BICR reads.
+# (In a study ADaM these would be extra parameters in ADRS and ADTTE.)
+adrs_bicr  <- derive_adrs(adsl, rs, reader = "BICR")
+adtte_bicr <- derive_adtte(adsl, adrs_bicr) %>%
+  filter(PARAMCD == "PFS")
 
-adsl_ia  <- cut_adsl(adsl, dco = ia_dco)
-adrs_ia  <- derive_adrs(adsl_ia, rs, dco = ia_dco)
-adtte_ia <- derive_adtte(adsl_ia, adrs_ia)
+## ---- adtte-interim ----
+# Interim analyses are triggered by the TOTAL number of PFS events (both arms
+# pooled, counted blinded): 50% and 75% of the planned events (01_design.R).
+# Cut-off date = date of the event that reaches the target.
+# In a live trial these dates are forecast from the blinded event count.
+pfs_event_dates <- adtte %>%
+  filter(PARAMCD == "PFS", CNSR == 0) %>%
+  arrange(ADT) %>%
+  pull(ADT)
+ia_dco <- pfs_event_dates[ia_events]       # one cut-off date per interim
+
+# Re-run the same ADaM programs on each data cut
+adtte_ia <- map(ia_dco, function(dco) {
+  adsl_cut <- cut_adsl(adsl, dco = dco)
+  derive_adtte(adsl_cut, derive_adrs(adsl_cut, rs, dco = dco))
+})
 
 ## ---- adam-write ----
 write_raw(adrs, "adrs", dir = "adam")
 write_raw(adtte, "adtte", dir = "adam")
-write_raw(adtte_ia, "adtte_ia", dir = "adam")
+write_raw(adtte_ia[[1]], "adtte_ia1", dir = "adam")
+write_raw(adtte_ia[[2]], "adtte_ia2", dir = "adam")

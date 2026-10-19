@@ -7,11 +7,12 @@ changing anything, and update it when a decision changes.
 
 * A **90-minute guest lecture** for the Survival Analysis course at Columbia
   University, Fall 2026. Lecture date: **Friday, November 13, 2026**.
-* Theme: the practical work of a trial statistician on a randomized trial with a
-  survival endpoint, in this order: protocol -> SAP (Statistical Analysis Plan)
-  -> group sequential design and sample size -> CRF (Case Report Form) -> raw data
-  -> SDTM -> ADaM -> TFL (Tables, Figures, Listings) shells and outputs ->
-  interim analysis (p-value, conditional power, DMC report) -> submission.
+* Theme: a role-play of the trial statistician on a two-arm randomized trial
+  with a survival endpoint, in this order: protocol -> SAP (Statistical Analysis
+  Plan) -> sample size, power and group sequential design -> CRF (Case Report
+  Form) -> raw data -> SDTM -> ADaM -> TFL (Tables, Figures, Listings) shells
+  and outputs -> interim analyses (p-value, conditional power, DMC report) ->
+  deliverables and submission.
 * Audience: graduate biostatistics students who know survival theory but have
   not worked on an industry trial.
 * Deliverables: the slide deck (`slides/index.qmd`, Quarto revealjs) and a
@@ -31,11 +32,16 @@ lab/R/00_setup.R        packages, paths, DESIGN constants, helpers (need(), read
 lab/R/01..10_*.R        design, raw data, SDTM, ADSL, ADRS/ADTTE, TFLs, interim, submission
 lab/data/raw/           reverse-engineered raw data (EDC-style CSV; lab file gzipped)
 lab/data/spec/          study controlled-terminology map, visit schedule
-lab/data/sdtm/, adam/   derived datasets written by the pipeline (CSV)
+lab/data/sdtm/, adam/   derived datasets written by the pipeline (CSV; adtte_ia1/2 = interim cuts)
 lab/output/             RTF tables, PNG figures, XPT file
 lab/docs/               glossary, protocol synopsis, SAP excerpt, CRF/raw/SDTM notes, TFL shells, submission
 renv.lock               package versions (Posit Package Manager snapshot 2026-10-12)
 ```
+
+Main packages: {admiral}/{admiralonco} (ADaM), {gsDesign} (sample size, power,
+group sequential design, conditional power), {rtables} + {tern} (all TFLs),
+{survival}/{ggsurvfit}, {diffdf} (QC), {xportr} (XPT). gt is used only for
+small summary tables on the slides, not for TFLs.
 
 ## Rules that keep the project from drifting
 
@@ -77,36 +83,64 @@ renv.lock               package versions (Posit Package Manager snapshot 2026-10
   admiral/admiralonco from `pharmaversesdtm::rs_onco`** (205 patients with
   assessments). `pharmaverseadam::adtte_onco` has only 6 PFS events (it is built
   from `rs_onco_recist`, 8 patients), too few for a log-rank test.
-* **Design**: High Dose vs Placebo, HR 0.60, placebo median 1.7 months,
-  one-sided alpha 2.5%, power 80%, one interim at 50% of events, Lan-DeMets
-  O'Brien-Fleming spending, non-binding futility Z < 0 -> **122 events**
-  (interim at **61**), 166 patients for two arms, 249 for three (254 randomized).
-* **Multiplicity**: fixed sequence PFS High -> PFS Low -> ORR High.
-* **Interim data cut**: data cut-off = date of the 61st PFS event = 2013-08-08. The same
-  ADaM functions (`cut_adsl()`, `derive_adrs()`, `derive_adtte()`) build both cuts.
-* **Final analysis** uses all data: 123 events in High + Placebo; the final
-  boundary is recomputed from the actual information (Z >= 1.969).
-* **Results are what they are**: interim Z = 0.335 (HR 0.91), CP 32.5% under
-  the design HR and 1.7% under the current trend; final HR 1.02, one-sided
-  p = 0.596, so the primary hypothesis is not rejected and the hierarchy stops.
-  The lecture uses this as a lesson about futility rules and conditional power.
+* **Two arms**: our trial is High Dose vs Placebo, 1:1. The pilot's Low Dose
+  arm is left out from ADSL on (`04_adam_adsl.R`); raw data and SDTM stay the
+  full pilot study, so the SDTM QC example still works. 222 screened (52 screen
+  failures), 170 randomized (86 Placebo, 84 High Dose).
+* **Endpoints**: primary PFS; key secondary OS; secondary ORR and DCR; safety.
+  Sensitivity analysis: PFS by BICR (the adjudicated read, `RSACPTFL = "Y"`),
+  same programs and table layout.
+* **Hypothesis and design** ({gsDesign}, Schoenfeld method): H0: HR = 1 vs
+  H1: HR < 1, one-sided alpha 2.5%, power 80%, design HR 0.60 (placebo median
+  1.7 months -> High Dose 2.8). Slide order: events for a fixed design (120.3)
+  -> patients (P(event) 0.74, 164) -> group sequential design with analyses at
+  50%, 75%, 100% of the **total** events, Lan-DeMets O'Brien-Fleming spending,
+  efficacy bounds only -> **123 events**, interims at **62** and **93**,
+  **166 patients** -> power analysis (HR 0.5-0.8). The user chose HR 0.6 so
+  that the design fits the 123 events in the data (HR 0.8 would need ~640).
+* **Futility**: non-binding, conditional power under the current trend < 10%
+  (not a Z boundary). SSR (sample size re-estimation) is only mentioned.
+* **Multiplicity**: fixed-sequence gatekeeping PFS -> OS -> ORR -> DCR, order
+  fixed before unblinding.
+* **Interim data cuts**: cut-off = date of the event that reaches 62 / 93 total
+  PFS events = 2013-08-15 / 2014-01-30. The same ADaM functions (`cut_adsl()`,
+  `derive_adrs()`, `derive_adtte()`) build every cut.
+* **Final analysis** uses all data: 123 events; the final boundary is recomputed
+  from the actual information (Z >= 2.016).
+* **Results are what they are**: interim 1 Z = 0.26 (HR 0.93), CP 27.4% under
+  the design HR and 1.0% under the current trend, so the futility rule is met;
+  final HR 1.02, one-sided p = 0.596, so PFS is not rejected and the chain stops.
+  OS has 2 deaths (both Placebo): the HR is not estimable ("NE").
+* **TFLs**: {rtables} + {tern} (the user's preference), every table has a
+  Total column; comparison rows (HR, log-rank, rate difference) appear in the
+  High Dose column only. One layout (`lyt_tte()`) serves Tables 14.2.1, 14.2.3,
+  14.2.4 and IA.1. Disposition: screened and screen failures (Total column
+  only), ITT, safety, discontinued treatment + reasons, discontinued study +
+  reasons. AE overview shows TEAEs by maximum severity (mild/moderate/severe).
+* **Clean logs**: `lab/run_all.R` must run with no warnings or errors (an
+  industry QC standard the lecture teaches).
 * **QC example**: forward-mapped DM / AE / CM are compared with pharmaversesdtm
   using {diffdf}; two differences are kept on purpose (a spec ambiguity in
   `RFENDTC`, an error in the reference `AESTDY`).
-* **Actual arm**: High Dose patients who never received 81 mg are Low Dose for
-  safety (`ACTARM`, `TRT01A`); 12 patients.
+* **Actual arm**: 12 High Dose patients never received 81 mg. In the two-arm
+  trial they started the High Dose regimen, so `TRT01A` = High Dose (SDTM
+  `ACTARM` still says Low Dose, as in the pilot).
 * **Concomitant medications**: most pilot records are "UNCODED"; the table shows
   them by verbatim name under "Not yet coded".
 * **Data cut-off** is always written out; do not use the abbreviation "DCO".
 * **Synthetic data**: the slides say that all data are synthetic test data
   from pharmaverse and that no real patient data are used.
+* **Links to the repository** on slides (code, data, docs) always point to the
+  `main` branch: use `gh("path")` in `slides/index.qmd`, which builds
+  `https://github.com/pzhang724/cu-survival-fall-2026/blob/main/<path>` (`tree/`
+  for a folder ending in `/`). Never link to a feature branch.
 * No mermaid diagrams: their labels were clipped in revealjs. Flow diagrams are
   HTML boxes styled in `columbia.scss` (`.flow`, `.box`).
 * **Logos and font size**: Columbia logo bottom-left, CIMS logo bottom-right on
   every slide (white badge so they also read on the navy section slides). The
   slide-menu button that used that corner is hidden; press `M` for the menu.
   Base font is 36px on a 1600 x 900 canvas, tables are scaled by 1.15 in
-  `slide_gt()`. Keep content out of the bottom ~75px band (footer and logos);
+  `slide_gt()` (gt) and `slide_rt()` (rtables, styled by `.rt-slide`). Keep content out of the bottom ~75px band (footer and logos);
   check every slide after edits.
 
 ## Commands

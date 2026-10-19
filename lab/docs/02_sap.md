@@ -11,9 +11,10 @@ them. Section numbers are illustrative.
 | Intention-to-treat (ITT) | All randomized patients, analysed as randomized | `ITTFL = "Y"` | Disposition, demographics, efficacy |
 | Safety | All patients who received at least one dose, analysed as treated | `SAFFL = "Y"`, `TRT01A` | Safety, concomitant medications |
 
-Twelve patients randomized to High Dose stopped during the 54 mg start and never
-received 81 mg; they are analysed as High Dose for efficacy (`TRT01P`) and as
-Low Dose for safety (`TRT01A`).
+The trial has two arms (High Dose, placebo); the pilot's Low Dose arm is left
+out of the analysis datasets. Twelve patients randomized to High Dose stopped
+during the 54 mg start and never received 81 mg. They started the High Dose
+regimen, so they are High Dose for both efficacy (`TRT01P`) and safety (`TRT01A`).
 
 ## 5. General definitions
 
@@ -44,46 +45,63 @@ Approval of Cancer Drugs and Biologics*, 2018).
 | New anticancer therapy before progression | Last adequate assessment before the new therapy | Censored | (not collected in this study) |
 | Progression or death after two or more missed assessments | Last adequate assessment before the missed visits | Censored | Sensitivity analysis |
 
-### 6.2 Objective response rate
-
-Best overall response (BOR) by the investigator from randomization until
-progression; ORR = proportion with BOR = CR or PR. Confirmation of response is
-not required in a randomized trial (RECIST 1.1). Patients with no post-baseline
-assessment count as non-responders.
-
-### 6.3 Overall survival
+### 6.2 Overall survival (key secondary)
 
 Death from any cause; patients alive are censored at the last date known alive
 (`LSTALVDT`).
+
+### 6.3 Response rates
+
+Best overall response (BOR) by the investigator from randomization until
+progression; ORR = proportion with BOR = CR or PR; DCR (disease control rate) =
+proportion with BOR = CR, PR, SD or non-CR/non-PD. Confirmation of response is
+not required in a randomized trial (RECIST 1.1). Patients with no post-baseline
+assessment count as non-responders.
+
+### 6.4 Sensitivity analysis
+
+PFS by blinded independent central review (BICR): the same derivation and
+methods, with the adjudicated read of the two independent radiologists
+(`RSACPTFL = "Y"`) instead of the investigator's read.
 
 ## 7. Statistical methods
 
 | Endpoint | Method |
 |---|---|
-| PFS | Unstratified log-rank test (one-sided); HR and 95% CI from an unstratified Cox model; Kaplan-Meier medians with 95% CI by Brookmeyer-Crowley (log-log transformation); KM rate at 3 months |
-| ORR | Rate with exact Clopper-Pearson 95% CI; difference vs placebo with 95% CI (normal approximation); chi-square test (nominal) |
-| OS | Descriptive (few deaths expected); formal test at a later data cut |
+| PFS | Unstratified log-rank test (chi-square with 1 df; one-sided Z for the group sequential test); HR and 95% CI from an unstratified Cox model (Efron ties); Kaplan-Meier medians with 95% CI by Brookmeyer-Crowley (log-log transformation); KM rate at 3 months |
+| OS | Same methods as PFS; few deaths expected, so a formal test at a later data cut |
+| ORR, DCR | Rate with exact Clopper-Pearson 95% CI; difference vs placebo with 95% CI (Wald); chi-square test |
 | Safety | Counts and percentages of patients; shift tables of CTCAE grade (baseline vs worst on treatment) |
 
 All randomization was unstratified; in a trial with stratified randomization the
 log-rank test and Cox model are stratified by the IRT strata.
 
+## 8. Computation conventions
+
+Percentages with one decimal; HR with two decimals; p-values with four
+decimals. CI methods and the handling of ties are named above, because R and
+SAS defaults differ (for example Efron vs Breslow ties). Software: R with the
+package versions locked in `renv.lock`.
+
 ## 9. Multiplicity
 
-Fixed-sequence (hierarchical) testing at the full one-sided 2.5%:
-PFS High Dose vs placebo -> PFS Low Dose vs placebo -> ORR High Dose vs placebo.
-A hypothesis is tested only if every hypothesis before it was rejected.
+Fixed-sequence (gatekeeping) testing at the full one-sided 2.5%, in an order
+fixed before unblinding: PFS -> OS -> ORR -> DCR. A hypothesis is tested only
+if every hypothesis before it was rejected; the first failure stops the chain.
 
-## 10. Interim analysis
+## 10. Interim analyses
 
-* **Timing**: when 61 PFS events (50% of 122) have occurred in High Dose + placebo.
-  The data cut-off date is the date of the 61st event; all data up to the cut-off date
-  are cleaned before the analysis.
+* **Timing**: when the total number of PFS events (both arms, counted blinded)
+  reaches 62 (50% of 123) and 93 (75%). The data cut-off date is the date of the
+  event that reaches the target; all data up to the cut-off date are cleaned
+  before the analysis.
 * **Boundaries**: Lan-DeMets O'Brien-Fleming-type spending evaluated at the
-  *actual* information fraction (observed events / 122).
-* **Futility**: non-binding guideline Z < 0 (observed HR > 1); the DMC may also
-  consider conditional power under the current trend.
+  *actual* information fraction (observed events / 123).
+* **Futility**: non-binding; the DMC may recommend stopping if conditional power
+  under the current trend is below 10%.
 * **Conditional power**: reported under the design HR (0.60), the current trend
-  and H0, using the final boundary and 122 planned events.
+  and H0, using the final boundary and 123 planned events.
+* **DMC safety reviews**: between the efficacy interims, the DMC reviews safety
+  data only, at regular meetings.
 * **Confidentiality**: interim results are seen only by the DMC and the
   independent statistician; the sponsor study team stays blinded.
