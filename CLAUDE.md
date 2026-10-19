@@ -63,7 +63,10 @@ small summary tables on the slides, not for TFLs.
    it (`Rscript lab/source_data.R`) before `run_all.R`.
 3. **Acronyms.** Spell out every acronym the first time it appears on a slide
    or in a document; never invent new abbreviations. Keep
-   `lab/docs/00_glossary.md` and the glossary slides in sync.
+   `lab/docs/00_glossary.md` and the glossary slides in sync (same acronyms).
+   The deck has one glossary, in the Appendix; the "Today" slide spells out its
+   own acronyms in a footnote. Each file in `lab/docs/` (and `lab/README.md`)
+   starts with an "Acronyms in this document" line.
 4. **Content first, not timing.** Do not plan slides around a time budget,
    and do not put minutes or timing targets on slides or in speaker notes.
    Judge a slide by its content: is it correct, clear, and useful to the
@@ -178,7 +181,7 @@ run into the footer.
 
 ## Before the lecture
 
-- [ ] Check the speaker line in the YAML header of `slides/index.qmd` (name taken from the repository's first commit; add title or affiliation if wanted)
+- [x] Check the speaker line in the YAML header of `slides/index.qmd` (now "Peng Zhang, PhD · CIMS Global")
 - [ ] Rehearse with the speaker notes (press `S` in the browser)
 - [ ] Share the repository (Posit Cloud: New Project from Git Repository)
 - [ ] Re-render after the last change and commit `slides/index.html` (offline backup)
@@ -189,6 +192,6 @@ run into the footer.
 Students may open this repository with Claude to work through the lab.
 Explain what each script does in plain language, spell out acronyms, point to
 the relevant document in `lab/docs/`, and help with the exercises listed in
-`lab/docs/03_crf_raw_sdtm.md` and on the "Try it yourself" slide. Keep the
+`lab/README.md`, `lab/docs/03_crf_raw_sdtm.md` and on the "Try it yourself" slide. Keep the
 original pipeline working: put exercise code in new files rather than editing
 `lab/R/01..10`.

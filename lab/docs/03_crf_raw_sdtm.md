@@ -1,5 +1,17 @@
 # From CRF to raw data to SDTM
 
+*Acronyms in this document:* CRF: Case Report Form; SDTM: Study Data Tabulation
+Model; SAP: Statistical Analysis Plan; IRT: Interactive Response Technology;
+SDTM domains DM / DS / EX / RS / AE / CM / LB / VS: Demographics / Disposition /
+Exposure / Response / Adverse Events / Concomitant Medications / Laboratory /
+Vital Signs; MedDRA: Medical Dictionary for Regulatory Activities; WHODrug:
+World Health Organization Drug Dictionary; RECIST: Response Evaluation Criteria
+in Solid Tumors; CDISC: Clinical Data Interchange Standards Consortium; CT:
+Controlled Terminology; CDASH: Clinical Data Acquisition Standards
+Harmonization; ISO 8601: international date and time standard; SDTMIG: SDTM
+Implementation Guide; SI: International System of Units; QC: Quality Control;
+ADRS: Response Analysis Dataset. Full list: [`00_glossary.md`](00_glossary.md).
+
 ## 1. Collect what the SAP needs (and nothing else)
 
 Work backwards from the SAP: every analysis variable must trace to a CRF field,

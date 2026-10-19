@@ -1,5 +1,14 @@
 # Submission package (statistician's checklist)
 
+*Acronyms in this document:* FDA: US Food and Drug Administration; SDTM: Study
+Data Tabulation Model; ADaM: Analysis Data Model; XPT: SAS Transport File; SAP:
+Statistical Analysis Plan; aCRF / CRF: Annotated Case Report Form / Case Report
+Form; cSDRG: Clinical Study Data Reviewer's Guide; ADRG: Analysis Data
+Reviewer's Guide; CSR: Clinical Study Report; TFL: Tables, Figures and Listings;
+ICH: International Council for Harmonisation; CSV: Comma-Separated Values;
+ADTTE: Time-to-Event Analysis Dataset. Full list:
+[`00_glossary.md`](00_glossary.md).
+
 What the FDA receives, where it lives in the eCTD (electronic Common Technical
 Document) module 5, and who usually prepares it.
 

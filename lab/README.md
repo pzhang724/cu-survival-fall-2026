@@ -1,5 +1,18 @@
 # Lab: one survival trial from design to submission
 
+*Acronyms in this document:* SDTM: Study Data Tabulation Model; ADaM: Analysis
+Data Model; CSV: Comma-Separated Values; CDISC: Clinical Data Interchange
+Standards Consortium; EDC: Electronic Data Capture; CRF: Case Report Form; DM /
+AE / CM: SDTM domains Demographics / Adverse Events / Concomitant Medications;
+ADSL / ADRS / ADTTE: Subject-Level / Response / Time-to-Event Analysis Dataset;
+SUPPDM: Supplemental Qualifiers for DM; RECIST: Response Evaluation Criteria in
+Solid Tumors; PFS / OS: Progression-Free Survival / Overall Survival; BICR:
+Blinded Independent Central Review; SOC / PT: System Organ Class / Preferred
+Term; CTCAE: Common Terminology Criteria for Adverse Events; DMC: Data
+Monitoring Committee; SAP: Statistical Analysis Plan; QC: Quality Control; TFL:
+Tables, Figures and Listings; HR: Hazard Ratio. Full list:
+[`docs/00_glossary.md`](docs/00_glossary.md).
+
 Everything the slides show, as runnable R code. Run it all with
 
 ```r
@@ -30,7 +43,7 @@ submission uses SAS transport files (XPT) with define.xml instead.
 | Planning | `R/01_design.R` | Hypothesis, events (Schoenfeld), patients, group sequential design with analyses at 50/75/100% of events, power analysis, all with {gsDesign} | `output/figures/f_design_boundaries.png`, `f_design_power.png`, `output/tables/t_design_boundaries.rtf` |
 | Collection | `R/02_reverse_raw.R` | Builds EDC-style raw data from the source SDTM (dates as CRF text, CRF pick-list values, coding columns, wide CRF pages, lab vendor file) | `data/raw/*.csv`, `data/spec/*.csv` |
 | Standards | `R/03_raw_to_sdtm.R` | Maps raw DM, AE, CM to SDTM and compares with the source SDTM using {diffdf} | `data/sdtm/*.csv` |
-| Standards | `R/04_adam_adsl.R` | Extends the source ADSL: analysis-set flags (from SUPPDM), baseline BMI, end of treatment and end of study with reasons | `data/adam/adsl.csv` |
+| Standards | `R/04_adam_adsl.R` | Extends the source ADSL: analysis-set flags (from SUPPDM), baseline body mass index, end of treatment and end of study with reasons | `data/adam/adsl.csv` |
 | Standards | `R/05_adam_adrs_adtte.R` | ADRS (RECIST response) and ADTTE (PFS, OS) with {admiral}/{admiralonco}, for the final data, for PFS by BICR (sensitivity) and for the two interim data cuts | `data/adam/adrs.csv`, `adtte.csv`, `adtte_ia1.csv`, `adtte_ia2.csv` |
 | Reporting | `R/06_tfl_baseline.R` | Tables 14.1.1-14.1.3: disposition, demographics, concomitant medications ({rtables} + {tern}) | `output/tables/t_14_1_*.rtf` |
 | Reporting | `R/07_tfl_efficacy.R` | Tables 14.2.1-14.2.4: PFS (Kaplan-Meier, log-rank, Cox), response rates, OS, PFS by BICR; Figures 14.2.1-14.2.2; multiplicity; investigator vs BICR reads | `output/tables/t_14_2_*.rtf`, `output/figures/f_14_2_*.png` |

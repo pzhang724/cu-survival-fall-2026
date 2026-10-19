@@ -9,6 +9,7 @@ term in the course material it should be here; if it is not, please add it.
 | ADaM | Analysis Data Model | CDISC standard for analysis-ready datasets (ADSL, ADAE, ADTTE ...) |
 | ADaMIG | ADaM Implementation Guide | Rules for building ADaM datasets |
 | ADRG | Analysis Data Reviewer's Guide | PDF that explains the ADaM datasets to the FDA reviewer |
+| ADRS | Response Analysis Dataset | One row per patient per response parameter: overall response by visit, best overall response, progression |
 | ADSL | Subject-Level Analysis Dataset | One row per patient: treatment, analysis-set flags, key dates, baseline covariates |
 | ADTTE | Time-to-Event Analysis Dataset | One row per patient per time-to-event parameter (PFS, OS): AVAL, CNSR, dates |
 | AE | Adverse Event | Any untoward medical occurrence in a patient |
@@ -29,23 +30,24 @@ term in the course material it should be here; if it is not, please add it.
 | CSR | Clinical Study Report | Final report of the trial (structure defined by ICH E3) |
 | CSV | Comma-Separated Values | Plain-text table format; easy to check, but keeps no types or labels (the lab's data format, not a submission format) |
 | CT | Controlled Terminology | CDISC code lists, e.g. SEX must be "F" or "M" |
-| CTCAE | Common Terminology Criteria for Adverse Events | NCI grading scale (grade 1 mild ... grade 5 death); also used for lab values |
+| CTCAE | Common Terminology Criteria for Adverse Events | Grading scale of the US National Cancer Institute (grade 1 mild ... grade 5 death); also used for lab values |
 | DBL | Database Lock | Data are frozen; analysis can start |
 | DCR | Disease Control Rate | Proportion of patients with BOR = CR, PR or SD (or non-CR/non-PD) |
-| DMC | Data Monitoring Committee | Independent experts who review unblinded interim results (also called IDMC or DSMB, Data Safety Monitoring Board) |
-| DSUR | Development Safety Update Report | Yearly safety report to regulators for a drug in development (ICH E2F) |
 | DM / DS / EX / LB / RS / TU / VS | Demographics / Disposition / Exposure / Laboratory / Response / Tumor Identification / Vital Signs | SDTM domains |
+| DMC | Data Monitoring Committee | Independent experts who review unblinded interim results (also called an independent DMC, or a Data Safety Monitoring Board) |
+| DSUR | Development Safety Update Report | Yearly safety report to regulators for a drug in development (ICH E2F) |
 | eCTD | electronic Common Technical Document | Folder structure of a regulatory submission; data go in module 5 |
 | EDC | Electronic Data Capture | System the sites type CRF data into (e.g. Medidata Rave) |
+| FDA | US Food and Drug Administration | The US regulator that reviews new drug applications |
 | GSD | Group Sequential Design | Design with pre-planned interim analyses and stopping boundaries |
 | HR | Hazard Ratio | |
-| ICH | International Council for Harmonisation | Publishes E3 (CSR), E6 (GCP), E9 (statistics), E9(R1) (estimands) |
+| ICH | International Council for Harmonisation | Publishes E3 (CSR), E6 (Good Clinical Practice), E9 (statistics), E9(R1) (estimands) |
 | IA / FA | Interim Analysis / Final Analysis | |
-| IRT | Interactive Response Technology | Randomization and drug-supply system (also IxRS, IWRS) |
+| IRT | Interactive Response Technology | Randomization and drug-supply system |
 | ISO 8601 | International date-time standard | SDTM dates: "2014-01-02T08:30", partial "2014-01" |
 | ITT | Intention-To-Treat | Analyse patients as randomized, regardless of what they received |
 | KM | Kaplan-Meier | Non-parametric survival estimator |
-| MedDRA | Medical Dictionary for Regulatory Activities | Dictionary for coding AEs: LLT (lowest level term) -> PT (preferred term) -> HLT -> HLGT -> SOC (system organ class) |
+| MedDRA | Medical Dictionary for Regulatory Activities | Dictionary for coding AEs, from the verbatim term up to the preferred term (PT) and the system organ class (SOC) |
 | NC | Not Calculated | Shown in a table when a statistic cannot be calculated, for example a hazard ratio when an arm has no events |
 | OBF | O'Brien-Fleming | Conservative early stopping boundary |
 | ODM | Operational Data Model | CDISC XML standard for exchanging collected (EDC) data |
@@ -60,6 +62,7 @@ term in the course material it should be here; if it is not, please add it.
 | SAP | Statistical Analysis Plan | Detailed, pre-specified description of every analysis |
 | SDTM | Study Data Tabulation Model | CDISC standard for collected data, organised in domains |
 | SDTMIG | SDTM Implementation Guide | Rules for building SDTM datasets |
+| SOC / PT | System Organ Class / Preferred Term | MedDRA levels used in AE tables: SOC is the body system, PT is one medical concept |
 | SRC | Safety Review Committee | Group (often internal to the sponsor) that reviews safety data at regular meetings |
 | SSR | Sample Size Re-estimation | Pre-specified change of the target events or patients at an interim analysis, with methods that protect alpha |
 | SUPPQUAL | Supplemental Qualifiers | SDTM datasets (SUPPDM, SUPPAE ...) for non-standard variables |

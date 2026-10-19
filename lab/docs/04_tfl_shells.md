@@ -1,5 +1,16 @@
 # TFL shells
 
+*Acronyms in this document:* TFL: Tables, Figures and Listings; SAP: Statistical
+Analysis Plan; ITT: Intention-To-Treat; ADSL / ADCM / ADTTE / ADRS / ADAE /
+ADLB: Subject-Level / Concomitant Medications / Time-to-Event / Response /
+Adverse Event / Laboratory Analysis Dataset; PFS / OS: Progression-Free Survival
+/ Overall Survival; ORR: Objective Response Rate; DCR: Disease Control Rate;
+BICR: Blinded Independent Central Review; TEAE: Treatment-Emergent Adverse
+Event; AE: Adverse Event; SOC / PT: System Organ Class / Preferred Term; CTCAE:
+Common Terminology Criteria for Adverse Events; IA: Interim Analysis; DMC: Data
+Monitoring Committee; CI: Confidence Interval; HR: Hazard Ratio; CP: Conditional
+Power. Full list: [`00_glossary.md`](00_glossary.md).
+
 Shells (mock tables) are written with the SAP, **before** any data exist. They
 fix titles, populations, rows, columns, statistics and decimals, so programmers
 and reviewers agree on the output. `xx` marks a number to be filled. Every
@@ -55,7 +66,7 @@ Table IA.1 (PFS at the interim data cut).
 | Median, months (95% CI) [a] | x.x (x.x - x.x) | x.x (x.x - x.x) | x.x (x.x - x.x) |
 | Event-free rate at 3 months, % (95% CI) [a] | xx.x (xx.x - xx.x) | xx.x (xx.x - xx.x) | xx.x (xx.x - xx.x) |
 | Hazard ratio vs placebo (95% CI) [b] | | x.xx (x.xx - x.xx) | |
-| Log-rank chi-square (1 df) | | x.xxx | |
+| Log-rank chi-square (1 degree of freedom) | | x.xxx | |
 | One-sided p-value (log-rank) | | x.xxxx | |
 
 [a] Kaplan-Meier; Brookmeyer-Crowley CI with log-log transformation.
