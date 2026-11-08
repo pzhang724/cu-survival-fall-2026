@@ -11,33 +11,10 @@ need("adtte", "05_adam_adrs_adtte.R")
 library(xportr)
 
 ## ---- sub-spec ----
-# Variable-level metadata for ADTTE (in practice: the ADaM specification
-# spreadsheet that also generates define.xml)
-adtte_spec <- tribble(
-  ~variable,  ~label,                                   ~type,       ~length, ~format,
-  "STUDYID",  "Study Identifier",                       "character", 12,      NA,
-  "USUBJID",  "Unique Subject Identifier",              "character", 11,      NA,
-  "TRT01P",   "Planned Treatment for Period 01",        "character", 20,      NA,
-  "TRT01A",   "Actual Treatment for Period 01",         "character", 20,      NA,
-  "ITTFL",    "Intent-To-Treat Population Flag",        "character", 1,       NA,
-  "SAFFL",    "Safety Population Flag",                 "character", 1,       NA,
-  "AGE",      "Age",                                    "integer",   8,       NA,
-  "SEX",      "Sex",                                    "character", 1,       NA,
-  "PARAMCD",  "Parameter Code",                         "character", 8,       NA,
-  "PARAM",    "Parameter",                              "character", 40,      NA,
-  "AVAL",     "Analysis Value",                         "float",     8,       NA,
-  "AVALU",    "Analysis Value Unit",                    "character", 4,       NA,
-  "STARTDT",  "Time-to-Event Origin Date for Subject",  "integer",   8,       "DATE9.",
-  "ADT",      "Analysis Date",                          "integer",   8,       "DATE9.",
-  "CNSR",     "Censor",                                 "integer",   8,       NA,
-  "EVNTDESC", "Event or Censoring Description",         "character", 40,      NA,
-  "CNSDTDSC", "Censor Date Description",                "character", 40,      NA,
-  "SRCDOM",   "Source Data",                            "character", 4,       NA,
-  "SRCVAR",   "Source Variable",                        "character", 8,       NA,
-  "SRCSEQ",   "Source Sequence Number",                 "integer",   8,       NA,
-  "ASEQ",     "Analysis Sequence Number",               "integer",   8,       NA
-) %>%
-  mutate(dataset = "ADTTE", order = row_number(), .before = 1)
+# Variable-level metadata for ADTTE: the ADaM specification sheet
+# (lab/data/spec/adam_spec_adtte.csv). In practice this is a sheet of the ADaM
+# specification workbook, which also generates define.xml.
+adtte_spec <- read_spec("adam_spec_adtte")
 
 dataset_spec <- tibble(dataset = "ADTTE", label = "Time-to-Event Analysis Dataset")
 

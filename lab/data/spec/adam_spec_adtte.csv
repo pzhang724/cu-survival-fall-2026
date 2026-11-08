@@ -1,0 +1,22 @@
+dataset,order,variable,label,type,length,format,origin,source,derivation
+ADTTE,1,STUDYID,Study Identifier,character,12,,Predecessor,ADSL.STUDYID,Copy
+ADTTE,2,USUBJID,Unique Subject Identifier,character,11,,Predecessor,ADSL.USUBJID,Copy
+ADTTE,3,TRT01P,Planned Treatment for Period 01,character,20,,Predecessor,ADSL.TRT01P,Copy
+ADTTE,4,TRT01A,Actual Treatment for Period 01,character,20,,Predecessor,ADSL.TRT01A,Copy
+ADTTE,5,ITTFL,Intent-To-Treat Population Flag,character,1,,Predecessor,ADSL.ITTFL,"Copy; only ITTFL = ""Y"" patients are in ADTTE"
+ADTTE,6,SAFFL,Safety Population Flag,character,1,,Predecessor,ADSL.SAFFL,Copy
+ADTTE,7,AGE,Age,integer,8,,Predecessor,ADSL.AGE,Copy
+ADTTE,8,SEX,Sex,character,1,,Predecessor,ADSL.SEX,Copy
+ADTTE,9,PARAMCD,Parameter Code,character,8,,Assigned,,"""PFS"" or ""OS"""
+ADTTE,10,PARAM,Parameter,character,40,,Assigned,,"""Progression-Free Survival (days)"" or ""Overall Survival (days)"""
+ADTTE,11,AVAL,Analysis Value,float,8,,Derived,ADT; STARTDT,ADT - STARTDT + 1 (days)
+ADTTE,12,AVALU,Analysis Value Unit,character,4,,Assigned,,"""DAYS"""
+ADTTE,13,STARTDT,Time-to-Event Origin Date for Subject,integer,8,DATE9.,Derived,ADSL.RANDDT,Date of randomization
+ADTTE,14,ADT,Analysis Date,integer,8,DATE9.,Derived,"ADRS.ADT; ADSL.DTHDT, LSTALVDT, RANDDT","PFS: first of progression and death; if neither, the censoring date (SAP section 6.1). OS: death date, else last date known alive"
+ADTTE,15,CNSR,Censor,integer,8,,Derived,,"0 = event, 1 = censored (SAP section 6.1)"
+ADTTE,16,EVNTDESC,Event or Censoring Description,character,40,,Derived,,"Which event or censoring rule gave ADT, for example ""Disease progression"""
+ADTTE,17,CNSDTDSC,Censor Date Description,character,40,,Derived,,"Which date was used to censor, for example ""Last adequate tumor assessment"""
+ADTTE,18,SRCDOM,Source Data,character,4,,Derived,,Dataset that gave ADT: ADRS or ADSL
+ADTTE,19,SRCVAR,Source Variable,character,8,,Derived,,"Variable that gave ADT, for example ADT, DTHDT"
+ADTTE,20,SRCSEQ,Source Sequence Number,integer,8,,Derived,,ASEQ of the ADRS record that gave ADT (empty for ADSL)
+ADTTE,21,ASEQ,Analysis Sequence Number,integer,8,,Derived,,"1, 2 within USUBJID, sorted by PARAMCD"

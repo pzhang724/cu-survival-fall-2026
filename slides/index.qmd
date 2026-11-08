@@ -67,6 +67,24 @@ slide_rt <- function(x, size = 18) {
                  rtables::as_html(x))
 }
 
+# A specification sheet (lab/data/spec/) shown as an Excel worksheet:
+# column letters, row numbers, sheet tabs. Only the rows in `vars` are shown
+# (as with an Excel filter, so row numbers have gaps and turn blue).
+slide_sheet <- function(spec, cols, vars, tabs, active, size = 17) {
+  h <- htmltools::tags
+  rows <- match(vars, spec$variable)
+  head <- h$tr(h$th(""), lapply(LETTERS[seq_along(cols)], h$th))
+  labels <- h$tr(class = "xl-head", h$td(class = "xl-rn", 1), lapply(names(cols), h$td))
+  body <- lapply(rows, function(i) {
+    h$tr(h$td(class = "xl-rn xl-filtered", i + 1),
+         lapply(cols, function(cl) h$td(ifelse(is.na(spec[[cl]][i]), "", spec[[cl]][i]))))
+  })
+  tab_bar <- h$div(class = "xl-tabs",
+                   lapply(tabs, function(t) h$span(class = if (t == active) "on", t)))
+  h$div(class = "xl", style = sprintf("font-size: %dpx;", round(size * 1.15)),
+        h$table(head, labels, body), tab_bar)
+}
+
 # Links to files in the repository always point to the main branch
 repo_url <- "https://github.com/pzhang724/cu-survival-fall-2026"
 gh <- function(path) {
@@ -576,6 +594,34 @@ Our source data contain SDTM only. The lab rebuilds raw data from SDTM
 :::
 ::::
 
+## The SDTM mapping specification (example: AE)
+
+Before any code, the programmer writes a **mapping specification** (often
+called the "spec"): one row per SDTM variable, with its source in the raw data
+and the mapping rule. In practice the spec is an **Excel workbook**, one sheet per domain.
+
+```{r}
+sdtm_spec <- read_spec("sdtm_spec_ae")
+slide_sheet(
+  sdtm_spec,
+  cols = c(Variable = "variable", Label = "label", Type = "type", Codelist = "codelist",
+           Origin = "origin", `Source (raw data)` = "source", `Mapping rule` = "rule"),
+  vars = c("STUDYID", "USUBJID", "AESEQ", "AETERM", "AEDECOD", "AESEV", "AESER",
+           "AEACN", "AESTDTC", "AESTDY"),
+  tabs = c("Datasets", "DM", "AE", "CM", "Codelists"), active = "AE"
+)
+```
+
+[`r nrow(sdtm_spec)` rows in the full sheet: `r gh("lab/data/spec/sdtm_spec_ae.csv")`.
+Origin: Collected = from the CRF; Assigned = set by the sponsor or a dictionary;
+Derived = computed. The AE program takes its variables and their order from this sheet.]{.small .muted}
+
+::: notes
+The spec comes first, the code second. The QC programmer also works from the
+spec, not from the production code. The lab keeps the sheet as a CSV file so
+that changes are easy to see in git; a study team would use Excel.
+:::
+
 ## Raw → SDTM: the mapping functions
 
 :::: {.columns}
@@ -697,6 +743,34 @@ adsl_check |>
 ```
 :::
 ::::
+
+## The ADaM specification (example: ADTTE)
+
+The statistician writes or reviews the **ADaM specification**: one row per
+variable, with its source and its derivation, linked to the SAP. The same sheet
+gives the types, lengths and labels for the submission files: SAS transport
+files (XPT) and define.xml.
+
+```{r}
+adam_spec <- read_spec("adam_spec_adtte")
+slide_sheet(
+  adam_spec,
+  cols = c(Variable = "variable", Label = "label", Type = "type", Length = "length",
+           Origin = "origin", Source = "source", Derivation = "derivation"),
+  vars = c("USUBJID", "PARAMCD", "AVAL", "STARTDT", "ADT", "CNSR", "EVNTDESC", "SRCDOM"),
+  tabs = c("Datasets", "ADSL", "ADRS", "ADTTE", "Codelists"), active = "ADTTE"
+)
+```
+
+[`r nrow(adam_spec)` rows in the full sheet: `r gh("lab/data/spec/adam_spec_adtte.csv")`.
+Predecessor = copied from another dataset. `10_submission.R` reads this sheet
+with {xportr} to write the XPT file.]{.small .muted}
+
+::: notes
+For ADaM, the derivation column is where the statistician's decisions live:
+for example the censoring rules of SAP section 6.1 in ADT and CNSR. The QC
+programmer reads the same sheet and programs the dataset independently.
+:::
 
 ## ADTTE: one row per patient per parameter
 

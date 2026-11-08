@@ -136,3 +136,11 @@ read_raw <- function(name, dir = "raw") {
   if (!file.exists(path)) path <- paste0(path, ".gz")
   readr::read_csv(path, col_types = readr::cols(.default = "c"), na = "")
 }
+
+# Read a specification sheet (lab/data/spec/*_spec_*.csv): one row per variable.
+# In a real study this is an Excel workbook with one sheet per dataset.
+read_spec <- function(name) {
+  readr::read_csv(lab_path("data", "spec", paste0(name, ".csv")),
+                  col_types = readr::cols(.default = "c"), na = "") |>
+    dplyr::mutate(dplyr::across(dplyr::any_of(c("order", "length")), as.integer))
+}

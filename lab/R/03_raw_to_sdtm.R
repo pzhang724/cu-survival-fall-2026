@@ -106,6 +106,7 @@ dm_sdtm <- raw_dm %>%
   )
 
 ## ---- sdtm-ae ----
+ae_spec <- read_spec("sdtm_spec_ae")   # the mapping specification: one row per variable
 ae_sdtm <- raw_ae %>%
   mutate(USUBJID = paste0("01-", SUBJECT)) %>%
   left_join(select(dm_sdtm, USUBJID, RFSTDTC), by = "USUBJID") %>%
@@ -136,7 +137,7 @@ ae_sdtm <- raw_ae %>%
   group_by(USUBJID) %>%
   mutate(AESEQ = as.numeric(row_number())) %>%  # --SEQ: unique within subject
   ungroup() %>%
-  select(STUDYID, DOMAIN, USUBJID, AESEQ, everything(), -RECORDPOS)
+  select(all_of(ae_spec$variable))  # variables and their order come from the spec
 
 ## ---- sdtm-cm ----
 visit_schedule <- read_raw("visit_schedule", dir = "spec") %>%

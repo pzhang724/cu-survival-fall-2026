@@ -33,7 +33,8 @@ lab/R/00_setup.R        packages, paths, DESIGN constants, helpers (need(), read
 lab/R/01..10_*.R        design, raw data, SDTM, ADSL, ADRS/ADTTE, TFLs, interim, submission
 lab/data/source/        source SDTM + ADaM of our two-arm trial (CSV, large files gzipped) + metadata.csv
 lab/data/raw/           reverse-engineered raw data (EDC-style CSV; lab file gzipped)
-lab/data/spec/          study controlled-terminology map, visit schedule
+lab/data/spec/          study controlled-terminology map, visit schedule; example specs
+                        (sdtm_spec_ae.csv, adam_spec_adtte.csv; written by hand, read by 03 and 10)
 lab/data/sdtm/, adam/   derived datasets written by the pipeline (CSV; adtte_ia1/2 = interim cuts)
 lab/output/             RTF tables, PNG figures, XPT file
 lab/docs/               glossary, protocol synopsis, SAP excerpt, CRF/raw/SDTM notes, TFL shells, submission

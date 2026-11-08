@@ -1,0 +1,36 @@
+dataset,order,variable,label,type,codelist,origin,source,rule
+AE,1,STUDYID,Study Identifier,Char,,Assigned,ae.STUDY,Copy
+AE,2,DOMAIN,Domain Abbreviation,Char,,Assigned,,"""AE"""
+AE,3,USUBJID,Unique Subject Identifier,Char,,Derived,ae.SUBJECT,"""01-"" + SUBJECT"
+AE,4,AESEQ,Sequence Number,Num,,Derived,,"1, 2, 3 ... within USUBJID, in CRF record order"
+AE,5,AESPID,Sponsor-Defined Identifier,Char,,Collected,ae.AESPID,Copy
+AE,6,AETERM,Reported Term for the Adverse Event,Char,,Collected,ae.AETERM,Copy (the verbatim term)
+AE,7,AELLT,Lowest Level Term,Char,MedDRA,Assigned,ae.AETERM_LLT,MedDRA coding: lowest level term
+AE,8,AELLTCD,Lowest Level Term Code,Num,MedDRA,Assigned,ae.AETERM_LLT_CODE,Code as a number
+AE,9,AEDECOD,Dictionary-Derived Term,Char,MedDRA,Assigned,ae.AETERM_PT,MedDRA coding: preferred term
+AE,10,AEPTCD,Preferred Term Code,Num,MedDRA,Assigned,ae.AETERM_PT_CODE,Code as a number
+AE,11,AEHLT,High Level Term,Char,MedDRA,Assigned,ae.AETERM_HLT,MedDRA coding: high level term
+AE,12,AEHLTCD,High Level Term Code,Num,MedDRA,Assigned,ae.AETERM_HLT_CODE,Code as a number
+AE,13,AEHLGT,High Level Group Term,Char,MedDRA,Assigned,ae.AETERM_HLGT,MedDRA coding: high level group term
+AE,14,AEHLGTCD,High Level Group Term Code,Num,MedDRA,Assigned,ae.AETERM_HLGT_CODE,Code as a number
+AE,15,AEBODSYS,Body System or Organ Class,Char,MedDRA,Assigned,ae.AETERM_SOC,MedDRA coding: system organ class
+AE,16,AEBDSYCD,Body System or Organ Class Code,Num,MedDRA,Assigned,ae.AETERM_SOC_CODE,Code as a number
+AE,17,AESOC,Primary System Organ Class,Char,MedDRA,Assigned,ae.AETERM_SOC,MedDRA coding: system organ class
+AE,18,AESOCCD,Primary System Organ Class Code,Num,MedDRA,Assigned,ae.AETERM_SOC_CODE,Code as a number
+AE,19,AESEV,Severity/Intensity,Char,AESEV,Collected,ae.AESEV,Map with the codelist (Mild -> MILD)
+AE,20,AESER,Serious Event,Char,NY,Collected,ae.AESER,Map with the codelist (Yes -> Y)
+AE,21,AEACN,Action Taken with Study Treatment,Char,,Assigned,,Not collected in this study: empty
+AE,22,AEREL,Causality,Char,AEREL,Collected,ae.AEREL,Map with the codelist
+AE,23,AEOUT,Outcome of Adverse Event,Char,OUT,Collected,ae.AEOUT,Map with the codelist
+AE,24,AESCAN,Involves Cancer,Char,NY,Collected,ae.AESCAN,Map with the codelist (Yes -> Y)
+AE,25,AESCONG,Congenital Anomaly or Birth Defect,Char,NY,Collected,ae.AESCONG,Map with the codelist (Yes -> Y)
+AE,26,AESDISAB,Persist or Signif Disability/Incapacity,Char,NY,Collected,ae.AESDISAB,Map with the codelist (Yes -> Y)
+AE,27,AESDTH,Results in Death,Char,NY,Collected,ae.AESDTH,Map with the codelist (Yes -> Y)
+AE,28,AESHOSP,Requires or Prolongs Hospitalization,Char,NY,Collected,ae.AESHOSP,Map with the codelist (Yes -> Y)
+AE,29,AESLIFE,Is Life Threatening,Char,NY,Collected,ae.AESLIFE,Map with the codelist (Yes -> Y)
+AE,30,AESOD,Occurred with Overdose,Char,NY,Collected,ae.AESOD,Map with the codelist (Yes -> Y)
+AE,31,AEDTC,Date/Time of Collection,Char,ISO 8601,Collected,ae.RECORDDATE,CRF date text -> ISO 8601
+AE,32,AESTDTC,Start Date/Time of Adverse Event,Char,ISO 8601,Collected,ae.AESTDAT,CRF date text -> ISO 8601; partial dates stay partial
+AE,33,AEENDTC,End Date/Time of Adverse Event,Char,ISO 8601,Collected,ae.AEENDAT,CRF date text -> ISO 8601; partial dates stay partial
+AE,34,AESTDY,Study Day of Start of Adverse Event,Num,,Derived,AESTDTC; DM.RFSTDTC,Study day: AESTDTC - RFSTDTC + 1 on or after day 1 (no day 0); empty for partial dates
+AE,35,AEENDY,Study Day of End of Adverse Event,Num,,Derived,AEENDTC; DM.RFSTDTC,"As AESTDY, with AEENDTC"
