@@ -57,6 +57,7 @@ term in the course material it should be here; if it is not, please add it.
 | OS | Overall Survival | Time from randomization to death from any cause |
 | PFS | Progression-Free Survival | Time from randomization to progression or death, whichever first |
 | P21 | Pinnacle 21 | Software that checks datasets against CDISC and FDA rules |
+| PHUSE | Pharmaceutical Users Software Exchange | Global non-profit community for data science in clinical research (conferences, working groups, open-source projects) |
 | QC | Quality Control | Independent re-programming and comparison of outputs ("double programming") |
 | RECIST | Response Evaluation Criteria in Solid Tumors (version 1.1) | Rules for measuring tumour response on scans |
 | RTF | Rich Text Format | Usual file format for TFLs pasted into the CSR |

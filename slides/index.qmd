@@ -97,7 +97,8 @@ lb_example <- read_raw("lb")[1, ]
 * Study statistician
 * Independent statistician on a Data Monitoring Committee (DMC), Safety Review
   Committee (SRC) or Data Review Committee (DRC)
-* Open-source contributor
+* Open-source contributor: PHUSE (Pharmaceutical Users Software Exchange),
+  R/Pharma, US Food and Drug Administration (FDA) submission working group
 :::
 ::::
 
@@ -1360,6 +1361,7 @@ Questions?
 | ODM | CDISC Operational Data Model |
 | ORR / OS / PFS | Objective Response Rate / Overall Survival / Progression-Free Survival |
 | P21 | Pinnacle 21 (conformance checking software) |
+| PHUSE | Pharmaceutical Users Software Exchange |
 :::
 ::: {.column width="50%"}
 | Acronym | Meaning |
