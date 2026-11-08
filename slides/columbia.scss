@@ -24,7 +24,7 @@ $code-color: $cu-navy;
 }
 
 .reveal .slide-number { color: #6B7280; font-size: 0.55em; }
-.reveal .footer { color: #6B7280; font-size: 0.45em; }
+.reveal .footer { color: #6B7280; font-size: 0.5em; }
 
 // section divider slides
 .reveal section.part-title h1 { color: #FFFFFF; font-size: 2.2em; }
@@ -106,3 +106,24 @@ $code-color: $cu-navy;
 .reveal .slide-menu-button { display: none; }
 // slide number sits just left of the right-hand logo
 .reveal .slide-number { right: 150px !important; bottom: 16px !important; }
+
+// footer and slide number stay readable on the navy section slides
+.reveal.has-dark-background .footer,
+.reveal.has-dark-background .footer a,
+.reveal.has-dark-background .slide-number { color: $cu-light; }
+
+// specification sheets drawn as an Excel worksheet (slide_sheet() in index.qmd)
+.reveal .xl { border: 1px solid #BDBDBD; margin: 0.4em 0; font-family: "Aptos", "Calibri", "Source Sans Pro", sans-serif; }
+.reveal .xl table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; }
+.reveal .xl table th, .reveal .xl table td {
+  border: 1px solid #D4D4D4; padding: 2px 8px; text-align: left; vertical-align: top;
+  background: #FFFFFF; color: $cu-ink; font-weight: normal; line-height: 1.25;
+}
+.reveal .xl table th { background: #F3F3F3; color: #555555; text-align: center; }
+.reveal .xl table tr.xl-head td { background: #DDEBF7; font-weight: 600; }
+.reveal .xl table td.xl-rn { background: #F3F3F3; color: #555555; text-align: center; width: 2.2em; }
+.reveal .xl table td.xl-filtered { color: #1F6FC5; }
+.reveal .xl .xl-tabs { display: flex; background: #F3F3F3; border-top: 1px solid #BDBDBD; font-size: 0.85em; }
+.reveal .xl .xl-tabs span { padding: 2px 16px; border-right: 1px solid #D4D4D4; color: #555555; }
+.reveal .xl .xl-tabs span.on { background: #FFFFFF; color: #217346; font-weight: 600; border-bottom: 3px solid #217346; }
+.reveal .xl .xl-tabs span.xl-note { border-right: 0; margin-left: auto; color: #6B7280; font-style: italic; }

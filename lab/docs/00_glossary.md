@@ -35,6 +35,7 @@ term in the course material it should be here; if it is not, please add it.
 | DCR | Disease Control Rate | Proportion of patients with BOR = CR, PR or SD (or non-CR/non-PD) |
 | DM / DS / EX / LB / RS / TU / VS | Demographics / Disposition / Exposure / Laboratory / Response / Tumor Identification / Vital Signs | SDTM domains |
 | DMC | Data Monitoring Committee | Independent experts who review unblinded interim results (also called an independent DMC, or a Data Safety Monitoring Board) |
+| DRC | Data Review Committee | Group that reviews accumulating trial data (often safety and data quality) at planned meetings; its role is set in its charter |
 | DSUR | Development Safety Update Report | Yearly safety report to regulators for a drug in development (ICH E2F) |
 | eCTD | electronic Common Technical Document | Folder structure of a regulatory submission; data go in module 5 |
 | EDC | Electronic Data Capture | System the sites type CRF data into (e.g. Medidata Rave) |
@@ -56,6 +57,7 @@ term in the course material it should be here; if it is not, please add it.
 | OS | Overall Survival | Time from randomization to death from any cause |
 | PFS | Progression-Free Survival | Time from randomization to progression or death, whichever first |
 | P21 | Pinnacle 21 | Software that checks datasets against CDISC and FDA rules |
+| PHUSE | Pharmaceutical Users Software Exchange | Global non-profit community for data science in clinical research (conferences, working groups, open-source projects) |
 | QC | Quality Control | Independent re-programming and comparison of outputs ("double programming") |
 | RECIST | Response Evaluation Criteria in Solid Tumors (version 1.1) | Rules for measuring tumour response on scans |
 | RTF | Rich Text Format | Usual file format for TFLs pasted into the CSR |

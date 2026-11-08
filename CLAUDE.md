@@ -33,7 +33,8 @@ lab/R/00_setup.R        packages, paths, DESIGN constants, helpers (need(), read
 lab/R/01..10_*.R        design, raw data, SDTM, ADSL, ADRS/ADTTE, TFLs, interim, submission
 lab/data/source/        source SDTM + ADaM of our two-arm trial (CSV, large files gzipped) + metadata.csv
 lab/data/raw/           reverse-engineered raw data (EDC-style CSV; lab file gzipped)
-lab/data/spec/          study controlled-terminology map, visit schedule
+lab/data/spec/          study controlled-terminology map, visit schedule; spec workbooks
+                        sdtm_spec.xlsx (AE) and adam_spec.xlsx (ADTTE): edited in Excel, read by 03 and 10
 lab/data/sdtm/, adam/   derived datasets written by the pipeline (CSV; adtte_ia1/2 = interim cuts)
 lab/output/             RTF tables, PNG figures, XPT file
 lab/docs/               glossary, protocol synopsis, SAP excerpt, CRF/raw/SDTM notes, TFL shells, submission
@@ -144,6 +145,16 @@ small summary tables on the slides, not for TFLs.
 * **Concomitant medications**: most pilot records are "UNCODED"; the table shows
   them by verbatim name under "Not yet coded".
 * **Data cut-off** is always written out; do not use the abbreviation "DCO".
+* **Specifications** are Excel workbooks (sheet "Datasets" + one sheet per
+  dataset) with the user's column names: Variable Name, Variable Label, Type,
+  Length, Controlled Terms or Format, Origin, Core, Conversion Definition,
+  Variable Order, Comments for Define (the user dropped "Variable Type"). `read_spec()` reads them with {readxl}; `03` takes the AE
+  variables and order from the SDTM spec, `10` feeds the ADaM spec to {xportr}.
+  Edit the workbooks in Excel (no script writes them).
+* **Slide 4** ("Set up R: Posit Cloud") gives the setup steps; the speaker
+  switches between the slides and RStudio during the lecture.
+* **Slide 2** is the speaker's own introduction ("Introduction of myself":
+  education, current role, experience), placed before "Today".
 * **Synthetic data**: the slides say that all data are synthetic test data
   from pharmaverse and that no real patient data are used.
 * **Links to the repository** on slides (code, data, docs) always point to the

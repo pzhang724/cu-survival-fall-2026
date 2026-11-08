@@ -33,6 +33,15 @@ Specs (metadata, not data): `lab/data/spec/study_ct.csv` (CRF text <-> CDISC
 controlled terminology) and `lab/data/spec/visit_schedule.csv` (visit names and
 numbers, like the SDTM trial design dataset TV).
 
+Mapping specification: `lab/data/spec/sdtm_spec.xlsx`, an Excel workbook with
+a "Datasets" sheet and one sheet per domain (here: AE), one row per variable.
+Columns: Variable Name, Variable Label, Type, Length, Controlled Terms or
+Format, Origin, Core, Conversion Definition, Variable Order, Comments for
+Define. `03_raw_to_sdtm.R` takes the AE variables
+and their order from this sheet. The ADaM example is
+`lab/data/spec/adam_spec.xlsx` (sheet ADTTE; the Conversion Definition holds
+the derivation), which `10_submission.R` reads with {xportr}.
+
 ## 2. Annotated CRF: Adverse Event page
 
 An annotated CRF (aCRF) labels each field with its SDTM target. Field names

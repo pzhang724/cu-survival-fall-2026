@@ -136,3 +136,10 @@ read_raw <- function(name, dir = "raw") {
   if (!file.exists(path)) path <- paste0(path, ".gz")
   readr::read_csv(path, col_types = readr::cols(.default = "c"), na = "")
 }
+
+# Read one sheet of a specification workbook (lab/data/spec/*.xlsx), as a
+# study team keeps it in Excel: sheet "Datasets" plus one sheet per dataset,
+# one row per variable.
+read_spec <- function(file, sheet) {
+  readxl::read_excel(lab_path("data", "spec", file), sheet = sheet)
+}

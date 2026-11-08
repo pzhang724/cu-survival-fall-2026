@@ -68,6 +68,34 @@ logrank_parts <- tibble(
 )
 logrank_var <- lr$var[2, 2]   # variance V of O - E (same for both arms)
 
+## ---- eff-logrank-by-time ----
+# The same statistic, one event time at a time. At event time j, with n0, n1
+# patients at risk and d0, d1 events on Placebo and High Dose (d = d0 + d1):
+#   O1 - E1 = d1 - d * n1 / n = w * (d1 / n1 - d0 / n0),  weight w = n1 * n0 / n
+# So the log-rank statistic sum(O1 - E1) is a weighted sum of the differences
+# in event rates at each event time. (Days and months give the same event
+# order and ties, so the same statistic.)
+at_risk <- function(day, arm) sum(pfs$AVAL >= day & pfs$TRT01P == arm)
+events  <- function(day, arm) sum(pfs$AVAL == day & pfs$is_event & pfs$TRT01P == arm)
+logrank_by_time <- pfs %>%
+  filter(is_event) %>%
+  distinct(DAY = AVAL) %>%
+  arrange(DAY) %>%
+  mutate(
+    n0 = map_int(DAY, at_risk, arm = CONTROL),
+    n1 = map_int(DAY, at_risk, arm = EXPERIMENTAL),
+    d0 = map_int(DAY, events, arm = CONTROL),
+    d1 = map_int(DAY, events, arm = EXPERIMENTAL),
+    n = n0 + n1, d = d0 + d1,
+    rate_diff = if_else(n0 > 0 & n1 > 0, d1 / n1 - d0 / n0, NA_real_),
+    weight    = n1 * n0 / n,
+    o_minus_e = d1 - d * n1 / n,
+    v         = if_else(n > 1, d * n1 * n0 * (n - d) / (n^2 * (n - 1)), 0)
+  )
+# QC: the sums over the event times reproduce survival::survdiff()
+stopifnot(isTRUE(all.equal(sum(logrank_by_time$o_minus_e), lr$obs[2] - lr$exp[2])),
+          isTRUE(all.equal(sum(logrank_by_time$v), logrank_var)))
+
 ## ---- eff-final-boundary ----
 # The final boundary uses the ACTUAL information: alpha spent at the two
 # interim analyses (at their actual event counts) and the actual final events.

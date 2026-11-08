@@ -13,7 +13,7 @@ format:
     margin: 0.04
     slide-number: c/t
     hash-type: number
-    footer: "From Protocol to Submission · Columbia Survival Analysis · Fall 2026"
+    footer: "Slides, code and data: [github.com/pzhang724/cu-survival-fall-2026](https://github.com/pzhang724/cu-survival-fall-2026)"
     embed-resources: true
     code-overflow: wrap
     code-line-numbers: false
@@ -67,6 +67,32 @@ slide_rt <- function(x, size = 18) {
                  rtables::as_html(x))
 }
 
+# One sheet of a specification workbook (lab/data/spec/*.xlsx) drawn as an
+# Excel worksheet: column letters, row numbers, the workbook's sheet tabs.
+# Only the columns in `cols` and the rows in `vars` are shown (as with hidden
+# columns and an Excel filter, so letters and row numbers have gaps).
+slide_sheet <- function(file, sheet, cols, vars, size = 15) {
+  h <- htmltools::tags
+  spec <- read_spec(file, sheet)
+  rows <- match(vars, spec[["Variable Name"]])
+  letters_shown <- LETTERS[match(cols, names(spec))]
+  hidden <- setdiff(names(spec), cols)
+  head <- h$tr(h$th(""), lapply(letters_shown, h$th))
+  labels <- h$tr(class = "xl-head", h$td(class = "xl-rn", 1), lapply(cols, h$td))
+  body <- lapply(rows, function(i) {
+    h$tr(h$td(class = "xl-rn xl-filtered", i + 1),
+         lapply(cols, function(cl) { x <- spec[[cl]][i]; h$td(if (is.na(x)) "" else format(x)) }))
+  })
+  tabs <- readxl::excel_sheets(lab_path("data", "spec", file))
+  tab_bar <- h$div(class = "xl-tabs",
+                   lapply(tabs, function(t) h$span(class = if (t == sheet) "on", t)),
+                   h$span(class = "xl-note", sprintf("%d of %d variables shown. Hidden columns: %s",
+                                                     length(vars), nrow(spec),
+                                                     paste(sprintf("%s (%s)", hidden, LETTERS[match(hidden, names(spec))]), collapse = ", "))))
+  h$div(class = "xl", style = sprintf("font-size: %dpx;", round(size * 1.15)),
+        h$table(head, labels, body), tab_bar)
+}
+
 # Links to files in the repository always point to the main branch
 repo_url <- "https://github.com/pzhang724/cu-survival-fall-2026"
 gh <- function(path) {
@@ -77,6 +103,36 @@ gh <- function(path) {
 irt_date_example <- read_raw("irt")$RANDOMIZATION_DATE[1]
 lb_example <- read_raw("lb")[1, ]
 ```
+
+## Introduction of myself
+
+:::: {.columns}
+::: {.column width="45%"}
+**Peng Zhang, PhD**
+
+* PhD in Biostatistics, Rutgers University
+  * Research: statistical monitoring, adaptive design
+* Associate Director of Innovative Data Sciences, CIMS Global
+:::
+::: {.column width="55%"}
+**Personal experience**
+
+* Open-source development in statistical monitoring and regulatory submission
+* Agentic biometric workflows: artificial intelligence agents that help with
+  statistics and programming
+* Study statistician
+* Independent statistician on a Data Monitoring Committee (DMC), Safety Review
+  Committee (SRC) or Data Review Committee (DRC)
+* Open-source contributor: PHUSE (Pharmaceutical Users Software Exchange),
+  R/Pharma, R Consortium R Submissions Working Group
+:::
+::::
+
+::: notes
+A short introduction. The work on Data Monitoring Committees comes back in
+Part 5 (interim analyses and the DMC report). The open-source work explains why
+this lecture uses open-source R packages from pharmaverse.
+:::
 
 ## Today
 
@@ -101,6 +157,35 @@ the end.]{.small .muted}
 This lecture is a role-play, not a methods lecture. We act as the trial
 statistician and use the survival methods from this course on one trial. Ask
 students to open the repository now so they can follow along.
+:::
+
+## Set up R: Posit Cloud (free, in your browser)
+
+:::: {.columns}
+::: {.column width="58%"}
+1. Sign up at **posit.cloud** (free plan; you can log in with a Google or GitHub account)
+2. **New Project** → **New Project from Git Repository**
+3. Paste the repository address:\
+   **`r repo_url`**
+4. In the R console, install the locked package versions (this takes a few minutes):\
+   `renv::restore()`
+5. Run the whole lab:\
+   `source("lab/run_all.R")`
+:::
+::: {.column width="42%"}
+**During the lecture** we switch between these slides and RStudio. When a slide
+shows code, the same code is in a script in `r gh("lab/R/")`: open it and run it.
+
+**On your own computer**: install R and RStudio, then
+*File* → *New Project* → *Version Control* → *Git*, and do steps 3 to 5.
+
+**With Claude**: open the repository with Claude; `CLAUDE.md` explains the project.
+:::
+::::
+
+::: notes
+Start renv::restore() now: it runs while we go through the planning part. The
+first switch to RStudio is in Part 3 (raw data, SDTM, the spec workbook).
 :::
 
 # Part 1 · The map of a trial {background-color="#1D4F91" .part-title}
@@ -189,7 +274,21 @@ Every later step carries out a decision made here.
 ## Protocol: the parts the statistician writes
 
 :::: {.columns}
+::: {.column width="48%"}
+**The statistician is responsible for**
+
+* Hypothesis for the primary endpoint (PFS) and alpha (next slide)
+* Design: event-driven, two interim analyses
+* Randomization: 1:1, High Dose vs Placebo
+* Stratification factors (our trial: none)
+* Sample size and assumptions
+* Analysis populations and methods (summary)
+* Multiplicity strategy for the secondary endpoints
+* Interim analyses and the Data Monitoring Committee (DMC) charter
+:::
 ::: {.column width="52%"}
+**Endpoints** (defined with the clinical team)
+
 | | Endpoint |
 |---|---|
 | Primary | **PFS**: randomization to first progression (RECIST 1.1, investigator) or death |
@@ -199,33 +298,24 @@ Every later step carries out a decision made here.
 | Safety | TEAEs (MedDRA), labs (CTCAE grades) |
 
 [PFS: progression-free survival; OS: overall survival; ORR: objective response rate; DCR: disease control rate; CR / PR: complete / partial response; SD: stable disease; TEAE: treatment-emergent adverse event; MedDRA: Medical Dictionary for Regulatory Activities; CTCAE: Common Terminology Criteria for Adverse Events]{.tiny .muted}
-:::
-::: {.column width="48%"}
-**Also written by the statistician**
-
-* Hypotheses and alpha (next slide)
-* Design: 1:1, event-driven, two interim analyses
-* Sample size and assumptions
-* Analysis populations and methods (summary)
-* Multiplicity strategy for the secondary endpoints
-* Interim analyses and the Data Monitoring Committee (DMC) charter
 
 Full text: `r gh("lab/docs/01_protocol_synopsis.md")`
 :::
 ::::
 
-## The hypothesis: what does a hazard ratio (HR) of 0.6 mean?
+## The PFS hypothesis: what does a hazard ratio (HR) of 0.6 mean?
 
 :::: {.columns}
 ::: {.column width="46%"}
 $$
-H_0: \mathrm{HR} = 1 \quad \text{vs} \quad H_1: \mathrm{HR} < 1
+H_0: \mathrm{HR}_{\mathrm{PFS}} = 1 \quad \text{vs} \quad H_1: \mathrm{HR}_{\mathrm{PFS}} < 1
 $$
 
+* PFS is the primary endpoint: the hypothesis, alpha and sample size are for PFS
 * One-sided alpha 2.5%, power 80%
 * Design HR `r DESIGN$hr`: the drug lowers the hazard of progression or death by 40%
 * Exponential survival: median = log(2) / hazard, so HR = median (Placebo) / median (High Dose)
-* Placebo median `r DESIGN$median_control` months → High Dose median **`r sprintf("%.1f", median_exp)` months**
+* Placebo median PFS `r DESIGN$median_control` months → High Dose median PFS **`r sprintf("%.1f", median_exp)` months**
 :::
 ::: {.column width="54%"}
 ```{r}
@@ -294,10 +384,12 @@ adsl |>
 ::::
 
 ::: {.takeaway}
-Every patient received the randomized treatment, so both sets have the same arms.
-`r n_never_81`
-High Dose patients stopped during the 54 mg start and never reached 81 mg. These
-patients started the High Dose regimen, so they stay High Dose for safety.
+* **Why are both columns the same?** The two sets differ only when a patient
+  receives the wrong arm (for example, a Placebo patient who gets High Dose by
+  mistake). In our trial this never happened.
+* **High Dose = 54 mg at the start, then 81 mg.** `r n_never_81` High Dose
+  patients stopped while still on 54 mg. They started the High Dose regimen, so
+  the safety set still counts them as High Dose.
 :::
 
 ## PFS censoring rules (SAP section 6.1)
@@ -539,6 +631,34 @@ Our source data contain SDTM only. The lab rebuilds raw data from SDTM
 :::
 ::::
 
+## The SDTM mapping specification (example: AE)
+
+Before any code, the programmer writes a **mapping specification** (often
+called the "spec"): an **Excel workbook** with one sheet per domain and one row
+per variable. The statistician reviews it.
+
+```{r}
+slide_sheet(
+  "sdtm_spec.xlsx", "AE",
+  cols = c("Variable Name", "Variable Label", "Type", "Length", "Controlled Terms or Format",
+           "Origin", "Core", "Conversion Definition"),
+  vars = c("STUDYID", "USUBJID", "AESEQ", "AETERM", "AEDECOD", "AESEV", "AESER",
+           "AESTDTC", "AESTDY")
+)
+```
+
+[Workbook: `r gh("lab/data/spec/sdtm_spec.xlsx")`. Origin: Collected = from the CRF;
+Assigned = set by the sponsor or a dictionary; Derived = computed. Core
+(from the SDTM Implementation Guide): Req = required, Exp = expected, Perm = permissible.
+The AE program takes its variables and their order from this sheet.]{.small .muted}
+
+::: notes
+The spec comes first, the code second. The QC programmer also works from the
+spec, not from the production code. Open the workbook in Excel to show the
+full sheet, including Variable Order and
+Comments for Define.
+:::
+
 ## Raw → SDTM: the mapping functions
 
 :::: {.columns}
@@ -660,6 +780,32 @@ adsl_check |>
 ```
 :::
 ::::
+
+## The ADaM specification (example: ADTTE)
+
+The statistician writes or reviews the **ADaM specification**: the same layout,
+and the Conversion Definition is the derivation from SDTM or ADSL, linked to the
+SAP. The sheet also gives the types, lengths and labels of the submission files:
+SAS transport files (XPT) and define.xml.
+
+```{r}
+slide_sheet(
+  "adam_spec.xlsx", "ADTTE",
+  cols = c("Variable Name", "Variable Label", "Type", "Length", "Controlled Terms or Format",
+           "Origin", "Core", "Conversion Definition"),
+  vars = c("USUBJID", "PARAMCD", "AVAL", "STARTDT", "ADT", "CNSR", "EVNTDESC")
+)
+```
+
+[Workbook: `r gh("lab/data/spec/adam_spec.xlsx")`. Predecessor = copied from another
+dataset; Cond = conditionally required. `10_submission.R` reads this sheet with
+{xportr} to write the XPT file.]{.small .muted}
+
+::: notes
+For ADaM, the Conversion Definition is where the statistician's decisions
+live: for example the censoring rules of SAP section 6.1 in ADT and CNSR. The
+QC programmer reads the same sheet and programs the dataset independently.
+:::
 
 ## ADTTE: one row per patient per parameter
 
@@ -839,7 +985,52 @@ review_tbl |>
 :::
 ::::
 
-## The log-rank test, step by step
+## The log-rank test, step by step: each event time
+
+At each event time $j$: compare the **event rates** of the arms ($n$ at risk, $d$ events; 1 High Dose, 0 Placebo)
+
+$$
+O_{1j} - E_{1j} \;=\; d_{1j} - d_j \frac{n_{1j}}{n_j}
+\;=\; \underbrace{\frac{n_{1j}\, n_{0j}}{n_j}}_{\text{weight } w_j}
+\Big( \underbrace{\frac{d_{1j}}{n_{1j}} - \frac{d_{0j}}{n_{0j}}}_{\text{difference in event rates}} \Big)
+$$
+
+```{r}
+lbt <- logrank_by_time
+f2 <- function(x, d = 2) formatC(x, format = "f", digits = d)
+shown <- head(lbt, 6)
+lbt_tab <- dplyr::bind_rows(
+  dplyr::transmute(shown, Day = as.character(DAY), n0 = as.character(n0), n1 = as.character(n1),
+                   d0 = as.character(d0), d1 = as.character(d1), diff = f2(rate_diff, 3),
+                   w = f2(weight), ome = f2(o_minus_e), v = f2(v)),
+  tibble::tibble(Day = "...", n0 = "...", n1 = "...", d0 = "...", d1 = "...", diff = "...",
+                 w = "...", ome = "...", v = "..."),
+  tibble::tibble(Day = sprintf("Sum over all %d event times", nrow(lbt)), n0 = "", n1 = "",
+                 d0 = as.character(sum(lbt$d0)), d1 = as.character(sum(lbt$d1)), diff = "",
+                 w = f2(sum(lbt$weight), 1), ome = f2(sum(lbt$o_minus_e)), v = f2(sum(lbt$v)))
+)
+gt::gt(lbt_tab) |>
+  gt::tab_spanner("At risk", c(n0, n1)) |>
+  gt::tab_spanner("Events", c(d0, d1)) |>
+  gt::cols_label(n0 = "Placebo", n1 = "High Dose", d0 = "Placebo", d1 = "High Dose",
+                 diff = "Rate difference", w = "Weight w", ome = "O − E (High Dose)", v = "V") |>
+  gt::cols_align("right", -Day) |>
+  gt::tab_style(gt::cell_text(weight = "bold"), gt::cells_body(rows = nrow(lbt_tab))) |>
+  slide_gt(15)
+```
+
+**The log-rank statistic adds these up**: Σ (O − E) = Σ w × (rate difference), a
+**weighted sum of the rate differences at each event time** (divided by Σ w: a
+weighted average). [The weight is large when both arms still have many patients
+at risk. Code: `r gh("lab/R/07_tfl_efficacy.R")`, checked against `survival::survdiff()`.]{.small .muted}
+
+::: notes
+Ties: many events fall on the same scheduled scan days, so there are only a
+few dozen distinct event times. A negative rate difference means fewer events
+on High Dose than on Placebo at that time.
+:::
+
+## The log-rank test, step by step: add up and test
 
 $$
 \chi^2 = \frac{\left(\sum_j (O_{1j} - E_{1j})\right)^2}{\sum_j V_{1j}},\qquad
@@ -859,6 +1050,13 @@ logrank_parts |>
 * For the one-sided test: $Z = (E - O)/\sqrt{V}$ = **`r sprintf("%.3f", pfs_hi$z)`** for High Dose, one-sided p = **`r fmt_p(pfs_hi$p_one_sided)`**
 :::
 ::::
+
+::: {.takeaway}
+$\chi^2 = \big(\sum_j w_j \times \text{rate difference}_j\big)^2 / \sum_j V_{1j}$:
+the weighted sum of the rate differences from the previous slide, squared and
+divided by its variance. Here the differences cancel out over time, so the sum
+is small (`r sprintf("%.2f", sum(logrank_by_time$o_minus_e))`) and $\chi^2$ is close to 0.
+:::
 
 ## Sensitivity analysis: PFS by BICR {.code-small}
 
@@ -1304,7 +1502,7 @@ Questions?
 | DBL | Database Lock |
 | DCR | Disease Control Rate |
 | DM / DS / EX / LB / RS / TU / VS | SDTM domains: Demographics / Disposition / Exposure / Laboratory / Response / Tumor Identification / Vital Signs |
-| DMC | Data Monitoring Committee |
+| DMC / DRC | Data Monitoring Committee / Data Review Committee |
 | DSUR | Development Safety Update Report |
 | eCTD | electronic Common Technical Document |
 | FDA | US Food and Drug Administration |
@@ -1331,6 +1529,7 @@ Questions?
 | ODM | CDISC Operational Data Model |
 | ORR / OS / PFS | Objective Response Rate / Overall Survival / Progression-Free Survival |
 | P21 | Pinnacle 21 (conformance checking software) |
+| PHUSE | Pharmaceutical Users Software Exchange |
 :::
 ::: {.column width="50%"}
 | Acronym | Meaning |
