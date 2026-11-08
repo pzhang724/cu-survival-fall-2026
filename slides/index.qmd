@@ -98,7 +98,7 @@ lb_example <- read_raw("lb")[1, ]
 * Independent statistician on a Data Monitoring Committee (DMC), Safety Review
   Committee (SRC) or Data Review Committee (DRC)
 * Open-source contributor: PHUSE (Pharmaceutical Users Software Exchange),
-  R/Pharma, US Food and Drug Administration (FDA) submission working group
+  R/Pharma, R Consortium R Submissions Working Group
 :::
 ::::
 
