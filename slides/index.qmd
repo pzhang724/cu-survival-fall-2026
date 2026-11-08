@@ -13,7 +13,7 @@ format:
     margin: 0.04
     slide-number: c/t
     hash-type: number
-    footer: "From Protocol to Submission · Columbia Survival Analysis · Fall 2026"
+    footer: "Slides, code and data: [github.com/pzhang724/cu-survival-fall-2026](https://github.com/pzhang724/cu-survival-fall-2026)"
     embed-resources: true
     code-overflow: wrap
     code-line-numbers: false
@@ -219,7 +219,21 @@ Every later step carries out a decision made here.
 ## Protocol: the parts the statistician writes
 
 :::: {.columns}
+::: {.column width="48%"}
+**The statistician is responsible for**
+
+* Hypothesis for the primary endpoint (PFS) and alpha (next slide)
+* Design: event-driven, two interim analyses
+* Randomization: 1:1, High Dose vs Placebo
+* Stratification factors (our trial: none)
+* Sample size and assumptions
+* Analysis populations and methods (summary)
+* Multiplicity strategy for the secondary endpoints
+* Interim analyses and the Data Monitoring Committee (DMC) charter
+:::
 ::: {.column width="52%"}
+**Endpoints** (defined with the clinical team)
+
 | | Endpoint |
 |---|---|
 | Primary | **PFS**: randomization to first progression (RECIST 1.1, investigator) or death |
@@ -229,33 +243,24 @@ Every later step carries out a decision made here.
 | Safety | TEAEs (MedDRA), labs (CTCAE grades) |
 
 [PFS: progression-free survival; OS: overall survival; ORR: objective response rate; DCR: disease control rate; CR / PR: complete / partial response; SD: stable disease; TEAE: treatment-emergent adverse event; MedDRA: Medical Dictionary for Regulatory Activities; CTCAE: Common Terminology Criteria for Adverse Events]{.tiny .muted}
-:::
-::: {.column width="48%"}
-**Also written by the statistician**
-
-* Hypotheses and alpha (next slide)
-* Design: 1:1, event-driven, two interim analyses
-* Sample size and assumptions
-* Analysis populations and methods (summary)
-* Multiplicity strategy for the secondary endpoints
-* Interim analyses and the Data Monitoring Committee (DMC) charter
 
 Full text: `r gh("lab/docs/01_protocol_synopsis.md")`
 :::
 ::::
 
-## The hypothesis: what does a hazard ratio (HR) of 0.6 mean?
+## The PFS hypothesis: what does a hazard ratio (HR) of 0.6 mean?
 
 :::: {.columns}
 ::: {.column width="46%"}
 $$
-H_0: \mathrm{HR} = 1 \quad \text{vs} \quad H_1: \mathrm{HR} < 1
+H_0: \mathrm{HR}_{\mathrm{PFS}} = 1 \quad \text{vs} \quad H_1: \mathrm{HR}_{\mathrm{PFS}} < 1
 $$
 
+* PFS is the primary endpoint: the hypothesis, alpha and sample size are for PFS
 * One-sided alpha 2.5%, power 80%
 * Design HR `r DESIGN$hr`: the drug lowers the hazard of progression or death by 40%
 * Exponential survival: median = log(2) / hazard, so HR = median (Placebo) / median (High Dose)
-* Placebo median `r DESIGN$median_control` months → High Dose median **`r sprintf("%.1f", median_exp)` months**
+* Placebo median PFS `r DESIGN$median_control` months → High Dose median PFS **`r sprintf("%.1f", median_exp)` months**
 :::
 ::: {.column width="54%"}
 ```{r}

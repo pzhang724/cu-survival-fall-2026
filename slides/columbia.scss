@@ -24,7 +24,7 @@ $code-color: $cu-navy;
 }
 
 .reveal .slide-number { color: #6B7280; font-size: 0.55em; }
-.reveal .footer { color: #6B7280; font-size: 0.45em; }
+.reveal .footer { color: #6B7280; font-size: 0.5em; }
 
 // section divider slides
 .reveal section.part-title h1 { color: #FFFFFF; font-size: 2.2em; }
@@ -106,3 +106,8 @@ $code-color: $cu-navy;
 .reveal .slide-menu-button { display: none; }
 // slide number sits just left of the right-hand logo
 .reveal .slide-number { right: 150px !important; bottom: 16px !important; }
+
+// footer and slide number stay readable on the navy section slides
+.reveal.has-dark-background .footer,
+.reveal.has-dark-background .footer a,
+.reveal.has-dark-background .slide-number { color: $cu-light; }
