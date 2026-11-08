@@ -148,8 +148,7 @@ small summary tables on the slides, not for TFLs.
 * **Specifications** are Excel workbooks (sheet "Datasets" + one sheet per
   dataset) with the user's column names: Variable Name, Variable Label, Type,
   Length, Controlled Terms or Format, Origin, Core, Conversion Definition,
-  Variable Type (here: the SDTM role / ADaM variable group), Variable Order,
-  Comments for Define. `read_spec()` reads them with {readxl}; `03` takes the AE
+  Variable Order, Comments for Define (the user dropped "Variable Type"). `read_spec()` reads them with {readxl}; `03` takes the AE
   variables and order from the SDTM spec, `10` feeds the ADaM spec to {xportr}.
   Edit the workbooks in Excel (no script writes them).
 * **Slide 4** ("Set up R: Posit Cloud") gives the setup steps; the speaker

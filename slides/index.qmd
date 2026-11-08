@@ -655,7 +655,7 @@ The AE program takes its variables and their order from this sheet.]{.small .mut
 ::: notes
 The spec comes first, the code second. The QC programmer also works from the
 spec, not from the production code. Open the workbook in Excel to show the
-full sheet, including Variable Type (the SDTM role), Variable Order and
+full sheet, including Variable Order and
 Comments for Define.
 :::
 
