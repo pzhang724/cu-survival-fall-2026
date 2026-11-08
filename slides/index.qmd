@@ -329,10 +329,12 @@ adsl |>
 ::::
 
 ::: {.takeaway}
-Every patient received the randomized treatment, so both sets have the same arms.
-`r n_never_81`
-High Dose patients stopped during the 54 mg start and never reached 81 mg. These
-patients started the High Dose regimen, so they stay High Dose for safety.
+* **Why are both columns the same?** The two sets differ only when a patient
+  receives the wrong arm (for example, a Placebo patient who gets High Dose by
+  mistake). In our trial this never happened.
+* **High Dose = 54 mg at the start, then 81 mg.** `r n_never_81` High Dose
+  patients stopped while still on 54 mg. They started the High Dose regimen, so
+  the safety set still counts them as High Dose.
 :::
 
 ## PFS censoring rules (SAP section 6.1)
