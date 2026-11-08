@@ -985,7 +985,52 @@ review_tbl |>
 :::
 ::::
 
-## The log-rank test, step by step
+## The log-rank test, step by step: each event time
+
+At each event time $j$: compare the **event rates** of the arms ($n$ at risk, $d$ events; 1 High Dose, 0 Placebo)
+
+$$
+O_{1j} - E_{1j} \;=\; d_{1j} - d_j \frac{n_{1j}}{n_j}
+\;=\; \underbrace{\frac{n_{1j}\, n_{0j}}{n_j}}_{\text{weight } w_j}
+\Big( \underbrace{\frac{d_{1j}}{n_{1j}} - \frac{d_{0j}}{n_{0j}}}_{\text{difference in event rates}} \Big)
+$$
+
+```{r}
+lbt <- logrank_by_time
+f2 <- function(x, d = 2) formatC(x, format = "f", digits = d)
+shown <- head(lbt, 6)
+lbt_tab <- dplyr::bind_rows(
+  dplyr::transmute(shown, Day = as.character(DAY), n0 = as.character(n0), n1 = as.character(n1),
+                   d0 = as.character(d0), d1 = as.character(d1), diff = f2(rate_diff, 3),
+                   w = f2(weight), ome = f2(o_minus_e), v = f2(v)),
+  tibble::tibble(Day = "...", n0 = "...", n1 = "...", d0 = "...", d1 = "...", diff = "...",
+                 w = "...", ome = "...", v = "..."),
+  tibble::tibble(Day = sprintf("Sum over all %d event times", nrow(lbt)), n0 = "", n1 = "",
+                 d0 = as.character(sum(lbt$d0)), d1 = as.character(sum(lbt$d1)), diff = "",
+                 w = f2(sum(lbt$weight), 1), ome = f2(sum(lbt$o_minus_e)), v = f2(sum(lbt$v)))
+)
+gt::gt(lbt_tab) |>
+  gt::tab_spanner("At risk", c(n0, n1)) |>
+  gt::tab_spanner("Events", c(d0, d1)) |>
+  gt::cols_label(n0 = "Placebo", n1 = "High Dose", d0 = "Placebo", d1 = "High Dose",
+                 diff = "Rate difference", w = "Weight w", ome = "O − E (High Dose)", v = "V") |>
+  gt::cols_align("right", -Day) |>
+  gt::tab_style(gt::cell_text(weight = "bold"), gt::cells_body(rows = nrow(lbt_tab))) |>
+  slide_gt(15)
+```
+
+**The log-rank statistic adds these up**: Σ (O − E) = Σ w × (rate difference), a
+**weighted sum of the rate differences at each event time** (divided by Σ w: a
+weighted average). [The weight is large when both arms still have many patients
+at risk. Code: `r gh("lab/R/07_tfl_efficacy.R")`, checked against `survival::survdiff()`.]{.small .muted}
+
+::: notes
+Ties: many events fall on the same scheduled scan days, so there are only a
+few dozen distinct event times. A negative rate difference means fewer events
+on High Dose than on Placebo at that time.
+:::
+
+## The log-rank test, step by step: add up and test
 
 $$
 \chi^2 = \frac{\left(\sum_j (O_{1j} - E_{1j})\right)^2}{\sum_j V_{1j}},\qquad
@@ -1005,6 +1050,13 @@ logrank_parts |>
 * For the one-sided test: $Z = (E - O)/\sqrt{V}$ = **`r sprintf("%.3f", pfs_hi$z)`** for High Dose, one-sided p = **`r fmt_p(pfs_hi$p_one_sided)`**
 :::
 ::::
+
+::: {.takeaway}
+$\chi^2 = \big(\sum_j w_j \times \text{rate difference}_j\big)^2 / \sum_j V_{1j}$:
+the weighted sum of the rate differences from the previous slide, squared and
+divided by its variance. Here the differences cancel out over time, so the sum
+is small (`r sprintf("%.2f", sum(logrank_by_time$o_minus_e))`) and $\chi^2$ is close to 0.
+:::
 
 ## Sensitivity analysis: PFS by BICR {.code-small}
 
