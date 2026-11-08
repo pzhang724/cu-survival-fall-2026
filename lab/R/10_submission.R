@@ -11,12 +11,24 @@ need("adtte", "05_adam_adrs_adtte.R")
 library(xportr)
 
 ## ---- sub-spec ----
-# Variable-level metadata for ADTTE: the ADaM specification sheet
-# (lab/data/spec/adam_spec_adtte.csv). In practice this is a sheet of the ADaM
-# specification workbook, which also generates define.xml.
-adtte_spec <- read_spec("adam_spec_adtte")
+# Variable-level metadata for ADTTE: sheet "ADTTE" of the ADaM specification
+# workbook (lab/data/spec/adam_spec.xlsx), the same workbook that would also
+# generate define.xml. Renamed to the columns that {xportr} reads; a SAS format
+# (for example DATE9.) sits in the column "Controlled Terms or Format".
+adtte_spec <- read_spec("adam_spec.xlsx", sheet = "ADTTE") %>%
+  transmute(
+    dataset  = "ADTTE",
+    variable = `Variable Name`,
+    label    = `Variable Label`,
+    type     = if_else(Type == "Num", "numeric", "character"),
+    length   = Length,
+    format   = if_else(str_detect(`Controlled Terms or Format`, "\\.$"),
+                       `Controlled Terms or Format`, NA_character_),
+    order    = `Variable Order`
+  )
 
-dataset_spec <- tibble(dataset = "ADTTE", label = "Time-to-Event Analysis Dataset")
+dataset_spec <- read_spec("adam_spec.xlsx", sheet = "Datasets") %>%
+  transmute(dataset = Dataset, label = Label)
 
 ## ---- sub-xportr ----
 adtte_xpt <- adtte %>%

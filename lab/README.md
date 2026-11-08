@@ -42,14 +42,14 @@ submission uses SAS transport files (XPT) with define.xml instead.
 |---|---|---|---|
 | Planning | `R/01_design.R` | Hypothesis, events (Schoenfeld), patients, group sequential design with analyses at 50/75/100% of events, power analysis, all with {gsDesign} | `output/figures/f_design_boundaries.png`, `f_design_power.png`, `output/tables/t_design_boundaries.rtf` |
 | Collection | `R/02_reverse_raw.R` | Builds EDC-style raw data from the source SDTM (dates as CRF text, CRF pick-list values, coding columns, wide CRF pages, lab vendor file) | `data/raw/*.csv`, `data/spec/*.csv` |
-| Standards | `R/03_raw_to_sdtm.R` | Maps raw DM, AE, CM to SDTM (AE follows the mapping specification `data/spec/sdtm_spec_ae.csv`) and compares with the source SDTM using {diffdf} | `data/sdtm/*.csv` |
+| Standards | `R/03_raw_to_sdtm.R` | Maps raw DM, AE, CM to SDTM (AE follows the mapping specification `data/spec/sdtm_spec.xlsx`) and compares with the source SDTM using {diffdf} | `data/sdtm/*.csv` |
 | Standards | `R/04_adam_adsl.R` | Extends the source ADSL: analysis-set flags (from SUPPDM), baseline body mass index, end of treatment and end of study with reasons | `data/adam/adsl.csv` |
 | Standards | `R/05_adam_adrs_adtte.R` | ADRS (RECIST response) and ADTTE (PFS, OS) with {admiral}/{admiralonco}, for the final data, for PFS by BICR (sensitivity) and for the two interim data cuts | `data/adam/adrs.csv`, `adtte.csv`, `adtte_ia1.csv`, `adtte_ia2.csv` |
 | Reporting | `R/06_tfl_baseline.R` | Tables 14.1.1-14.1.3: disposition, demographics, concomitant medications ({rtables} + {tern}) | `output/tables/t_14_1_*.rtf` |
 | Reporting | `R/07_tfl_efficacy.R` | Tables 14.2.1-14.2.4: PFS (Kaplan-Meier, log-rank, Cox), response rates, OS, PFS by BICR; Figures 14.2.1-14.2.2; multiplicity; investigator vs BICR reads | `output/tables/t_14_2_*.rtf`, `output/figures/f_14_2_*.png` |
 | Reporting | `R/08_tfl_safety.R` | Tables 14.3.1-14.3.3: adverse events overview (with maximum severity), adverse events by SOC/PT, lab CTCAE shift | `output/tables/t_14_3_*.rtf` |
 | Monitoring | `R/09_interim.R` | Two interim analyses: boundaries at the actual information, log-rank Z and p-value, conditional power (formula and {gsDesign}), futility rule, DMC table | `output/tables/t_ia_1_interim_pfs.rtf`, `output/figures/f_ia_1_km_pfs.png` |
-| Submission | `R/10_submission.R` | Applies the ADaM specification `data/spec/adam_spec_adtte.csv` with {xportr} and writes a SAS transport file | `output/submission/adtte.xpt` |
+| Submission | `R/10_submission.R` | Applies the ADaM specification `data/spec/adam_spec.xlsx` with {xportr} and writes a SAS transport file | `output/submission/adtte.xpt` |
 
 `R/00_setup.R` holds the packages, the design assumptions (`DESIGN`) and small
 helpers. Lines such as `## ---- design-gsd ----` label code blocks that the
