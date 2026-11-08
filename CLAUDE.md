@@ -144,6 +144,8 @@ small summary tables on the slides, not for TFLs.
 * **Concomitant medications**: most pilot records are "UNCODED"; the table shows
   them by verbatim name under "Not yet coded".
 * **Data cut-off** is always written out; do not use the abbreviation "DCO".
+* **Slide 2** is the speaker's own introduction ("Introduction of myself":
+  education, current role, experience), placed before "Today".
 * **Synthetic data**: the slides say that all data are synthetic test data
   from pharmaverse and that no real patient data are used.
 * **Links to the repository** on slides (code, data, docs) always point to the

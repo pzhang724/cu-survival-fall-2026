@@ -78,6 +78,35 @@ irt_date_example <- read_raw("irt")$RANDOMIZATION_DATE[1]
 lb_example <- read_raw("lb")[1, ]
 ```
 
+## Introduction of myself
+
+:::: {.columns}
+::: {.column width="45%"}
+**Peng Zhang, PhD**
+
+* PhD in Biostatistics, Rutgers University
+  * Research: statistical monitoring, adaptive design
+* Associate Director of Innovative Data Sciences, CIMS Global
+:::
+::: {.column width="55%"}
+**Personal experience**
+
+* Open-source development in statistical monitoring and regulatory submission
+* Agentic biometric workflows: artificial intelligence agents that help with
+  statistics and programming
+* Study statistician
+* Independent statistician on a Data Monitoring Committee (DMC), Safety Review
+  Committee (SRC) or Data Review Committee (DRC)
+* Open-source contributor
+:::
+::::
+
+::: notes
+A short introduction. The work on Data Monitoring Committees comes back in
+Part 5 (interim analyses and the DMC report). The open-source work explains why
+this lecture uses open-source R packages from pharmaverse.
+:::
+
 ## Today
 
 **Today's view: a role-play. We are the trial statistician of one randomized
@@ -1304,7 +1333,7 @@ Questions?
 | DBL | Database Lock |
 | DCR | Disease Control Rate |
 | DM / DS / EX / LB / RS / TU / VS | SDTM domains: Demographics / Disposition / Exposure / Laboratory / Response / Tumor Identification / Vital Signs |
-| DMC | Data Monitoring Committee |
+| DMC / DRC | Data Monitoring Committee / Data Review Committee |
 | DSUR | Development Safety Update Report |
 | eCTD | electronic Common Technical Document |
 | FDA | US Food and Drug Administration |

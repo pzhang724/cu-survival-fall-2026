@@ -35,6 +35,7 @@ term in the course material it should be here; if it is not, please add it.
 | DCR | Disease Control Rate | Proportion of patients with BOR = CR, PR or SD (or non-CR/non-PD) |
 | DM / DS / EX / LB / RS / TU / VS | Demographics / Disposition / Exposure / Laboratory / Response / Tumor Identification / Vital Signs | SDTM domains |
 | DMC | Data Monitoring Committee | Independent experts who review unblinded interim results (also called an independent DMC, or a Data Safety Monitoring Board) |
+| DRC | Data Review Committee | Group that reviews accumulating trial data (often safety and data quality) at planned meetings; its role is set in its charter |
 | DSUR | Development Safety Update Report | Yearly safety report to regulators for a drug in development (ICH E2F) |
 | eCTD | electronic Common Technical Document | Folder structure of a regulatory submission; data go in module 5 |
 | EDC | Electronic Data Capture | System the sites type CRF data into (e.g. Medidata Rave) |
